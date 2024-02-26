@@ -15,9 +15,9 @@ class RoleLevel
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
-    if(in_array(!$request->user()->role,$roles)){
-        return response('Unauthorized',401);
-    }
-    return abort(401);
+        if (in_array(!$request->user()->role, $roles)) {
+            return $next($request);
+        }
+        return abort(401);
     }
 }

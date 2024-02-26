@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- basic -->
     <meta charset="utf-8">
@@ -37,7 +36,6 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
 </head>
-
 <body class="dashboard dashboard_1">
     <div class="full_container">
         <div class="inner_container">
@@ -88,11 +86,10 @@
                                 @csrf
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();">><i
-                                        class="fa fa-sign-out white_color"></i>
-
+                                                this.closest('form').submit();"><i
+                                        class="fa fa-sign-out white_color"></i> Log Out</a>
+                            </form>
                         </li>
-
                     </ul>
                 </div>
             </nav>
@@ -118,25 +115,16 @@
                                                     src="{{ asset('dist') }}/images/layout_img/user_img.jpg"
                                                     alt="#" /><span
                                                     class="name_user">{{ Auth::user()->name }}</span></a>
-
-                                            src="{{ asset('upload') . '/' . Auth::user()->gambar }}"
-                                            alt="#" /><span
-                                                class="name_user">{{ Auth::user()->name }}</span></a>
-
                                             <div class="dropdown-menu">
-                                                <a href="{{ route('profile.edit') }}" class="dropdown-item"
-                                                    href="{{ asset('dist') }}/profile.html">My
+                                                <a href="{{ route('profile.edit') }}" class="dropdown-item">My
                                                     Profile</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ asset('dist') }}/settings.html">Settings</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ asset('dist') }}/help.html">Help</a>
+                                                <a class="dropdown-item" href="{{ asset('dist') }}/settings.html">Settings</a>
+                                                <a class="dropdown-item" href="{{ asset('dist') }}/help.html">Help</a>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
                                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                                         onclick="event.preventDefault();
-                                                this.closest('form').submit();"><span>Log
-                                                            Out</span> <i class="fa fa-sign-out"></i></a>
+                                                this.closest('form').submit();">Log Out</a>
                                                 </form>
                                             </div>
                                         </li>
@@ -155,7 +143,7 @@
                     <!-- footer -->
                     <div class="container-fluid">
                         <div class="footer">
-                            <p>Copyright © 2018 Designed by html.design. All rights reserved.<br><br>
+                            <p>Copyright © 2018 Designed by html.design. All rights reserved.
                                 Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
                             </p>
                         </div>
@@ -189,5 +177,4 @@
     <script src="{{ asset('dist') }}/js/chart_custom_style1.js"></script>
     <script src="{{ asset('dist') }}/js/custom.js"></script>
 </body>
-
 </html>

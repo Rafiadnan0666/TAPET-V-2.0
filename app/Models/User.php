@@ -49,4 +49,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function mahasantri() {
         return $this->hasMany(Mahasantri::class,'mentor_id','id');
     }
+
+    
 }

@@ -41,7 +41,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('/mahasantri', MahasantriController::class);
     Route::resource('/setoran', SetoranController::class);
 });
-Route::get('/test', function () {
-    return view('test');
-})->middleware(['auth', 'role:l']);
+Route::get('/user', function () {
+    return "anda user aplikasi";
+})->middleware(['auth'])->name('user');
+
+
+Route::get('/admin', function () {
+    return "selamat datang administrator ";
+})->middleware(['auth'])->name('admin');
 require __DIR__.'/auth.php';
