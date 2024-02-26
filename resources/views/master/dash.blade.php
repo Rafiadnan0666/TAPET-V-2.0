@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- site icon -->
-    <link rel="icon" href="{{ asset('dist') }}/images/fevicon.png" type="image/png" />
+    <link rel="icon" href="{{ asset('dist') }}/images/logo/koran.png" type="image/png" />
     <!-- bootstrap css -->
     <link rel="stylesheet" href="{{ asset('dist') }}/css/bootstrap.min.css" />
     <!-- site css -->
@@ -43,7 +43,7 @@
                 <div class="sidebar_blog_1">
                     <div class="sidebar-header">
                         <div class="logo_section">
-                            <a href="{{ route('dash') }}"><img class="logo_icon img-responsive"
+                            <a href="{{ route('dashboard') }}"><img class="logo_icon img-responsive"
                                     src="{{ asset('dist') }}/images/logo/logo_icon.png" alt="#" /></a>
                         </div>
                     </div>
@@ -51,9 +51,9 @@
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
                             <div class="user_img"><img class="img-responsive"
-                                    src="{{ asset('dist') }}/images/layout_img/user_img.jpg" alt="#" /></div>
+                                    src="{{ asset('upload') . '/' . Auth::user()->gambar }}" alt="#" /></div>
                             <div class="user_info">
-                                <h6>John David</h6>
+                                <h6>{{ Auth::user()->name }}</h6>
                                 <p><span class="online_animation"></span> Online</p>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                 <div class="sidebar_blog_2">
                     <h4>General</h4>
                     <ul class="list-unstyled components">
-                        <li><a href="{{ route('dash') }}"><i class="fa fa-home white_color"></i>
+                        <li><a href="{{ route('dashboard') }}"><i class="fa fa-home white_color"></i>
                                 <span>Dashboard</span></a>
                         </li>
                         <li class="active">
@@ -80,8 +80,16 @@
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="#"><i class="fa fa-sign-out white_color"></i>
-                                <span>Log Out</span></a>
+                        <li>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="border-0 bg-transparent">
+                                    <a href="">
+                                        <i class="fa fa-sign-out white_color"></i>
+                                        <span>Log Out</span>
+                                    </a>
+                                </button>
+                            </form>
                         </li>
 
                     </ul>
@@ -97,8 +105,8 @@
                             <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
                                     class="fa fa-bars"></i></button>
                             <div class="logo_section">
-                                <a href="{{ route('dash') }}"><img class="img-responsive"
-                                        src="{{ asset('dist') }}/images/logo/logo.png" alt="#" /></a>
+                                <a href="{{ route('dashboard') }}"><img class="img-responsive"
+                                        src="{{ asset('dist') }}/images/logo/koran.png" alt="#" /></a>
                             </div>
                             <div class="right_topbar">
                                 <div class="icon_info">
@@ -106,16 +114,25 @@
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown"><img
                                                     class="img-responsive rounded-circle"
-                                                    src="{{ asset('dist') }}/images/layout_img/user_img.jpg"
-                                                    alt="#" /><span class="name_user">John David</span></a>
+                                                    src="{{ asset('upload') . '/' . Auth::user()->gambar }}"
+                                                    alt="#" /><span
+                                                    class="name_user">{{ Auth::user()->name }}</span></a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{ asset('dist') }}/profile.html">My
                                                     Profile</a>
                                                 <a class="dropdown-item"
                                                     href="{{ asset('dist') }}/settings.html">Settings</a>
                                                 <a class="dropdown-item" href="{{ asset('dist') }}/help.html">Help</a>
-                                                <a class="dropdown-item" href="#"><span>Log Out</span> <i
-                                                        class="fa fa-sign-out"></i></a>
+                                                <form action="{{ route('logout') }}" method="post">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn p-0 w-100 text-left bg-transparent border-0">
+                                                        <a class="dropdown-item">
+                                                            <span>Log
+                                                                Out</span> <i class="fa fa-sign-out"></i>
+                                                        </a>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </li>
                                     </ul>
