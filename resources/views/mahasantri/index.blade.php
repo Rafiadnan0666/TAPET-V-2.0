@@ -30,7 +30,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $mhs->nim }}</td>
-                                    <td><img src="{{ $mhs->photo }}" alt="{{ $mhs->nama }}" style="max-width: 100px;">
+                                    <td><img src="{{asset("upload")}}/{{ $mhs->gambar }}" alt="{{ $mhs->nama }}" style="max-width: 100px;">
                                     </td>
                                     <td>{{ $mhs->nama_mhs }}</td>
                                     <td>{{ $mhs->mentor->name }}</td>
