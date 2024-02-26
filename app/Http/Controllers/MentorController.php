@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Mahasantri;
 use Illuminate\Http\Request;
 
-class userController extends Controller
+class MentorController extends Controller
 {
+    public $mentor;
+    public function __construct()
+    {
+        $this->mentor = new User();
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view("mentor.index");
     }
 
     /**
