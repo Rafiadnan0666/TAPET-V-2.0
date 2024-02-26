@@ -27,7 +27,7 @@ Route::get('/log', function () {
 
 Route::get('/dash', function () {
     return view('master/dash');
-});
+})->name('dash');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
