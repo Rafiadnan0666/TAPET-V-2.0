@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasantriController;
 use App\Http\Controllers\SetoranController;
+use App\Http\Controllers\MentorController;
 
 
 /*
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/mahasantri', MahasantriController::class);
     Route::resource('/setoran', SetoranController::class);
+    Route::resource('/mentor', MentorController::class);
 });
 Route::get('/user', function () {
     return "anda user aplikasi";
