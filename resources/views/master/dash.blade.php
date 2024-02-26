@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('dist') }}/css/perfect-scrollbar.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('dist') }}/css/custom.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -53,7 +54,7 @@
                             <div class="user_img"><img class="img-responsive"
                                     src="{{ asset('dist') }}/images/layout_img/user_img.jpg" alt="#" /></div>
                             <div class="user_info">
-                                <h6>John David</h6>
+                                <h6>{{ Auth::user()->name }}</h6>
                                 <p><span class="online_animation"></span> Online</p>
                             </div>
                         </div>
@@ -73,15 +74,22 @@
                                     <a href="#">> <span>Manage Mentor</span></a>
                                 </li>
                                 <li>
-                                    <a href="#">> <span>Manage Mahasantri</span></a>
+                                    <a href="{{route("mahasantri.index")}}">> <span>Manage Mahasantri</span></a>
                                 </li>
                                 <li>
-                                    <a href="#">> <span>Manage Setoran</span></a>
+                                    <a href="{{route("setoran.index")}}">> <span>Manage Setoran</span></a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="#"><i class="fa fa-sign-out white_color"></i>
-                                <span>Log Out</span></a>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">><i
+                                        class="fa fa-sign-out white_color"></i>
+                                    <span>Log Out</span></a>
+                            </form>
                         </li>
 
                     </ul>
@@ -107,15 +115,22 @@
                                             <a class="dropdown-toggle" data-toggle="dropdown"><img
                                                     class="img-responsive rounded-circle"
                                                     src="{{ asset('dist') }}/images/layout_img/user_img.jpg"
-                                                    alt="#" /><span class="name_user">John David</span></a>
+                                                    alt="#" /><span class="name_user">{{ Auth::user()->name }}</span></a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{ asset('dist') }}/profile.html">My
+                                                <a href="{{ route('profile.edit') }}" class="dropdown-item"
+                                                    href="{{ asset('dist') }}/profile.html">My
                                                     Profile</a>
                                                 <a class="dropdown-item"
                                                     href="{{ asset('dist') }}/settings.html">Settings</a>
                                                 <a class="dropdown-item" href="{{ asset('dist') }}/help.html">Help</a>
-                                                <a class="dropdown-item" href="#"><span>Log Out</span> <i
-                                                        class="fa fa-sign-out"></i></a>
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+                                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                                        onclick="event.preventDefault();
+                                                this.closest('form').submit();"><span>Log
+                                                            Out</span> <i class="fa fa-sign-out"></i></a>
+                                                </form>
+
                                             </div>
                                         </li>
                                     </ul>

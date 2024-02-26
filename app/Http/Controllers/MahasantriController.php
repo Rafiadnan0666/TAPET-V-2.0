@@ -10,9 +10,12 @@ class MahasantriController extends Controller
     /**
      * Display a listing of the resource.
      */
+   
     public function index()
     {
         //
+        $mahasantri = Mahasantri::all();
+        return view("mahasantri.index" ,compact("mahasantri"));
     }
 
     /**
@@ -21,6 +24,7 @@ class MahasantriController extends Controller
     public function create()
     {
         //
+        return view('mahasantri.create');
     }
 
     /**
