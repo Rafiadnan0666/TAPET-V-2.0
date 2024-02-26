@@ -24,6 +24,9 @@ Route::get('/', function () {
 Route::get('/log', function () {
     return view('log');
 });
+Route::get('/re', function () {
+    return view('re');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
