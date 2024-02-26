@@ -41,5 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/mahasantri', MahasantriController::class);
     Route::resource('/setoran', SetoranController::class);
 });
-
+Route::get('/test', function () {
+    return view('test');
+})->middleware(['auth', 'role:l']);
 require __DIR__.'/auth.php';
