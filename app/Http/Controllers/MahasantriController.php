@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
+use App\Models\Setoran;
 use App\Models\User;
 use App\Models\Mahasantri;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class MahasantriController extends Controller
 {
@@ -39,7 +41,6 @@ class MahasantriController extends Controller
             'nama_mhs' => 'required',
             'mentor_id' => 'required|exists:user,id',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
-            'status' => 'required'
         ];
 
         $messages = [
@@ -59,11 +60,10 @@ class MahasantriController extends Controller
         $mahasantri->nim = $val['nim'];
         $mahasantri->nama_mhs = $val['nama_mhs'];
         $mahasantri->mentor_id = $val['mentor_id'];
-        $mahasantri->status = $val['status'];
         $mahasantri->gambar = $filename;
         $mahasantri->save();
 
-        return redirect()->route("mahasantri.index")->with('success', 'Data mahasantri berhasil disimpan');
+        return redirect()->route("mahasantri.index");
     }
 
 
@@ -72,7 +72,8 @@ class MahasantriController extends Controller
      */
     public function show(Mahasantri $mahasantri)
     {
-        return view("mahasantri.show", compact('mahasantri'));
+        $setoran = Setoran::all()->where("mahasantri_id","=",$mahasantri->id);
+        return view("mahasantri.show", compact('mahasantri','setoran'));
     }
 
     /**
@@ -81,6 +82,8 @@ class MahasantriController extends Controller
     public function edit(Mahasantri $mahasantri)
     {
         //
+        $mentor = User::all()->where("role","=","m");
+        return view("mahasantri.edit",compact('mahasantri','mentor'));
     }
 
     /**
@@ -88,7 +91,35 @@ class MahasantriController extends Controller
      */
     public function update(Request $request, Mahasantri $mahasantri)
     {
-        //
+        $rules = [
+            'nim' => 'required|numeric|',
+            'nama_mhs' => 'required',
+            'mentor_id' => 'required|exists:user,id',
+            'gambar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+        ];
+
+        $messages = [
+            'required' => ':attribute tidak boleh kosong',
+            'numeric' => ':attribute harus berupa angka',
+            'exists' => ':attribute tidak valid',
+            'image' => ':attribute harus berupa file gambar',
+            'mimes' => 'Ekstensi :values tidak didukung, gunakan yang lain',
+            'max' => 'Ukuran :attribute tidak boleh melebihi :max KB',
+        ];
+        $mahasantri = Mahasantri::findOrFail($mahasantri->id);
+        $val = $request->validate($rules, $messages);
+        if ($request->file('gambar')){
+            File::delete($mahasantri->gambar);
+            $filename = time().'.'.$request->gambar->extension();    
+            $request->gambar->move(public_path('upload'),$filename);    
+            $val['gambar']= $filename;    
+        }
+        $mahasantri->nim = $val['nim'];
+        $mahasantri->nama_mhs = $val['nama_mhs'];
+        $mahasantri->mentor_id = $val['mentor_id'];
+        $mahasantri->save();
+
+        return redirect()->route("mahasantri.index");
     }
 
     /**
@@ -97,5 +128,11 @@ class MahasantriController extends Controller
     public function destroy(Mahasantri $mahasantri)
     {
         //
+        $path = public_path("upload/") . $mahasantri->gambar;
+        if (File::exists($path)) {
+            File::delete($path);
+        }
+        $mahasantri->delete();
+        return redirect()->route('mahasantri.index');
     }
 }

@@ -43,11 +43,11 @@
                                         <a href="{{ route('mahasantri.show', $mhs->id) }}">
                                             <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
                                         </a>
-                                        <a href="{{ route('mahasantri.show', $mhs->id) }}">
+                                        <a href="{{ route('mahasantri.edit', $mhs->id) }}">
                                             <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                                         </a>
 
-                                        <form action="{{ route('mahasantri.destroy', $mhs->id) }}"
+                                        <form action="{{ route('mahasantri.destroy', $mhs->id) }}" onclick="return confirn("yakin ngapus")"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
