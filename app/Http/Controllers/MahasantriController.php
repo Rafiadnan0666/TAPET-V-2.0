@@ -110,7 +110,7 @@ class MahasantriController extends Controller
         $val = $request->validate($rules, $messages);
         if ($request->file('gambar')){
             File::delete($mahasantri->gambar);
-            $filename = time().'.'.$request->gambar->extension();    
+            $filename = time() . '_' . uniqid() . '.' . $request->file('gambar')->getClientOriginalExtension();
             $request->gambar->move(public_path('upload'),$filename);    
             $val['gambar']= $filename;    
         }

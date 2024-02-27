@@ -47,7 +47,7 @@
                                             <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                                         </a>
 
-                                        <form action="{{ route('mahasantri.destroy', $mhs->id) }}" onclick="return confirn("yakin ngapus")"
+                                        <form action="{{ route('mahasantri.destroy', $mhs->id) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
