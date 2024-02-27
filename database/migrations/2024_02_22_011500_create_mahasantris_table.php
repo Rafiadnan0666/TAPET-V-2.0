@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('nim');
             $table->string('nama_mhs');
             $table->unsignedBigInteger('mentor_id');
-            $table->string('gambar')->nullable();
             $table->foreign('mentor_id')->references('id')->on('user');
             $table->timestamps();
         });
