@@ -1,10 +1,5 @@
 @extends('master.dash')
 @section('konten')
-    @php
-        $id = Auth::user()->id;
-        $mahasantri = DB::table('mahasantri')->where('mentor_id', '=', $id)->Paginate(5);
-        $no = 5 * ($mahasantri->currentPage() - 1);
-    @endphp
     <div class="row column_title">
         <div class="col-md-12">
             <div class="page_title">
@@ -35,12 +30,17 @@
                             </thead>
                             <tbody>
                                 @foreach ($mahasantri as $m)
+                                    @php
+                                        $mid = $m->id;
+                                        $avg = DB::table('setoran')->where('mahasantri_id', '=', $mid)->avg('nilai');
+                                        $l = DB::table('setoran')->orderBy('tanggal', 'desc')->where('mahasantri_id', '=', $mid)->limit(1)->get();
+                                    @endphp
                                     <tr>
                                         <td>{{ ++$no }}</td>
                                         <td>{{ $m->nim }}</td>
                                         <td>{{ $m->nama_mhs }}</td>
-                                        <td>Pitt</td>
-                                        <td>New York</td>
+                                        <td>{{ $avg }}</td>
+                                        <td>{{ $l }}</td>
                                         <th class="text-right">
                                             <div class="tooltip_section">
                                                 <a class="btn btn-primary" href="#" data-toggle="tooltip"
@@ -60,9 +60,6 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    {{--  <td colspan="2"></td>  --}}
-                                    {{--  <td class="float-end ">{{ $data->withQueryString()->links() }}</td>  --}}
-
                                     <td colspan="6" class="text-end">
                                         {{ $mahasantri->withQueryString()->links('pagination::bootstrap-5') }}
                                     </td>

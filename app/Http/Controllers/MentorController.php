@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Mahasantri;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MentorController extends Controller
 {
@@ -16,9 +18,12 @@ class MentorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view("mentor.index");
+        $id = Auth::user()->id; 
+        $mahasantri = DB::table('mahasantri')->where('mentor_id', '=', $id)->Paginate(5);
+        $no = 5 * ($mahasantri->currentPage() - 1);
+        return view("mentor.index",compact('mahasantri', 'no'));
     }
 
     /**
