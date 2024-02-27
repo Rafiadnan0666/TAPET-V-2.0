@@ -17,7 +17,7 @@ return new class extends Migration
             $table->dateTime("tanggal")->default(now());
             $table->decimal("juz", 30);
             $table->decimal("halaman", 8, 2); // Adjust precision and scale as needed
-            $table->enum("status", ["l", "u"]);
+            $table->int("nilai");
             $table->foreign("mahasantri_id")->references("id")->on("mahasantri");
             $table->string("keterangan")->nullable();
             $table->timestamps();
