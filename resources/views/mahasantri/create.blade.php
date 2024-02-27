@@ -74,6 +74,28 @@
                                                     @enderror
                                                 </div>
                                             </div>
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input @error('status')
+                                                    is-invalid
+                                                @enderror"
+                                                    type="radio" name="status" value="l"
+                                                    id="flexRadioDefault1">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    lanjut
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input @error('status')
+                                                    is-invalid
+                                                @enderror"
+                                                    type="radio" name="status" value="l"
+                                                    id="flexRadioDefault1">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    ulang
+                                                </label>
+                                            </div>
                                         </div>
                                         <button class="btn btn-primary mt-3" type="submit">
                                             <i class="fa fa-save"></i> Simpan

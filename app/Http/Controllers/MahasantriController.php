@@ -38,7 +38,8 @@ class MahasantriController extends Controller
             'nim' => 'required|numeric|unique:mahasantri',
             'nama_mhs' => 'required',
             'mentor_id' => 'required|exists:user,id',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the validation for the image upload
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'status' => 'required'
         ];
 
         $messages = [
@@ -58,6 +59,7 @@ class MahasantriController extends Controller
         $mahasantri->nim = $val['nim'];
         $mahasantri->nama_mhs = $val['nama_mhs'];
         $mahasantri->mentor_id = $val['mentor_id'];
+        $mahasantri->status = $val['status'];
         $mahasantri->gambar = $filename;
         $mahasantri->save();
 

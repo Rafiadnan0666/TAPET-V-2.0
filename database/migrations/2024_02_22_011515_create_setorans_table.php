@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal("juz", 30);
             $table->decimal("halaman", 8, 2); // Adjust precision and scale as needed
             $table->integer("nilai");
+            $table->enum("status", ["l", "a"]);
             $table->foreign("mahasantri_id")->references("id")->on("mahasantri");
             $table->string("keterangan")->nullable();
             $table->timestamps();

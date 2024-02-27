@@ -20,6 +20,7 @@
                                 <th>Foto</th>
                                 <th>Nama Mahasantri</th>
                                 <th>Mentor</th>
+                                <th>status</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
                                 <th></th>
@@ -35,17 +36,18 @@
                                     </td>
                                     <td>{{ $mhs->nama_mhs }}</td>
                                     <td>{{ $mhs->mentor->name }}</td>
+                                     <td>{{ $mhs->status == 'l' ? "lanjut" : "ulang" }}</td>
                                     <td>{{ $mhs->created_at }}</td>
                                     <td>{{ $mhs->updated_at }}</td>
-                                    <td>
-                                        <a href="{{ route('mahasantri.show', ['mahasantri' => $mhs->id]) }}">
+                                    <td class="d-flex">
+                                        <a href="{{ route('mahasantri.show', $mhs->id) }}">
                                             <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
                                         </a>
-                                        <a href="{{ route('mahasantri.show', ['mahasantri' => $mhs->id]) }}">
+                                        <a href="{{ route('mahasantri.show', $mhs->id) }}">
                                             <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                                         </a>
 
-                                        <form action="{{ route('mahasantri.destroy', ['mahasantri' => $mhs->id]) }}"
+                                        <form action="{{ route('mahasantri.destroy', $mhs->id) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
