@@ -70,7 +70,7 @@ class MahasantriController extends Controller
      */
     public function show(Mahasantri $mahasantri)
     {
-        //
+        return view("mahasantri.show", compact('mahasantri'));
     }
 
     /**

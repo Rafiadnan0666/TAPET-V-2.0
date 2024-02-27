@@ -30,22 +30,29 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $mhs->nim }}</td>
-                                    <td><img src="{{asset("upload")}}/{{ $mhs->gambar }}" alt="{{ $mhs->nama }}" style="max-width: 100px;">
+                                    <td><img src="{{ asset('upload') }}/{{ $mhs->gambar }}" alt="{{ $mhs->nama }}"
+                                            style="max-width: 100px;">
                                     </td>
                                     <td>{{ $mhs->nama_mhs }}</td>
                                     <td>{{ $mhs->mentor->name }}</td>
                                     <td>{{ $mhs->created_at }}</td>
                                     <td>{{ $mhs->updated_at }}</td>
                                     <td>
-                                        <a href="{{ route('mahasantri.create') }}">
+                                        <a href="{{ route('mahasantri.show', ['mahasantri' => $mhs->id]) }}">
                                             <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
                                         </a>
-                                        <a href="">
+                                        <a href="{{ route('mahasantri.show', ['mahasantri' => $mhs->id]) }}">
                                             <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                                         </a>
-                                        <a href="">
-                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                        </a>
+
+                                        <form action="{{ route('mahasantri.destroy', ['mahasantri' => $mhs->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </form>
+
                                     </td>
                                 </tr>
                             @endforeach

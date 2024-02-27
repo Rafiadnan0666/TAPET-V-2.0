@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_mhs');
             $table->unsignedBigInteger('mentor_id');
             $table->string('gambar')->nullable();
+            $table->enum("status", ["l", "a"]);
             $table->foreign('mentor_id')->references('id')->on('user');
             $table->timestamps();
         });
