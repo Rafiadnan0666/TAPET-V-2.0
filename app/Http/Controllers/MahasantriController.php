@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Mahasantri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class MahasantriController extends Controller
 {
