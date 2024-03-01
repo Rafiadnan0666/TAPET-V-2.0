@@ -160,8 +160,8 @@
                     <!-- footer -->
                     <div class="container-fluid">
                         <div class="footer">
-                            <p>Copyright © 2018 Designed by html.design. All rights reserved.
-                                Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
+                            <p>Copyright © 2018 Designed by TAPET design. All rights reserved.
+                                Distributed By: TAPET</a>
                             </p>
                         </div>
                     </div>
