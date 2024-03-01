@@ -13,11 +13,13 @@ class RoleLevel
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, ...$roles): Response
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        if (in_array(!$request->user()->role, $roles)) {
-            return $next($request);
+        if (!$request->user() || !$request->user()->role || !in_array($request->user()->role, $roles)) {
+            abort(403, 'Unauthorized.');
+              return $next($request);
         }
-        return abort(401);
+
+        return $next($request);
     }
 }
