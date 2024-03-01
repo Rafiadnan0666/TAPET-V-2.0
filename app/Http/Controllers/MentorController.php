@@ -48,9 +48,10 @@ class MentorController extends Controller
         return view('mentor/createmhs');
     }
 
-    public function createstr()
+    public function createstr(string $id)
     {
-        return view('mentor/createatr');
+        $mahasantri = Mahasantri::findOrFail($id);
+        return view('mentor/createstr', compact('mahasantri'));
     }
 
     public function create()
@@ -85,12 +86,16 @@ class MentorController extends Controller
 
         return redirect()->route('mentor.index');
     }
+
     public function storestr(Request $request)
     {
         $rules = [
             // format penulisan untuk field yang unil = unique:nama_tabel,field_tabel
-            'nim' => 'required|min:3|max:20|unique:mahasantri,nim',
-            'nama' => 'required|min:3|max:20|unique:mahasantri,nama_mhs',
+            'juz' => 'required',
+            'nilai' => 'required',
+            'hal' => 'required',
+            'ket' => 'required',
+            'tanggal' => 'required',
         ];
 
         // bikin pesan error
@@ -102,12 +107,15 @@ class MentorController extends Controller
         ];
 
         $this->validate($request, $rules, $messages);
-        $this->mahasantri->nama_mhs = $request->nama;
-        $this->mahasantri->nim = $request->nim;
-        $this->mahasantri->mentor_id = $request->mid;
-        $this->mahasantri->save(); 
+        $this->setoran->juz = $request->juz;
+        $this->setoran->nilai = $request->nilai;
+        $this->setoran->tanggal = $request->tanggal;
+        $this->setoran->keterangan = $request->ket;
+        $this->setoran->halaman = $request->hal;
+        $this->setoran->mahasantri_id = $request->mid;
+        $this->setoran->save(); 
 
-        return redirect()->route('mentor.index');
+        return redirect()->route('mentor.setoran', $request->mid);
     }
 
     /**
