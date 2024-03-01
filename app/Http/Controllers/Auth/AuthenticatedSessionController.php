@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -29,8 +30,17 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // Assuming you have a `role` attribute in your User model
+        $user = Auth::user();
+        if ($user->role === 'a') {
+            return redirect()->intended(route('dashboard'));
+        } elseif ($user->role === 'm') {
+            return redirect()->intended(route('mentor.index'));
+        }
+
+        return redirect()->intended('/');
     }
+
 
     /**
      * Destroy an authenticated session.

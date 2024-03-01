@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasantriController;
 use App\Http\Controllers\SetoranController;
 use App\Http\Controllers\MentorController;
-
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,25 +30,24 @@ Route::get('/dash', function () {
     return view('master/dash');
 })->middleware(['auth', 'verified'])->name('dash');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::resource('/mahasantri', MahasantriController::class);
-    Route::resource('/setoran', SetoranController::class);
     Route::resource('/mentor', MentorController::class);
 });
-Route::get('/user', function () {
-    return "anda user aplikasi";
-})->middleware(['auth'])->name('user');
 
 
-Route::get('/admin', function () {
-    return "selamat datang administrator ";
-})->middleware(['auth'])->name('admin');
-require __DIR__.'/auth.php';
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('/mahasantri', MahasantriController::class);
+    Route::resource('/setoran', SetoranController::class);
+});
+
+
+require __DIR__ . '/auth.php';

@@ -66,34 +66,44 @@
                 </div>
                 <div class="sidebar_blog_2">
                     <h4>General</h4>
-                    <ul class="list-unstyled components">
-                        <li><a href="{{ route('dashboard') }}"><i class="fa fa-home white_color"></i>
-                                <span>Dashboard</span></a>
-                        </li>
-                        <li class="active">
-                            <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
-                                    class="fa fa-database white_color"></i> <span>Manage Data</span></a>
-                            <ul class="collapse list-unstyled" id="dashboard">
-                                <li>
-                                    <a href="#">> <span>Manage Mentor</span></a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('mahasantri.index') }}">> <span>Manage Mahasantri</span></a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('setoran.index') }}">> <span>Manage Setoran</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
+                    @if (Auth::user()->role == 'a')
+                        <ul class="list-unstyled components">
+                            <li><a href="{{ route('dashboard') }}"><i class="fa fa-home white_color"></i>
+                                    <span>Dashboard</span></a>
+                            </li>
+                            <li class="active">
+                                <a href="#dashboard" data-toggle="collapse" aria-expanded="false"
+                                    class="dropdown-toggle"><i class="fa fa-database white_color"></i> <span>Manage
+                                        Data</span></a>
+                                <ul class="collapse list-unstyled" id="dashboard">
+                                    <li>
+                                        <a href="{{ route('mentor.index') }}">> <span>Manage Mentor</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('mahasantri.index') }}">> <span>Manage Mahasantri</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('setoran.index') }}">> <span>Manage Setoran</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                            @else
+                                <ul class="list-unstyled components">
+                                    <li><a href="{{ route('mentor.index') }}"><i class="fa fa-home white_color"></i>
+                                            <span>Dashboard</span></a>
+                                    </li>
+                                    <li>
+                    @endif
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
                                                 this.closest('form').submit();"><i
-                                        class="fa fa-sign-out white_color"></i> Log Out</a>
-                            </form>
-                        </li>
+                                class="fa fa-sign-out white_color"></i> Log Out</a>
+                    </form>
+                    </li>
                     </ul>
                 </div>
             </nav>
