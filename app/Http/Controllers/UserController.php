@@ -8,32 +8,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class MentorController extends Controller
+class UserController extends Controller
 {
-    public $mentor;
-    public function __construct()
-    {
-        $this->mentor = new User();
-    }
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $id = Auth::user()->id; 
-        $mahasantri = DB::table('mahasantri')->where('mentor_id', '=', $id)->Paginate(5);
-        $no = 5 * ($mahasantri->currentPage() - 1);
-        return view("mentor.index",compact('mahasantri', 'no'));
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function setoran()
-    {
-        //
-    }
-
     public function create()
     {
         //
@@ -50,7 +37,7 @@ class MentorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(user $user)
+    public function show(string $id)
     {
         //
     }
@@ -58,7 +45,7 @@ class MentorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(user $user)
+    public function edit(string $id)
     {
         //
     }
@@ -66,7 +53,7 @@ class MentorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -74,7 +61,7 @@ class MentorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(user $user)
+    public function destroy(string $id)
     {
         //
     }
