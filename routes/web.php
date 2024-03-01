@@ -6,6 +6,10 @@ use App\Http\Controllers\MahasantriController;
 use App\Http\Controllers\SetoranController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Models\Mentor;
+use App\Models\Mahasantri;
+use App\Models\Setoran;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +51,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard', [
+            'mentor' => Mentor::count(),
+            'mahasantri' => Mahasantri::count(),
+            'setoran' => Setoran::count(),
+        ]);
     })->name('dashboard');
 });
 

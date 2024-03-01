@@ -36,7 +36,7 @@
                     </div>
                     <div class="counter_no">
                         <div>
-                            <p class="total_no">2500</p>
+                            <p class="total_no">{{ $mentor }}</p>
                             <p class="head_couter">Mentor</p>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="counter_no">
                         <div>
-                            <p class="total_no">123.50</p>
+                            <p class="total_no">{{ $mahasantri }}</p>
                             <p class="head_couter">Mahasantri</p>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                         </div>
                     <div class="counter_no">
                         <div>
-                            <p class="total_no">1,805</p>
+                            <p class="total_no">{{ $setoran }}</p>
                             <p class="head_couter">Setoran</p>
                         </div>
                     </div>
