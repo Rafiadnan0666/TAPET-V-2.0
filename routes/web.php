@@ -61,7 +61,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/mahasantri', MahasantriController::class);
     Route::resource('/setoran', SetoranController::class);
+    Route::resource('/user', UserController::class);
 });
+
 
 
 require __DIR__ . '/auth.php';
