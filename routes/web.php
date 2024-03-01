@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasantriController;
 use App\Http\Controllers\SetoranController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
@@ -20,10 +21,6 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/log', function () {
-    return view('log');
 });
 
 Route::get('/dash', function () {
