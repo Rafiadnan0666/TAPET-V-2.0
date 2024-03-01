@@ -34,7 +34,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('/mentor', MentorController::class);
+
+    Route::resource('/mahasantri', MahasantriController::class);
+    Route::resource('/setoran', SetoranController::class);
+
+    Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
+    Route::get('/mentor/create', [MentorController::class, 'create'])->name('mentor.create');
+    Route::get('/mentor/setoran', [MentorController::class, 'setoran'])->name('mentor.setoran');
 });
 
 

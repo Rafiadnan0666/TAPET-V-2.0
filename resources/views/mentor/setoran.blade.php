@@ -53,7 +53,7 @@
                                         </td>
                                         <th class="text-right">
                                             <div class="tooltip_section">
-                                                <a class="btn btn-primary" href="{{ route('mentor.setoran', $m->id) }}" data-toggle="tooltip"
+                                                <a class="btn btn-primary" href="#" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Detail"><i
                                                         class="fa fa-eye"></i></a>
                                                 <a class="btn btn-warning" href="#" data-toggle="tooltip"
