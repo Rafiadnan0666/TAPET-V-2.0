@@ -3,7 +3,13 @@
     <div class="row column_title">
         <div class="col-md-12">
             <div class="page_title">
-                <h2>Mahasantri binaan {{ Auth::user()->name }}</h2>
+                <div class="float-right">
+                    <ul class="d-flex">
+                        <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
+                        <li><a>{{ $setoran[0]->mahasantri->nama_mhs }} </a></li>
+                    </ul>
+                </div>
+                <h2 style="width: max-content">Data Setoran dari {{ $setoran[0]->mahasantri->nama_mhs }}</h2>
             </div>
         </div>
     </div>
@@ -23,33 +29,26 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>#</th>
-                                    <th>NIM</th>
-                                    <th>Nama</th>
-                                    <th>Rata-rata Nilai</th>
-                                    <th>Setoran Terakhir</th>
+                                    <th>Juz</th>
+                                    <th>Halaman</th>
+                                    <th>Nilai</th>
+                                    <th>Status</th>
+                                    <th>Keterangan</th>
+                                    <th>Tanggal</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($mahasantri as $m)
-                                    @php
-                                        $mid = $m->id;
-                                        $avg = DB::table('setoran')->where('mahasantri_id', '=', $mid)->avg('nilai');
-                                        $l = DB::table('setoran')
-                                            ->orderBy('tanggal', 'desc')
-                                            ->where('mahasantri_id', '=', $mid)
-                                            ->limit(1)
-                                            ->get();
-                                    @endphp
+                                @foreach ($setoran as $s)
                                     <tr>
                                         <td>{{ ++$no }}</td>
-                                        <td>{{ $m->nim }}</td>
-                                        <td>{{ $m->nama_mhs }}</td>
-                                        <td>{{ number_format($avg, 2) }}</td>
+                                        <td>{{ number_format($s->juz, 0) }}</td>
+                                        <td>{{ number_format($s->halaman, 0) }}</td>
+                                        <td>{{ $s->nilai }}</td>
+                                        <td>{{ $s->nilai > 75 ? 'Lanjut' : 'Ulang' }}</td>
+                                        <td>{{ $s->keterangan }}</td>
                                         <td>
-                                            @foreach ($l as $t)
-                                                {{ date('l d-M-Y', strtotime($t->tanggal)) }}
-                                            @endforeach
+                                            {{ date('l d-M-Y', strtotime($s->tanggal)) }}
                                         </td>
                                         <th class="text-right">
                                             <div class="tooltip_section">
@@ -71,7 +70,7 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="6" class="text-end">
-                                        {{ $mahasantri->withQueryString()->links('pagination::bootstrap-5') }}
+                                        {{ $setoran->withQueryString()->links('pagination::bootstrap-5') }}
                                     </td>
                                 </tr>
                             </tfoot>

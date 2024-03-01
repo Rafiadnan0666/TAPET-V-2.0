@@ -39,8 +39,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/setoran', SetoranController::class);
 
     Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
-    Route::get('/mentor/create', [MentorController::class, 'create'])->name('mentor.create');
-    Route::get('/mentor/setoran', [MentorController::class, 'setoran'])->name('mentor.setoran');
+    Route::get('/mentor/createmhs', [MentorController::class, 'createmhs'])->name('mentor.createmhs');
+    Route::get('/mentor/storeemhs', [MentorController::class, 'storeemhs'])->name('mentor.storemhs');
+    Route::get('/mentor/setoran/{id}', [MentorController::class, 'setoran'])->name('mentor.setoran');
 });
 
 
