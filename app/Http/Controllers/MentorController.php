@@ -12,10 +12,15 @@ use Illuminate\Support\Facades\Auth;
 class MentorController extends Controller
 {
     public $mentor;
+    public $mahasantri;
+    public $setoran;
     public function __construct()
     {
         $this->mentor = new User();
+        $this->mahasantri = new Mahasantri();
+        $this->setoran = new Setoran();
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -32,14 +37,21 @@ class MentorController extends Controller
      */
     public function setoran(string $id)
     {
+        $mahasantri = Mahasantri::findOrFail($id);
         $setoran = Setoran::where('mahasantri_id', '=', $id)->Paginate(5);
         $no = 5 * ($setoran->currentPage() - 1);
-        return view('mentor/setoran', compact('setoran', 'no'));
+        return view('mentor/setoran', compact('setoran', 'no','mahasantri'));
     }
 
     public function createmhs()
     {
         return view('mentor/createmhs');
+    }
+
+    public function createstr(string $id)
+    {
+        $mahasantri = Mahasantri::findOrFail($id);
+        return view('mentor/createstr', compact('mahasantri'));
     }
 
     public function create()
@@ -52,7 +64,58 @@ class MentorController extends Controller
      */
     public function storemhs(Request $request)
     {
-        //
+        $rules = [
+            // format penulisan untuk field yang unil = unique:nama_tabel,field_tabel
+            'nim' => 'required|min:3|max:20|unique:mahasantri,nim',
+            'nama' => 'required|min:3|max:20|unique:mahasantri,nama_mhs',
+        ];
+
+        // bikin pesan error
+        $messages = [
+            'required' => ':attribute gak boleh kosong masseeh',
+            'min' => ':attribute minimal harus 3 huruf',
+            'max' => ':attribute maximal 20 huruf',
+            'unique' => ':attribute sudah ada, silahkan gunakan yang lain'
+        ];
+
+        $this->validate($request, $rules, $messages);
+        $this->mahasantri->nama_mhs = $request->nama;
+        $this->mahasantri->nim = $request->nim;
+        $this->mahasantri->mentor_id = $request->mid;
+        $this->mahasantri->save(); 
+
+        return redirect()->route('mentor.index');
+    }
+
+    public function storestr(Request $request)
+    {
+        $rules = [
+            // format penulisan untuk field yang unil = unique:nama_tabel,field_tabel
+            'juz' => 'required',
+            'nilai' => 'required',
+            'hal' => 'required',
+            'ket' => 'required',
+            'tanggal' => 'required',
+        ];
+
+        // bikin pesan error
+        $messages = [
+            'required' => ':attribute gak boleh kosong masseeh',
+            'min' => ':attribute minimal harus 3 huruf',
+            'max' => ':attribute maximal 20 huruf',
+            'unique' => ':attribute sudah ada, silahkan gunakan yang lain'
+        ];
+
+        $this->validate($request, $rules, $messages);
+        $this->setoran->juz = $request->juz;
+        $this->setoran->nilai = $request->nilai;
+        $this->setoran->tanggal = $request->tanggal;
+        $this->setoran->keterangan = $request->ket;
+        $this->setoran->halaman = $request->hal;
+        $this->setoran->mahasantri_id = $request->mid;
+        $this->setoran->save(); 
+
+        return redirect()->route('mentor.setoran', $request->mid);
     }
 
     /**

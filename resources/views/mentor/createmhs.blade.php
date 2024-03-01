@@ -26,18 +26,25 @@
                 <form class="padding_infor_info row" action="{{ route('mentor.storemhs') }}" method="POST">
                     @csrf
                     <div class="col-12 col-md-6">
+                        <input type="text" value="{{ Auth::user()->id }}" name="mid" hidden>
                         <div class="form-group">
                             <label for="nim" class="form-label">NIM <span class="text-danger small">*</span></label>
-                            <input id="nim" type="text" class="form-control" value="{{ old('nim') }}"
-                                name="nim">
+                            <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror"
+                                value="{{ old('nim') }}" name="nim">
+                            @error('nim')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="nama" class="form-label">Nama Mahasantri <span
                                     class="text-danger small">*</span></label>
-                            <input id="nama" type="text" class="form-control" value="{{ old('nama') }}"
-                                name="nama">
+                            <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror"
+                                value="{{ old('nama') }}" name="nama">
+                            @error('nama')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-12">

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasantriController;
 use App\Http\Controllers\SetoranController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\Mahasantri;
@@ -40,12 +41,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/setoran', SetoranController::class);
     });
 
+
     Route::middleware('role:a,m')->group(function () {
         Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
         Route::get('/mentor/createmhs', [MentorController::class, 'createmhs'])->name('mentor.createmhs');
         Route::post('/mentor/storemhs', [MentorController::class, 'storemhs'])->name('mentor.storemhs');
         Route::get('/mentor/setoran/{id}', [MentorController::class, 'setoran'])->name('mentor.setoran');
     });
+
+    Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
+    Route::get('/mentor/createmhs', [MentorController::class, 'createmhs'])->name('mentor.createmhs');
+    Route::get('/mentor/createstr/{id}', [MentorController::class, 'createstr'])->name('mentor.createstr');
+    Route::post('/mentor/storemhs', [MentorController::class, 'storemhs'])->name('mentor.storemhs');
+    Route::post('/mentor/storestr', [MentorController::class, 'storestr'])->name('mentor.storestr');
+    Route::get('/mentor/setoran/{id}', [MentorController::class, 'setoran'])->name('mentor.setoran');
+
 });
 
 
@@ -53,14 +63,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         $setoran = Setoran::all();
         $mahasantri = Mahasantri::all();
+
         $user = User::all()->where("role", "=", "m");
         return view('dashboard', compact('user', 'setoran', 'mahasantri'));
+
+       
     })->name('dashboard');
 });
 
 Route::middleware(['auth', 'role:a'])->group(function () {
     Route::resource('/mahasantri', MahasantriController::class);
     Route::resource('/setoran', SetoranController::class);
+    Route::resource('/user', UserController::class);
 });
 
 
