@@ -165,7 +165,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                 </div>
                 <!-- end dashboard inner -->
             </div>
         </div>
