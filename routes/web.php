@@ -7,9 +7,13 @@ use App\Http\Controllers\SetoranController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 use App\Models\Mahasantri;
 use App\Models\Setoran;
 use App\Models\User;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,17 +43,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/setoran', SetoranController::class);
 
     Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
-    Route::get('/mentor/create', [MentorController::class, 'create'])->name('mentor.create');
-    Route::get('/mentor/setoran', [MentorController::class, 'setoran'])->name('mentor.setoran');
+    Route::get('/mentor/createmhs', [MentorController::class, 'createmhs'])->name('mentor.createmhs');
+    Route::get('/mentor/storeemhs', [MentorController::class, 'storeemhs'])->name('mentor.storemhs');
+    Route::get('/mentor/setoran/{id}', [MentorController::class, 'setoran'])->name('mentor.setoran');
 });
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
+
         $setoran = Setoran::all();
         $mahasantri = Mahasantri::all();
         $user = User::all()->where("role", "=","m");
         return view('dashboard', compact('user','setoran','mahasantri'));
+
     })->name('dashboard');
 });
 

@@ -12,7 +12,7 @@
             <div class="white_shd full margin_bottom_30">
                 <div class="full graph_head">
                     <div class="float-right heading1 margin_0">
-                        <a href="{{ route('mentor.create') }}">
+                        <a href="{{ route('mentor.createmhs') }}">
                             <button class="btn btn-primary"><i class="fa fa-plus mr-2"></i>tambah </button>
                         </a>
                     </div>
