@@ -33,14 +33,22 @@
                                     @php
                                         $mid = $m->id;
                                         $avg = DB::table('setoran')->where('mahasantri_id', '=', $mid)->avg('nilai');
-                                        $l = DB::table('setoran')->orderBy('tanggal', 'desc')->where('mahasantri_id', '=', $mid)->limit(1)->get();
+                                        $l = DB::table('setoran')
+                                            ->orderBy('tanggal', 'desc')
+                                            ->where('mahasantri_id', '=', $mid)
+                                            ->limit(1)
+                                            ->get();
                                     @endphp
                                     <tr>
                                         <td>{{ ++$no }}</td>
                                         <td>{{ $m->nim }}</td>
                                         <td>{{ $m->nama_mhs }}</td>
                                         <td>{{ $avg }}</td>
-                                        <td>{{ $l }}</td>
+                                        <td>
+                                            @foreach ($l as $t)
+                                                {{ date('l d-M-Y', strtotime($t->tanggal)) }}
+                                            @endforeach
+                                        </td>
                                         <th class="text-right">
                                             <div class="tooltip_section">
                                                 <a class="btn btn-primary" href="#" data-toggle="tooltip"
