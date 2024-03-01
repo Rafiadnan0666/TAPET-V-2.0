@@ -5,10 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasantriController;
 use App\Http\Controllers\SetoranController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Models\User;
 use App\Models\Mahasantri;
 use App\Models\Setoran;
+use App\Models\User;
+
+
 
 
 /*
@@ -26,10 +29,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/log', function () {
-    return view('log');
-});
-
 Route::get('/dash', function () {
     return view('master/dash');
 })->middleware(['auth', 'verified'])->name('dash');
@@ -44,18 +43,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
     Route::get('/mentor/createmhs', [MentorController::class, 'createmhs'])->name('mentor.createmhs');
-    Route::get('/mentor/storeemhs', [MentorController::class, 'storeemhs'])->name('mentor.storemhs');
+    Route::post('/mentor/storemhs', [MentorController::class, 'storemhs'])->name('mentor.storemhs');
+    Route::post('/mentor/storestr', [MentorController::class, 'storestr'])->name('mentor.storestr');
     Route::get('/mentor/setoran/{id}', [MentorController::class, 'setoran'])->name('mentor.setoran');
 });
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard', [
-            'mentor' => User::count(),
-            'mahasantri' => Mahasantri::count(),
-            'setoran' => Setoran::count(),
-        ]);
+        $setoran = Setoran::all();
+        $mahasantri = Mahasantri::all();
+        $user = User::all()->where("role", "=","m");
+        return view('dashboard', compact('user','setoran','mahasantri'));
     })->name('dashboard');
 });
 

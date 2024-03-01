@@ -1,4 +1,3 @@
-
 {{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -30,13 +29,17 @@
             <a href="{{ route('mentor.index') }}">
                 <div class="full counter_section margin_bottom_30">
                     <div class="couter_icon">
-                        <div> 
+                        <div>
                             <i class="fa fa-user-tie yellow_color fa-beat-fade"></i>
                         </div>
                     </div>
                     <div class="counter_no">
                         <div>
-                            <p class="total_no">{{ $mentor }}</p>
+
+                            <p class="total_no">{{ $user->count() }}</p>
+
+
+
                             <p class="head_couter">Mentor</p>
                         </div>
                     </div>
@@ -47,13 +50,17 @@
             <a href="{{ route('mahasantri.index') }}">
                 <div class="full counter_section margin_bottom_30">
                     <div class="couter_icon">
-                        <div> 
+                        <div>
                             <i class="fa-solid fa-users green_color fa-flip"></i>
                         </div>
                     </div>
                     <div class="counter_no">
                         <div>
-                            <p class="total_no">{{ $mahasantri }}</p>
+
+                            <p class="total_no">{{ $mahasantri->count() }}</p>
+
+
+
                             <p class="head_couter">Mahasantri</p>
                         </div>
                     </div>
@@ -64,13 +71,15 @@
             <a href="{{ route('setoran.index') }}">
                 <div class="full counter_section margin_bottom_30">
                     <div class="couter_icon">
-                        <div> 
+                        <div>
                             <i class="fa fa-cloud-download blue1_color fa-bounce"></i>
                         </div>
-                        </div>
+                    </div>
                     <div class="counter_no">
                         <div>
-                            <p class="total_no">{{ $setoran }}</p>
+
+                            <p class="total_no">{{ $setoran->count() }}</p>
+
                             <p class="head_couter">Setoran</p>
                         </div>
                     </div>
@@ -80,13 +89,13 @@
         <div class="col-md-6 col-lg-3">
             <div class="full counter_section margin_bottom_30">
                 <div class="couter_icon">
-                    <div> 
+                    <div>
                         <i class="fa fa-comments-o red_color fa-shake"></i>
                     </div>
                 </div>
                 <div class="counter_no">
                     <div>
-                        <p class="total_no">54</p>
+                        <p class="total_no">{{ $user->count() }}</p>
                         <p class="head_couter">Comments</p>
                     </div>
                 </div>
@@ -94,6 +103,3 @@
         </div>
     </div>
 @endsection
-
-    
-
