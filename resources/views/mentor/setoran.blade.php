@@ -6,10 +6,10 @@
                 <div class="float-right">
                     <ul class="d-flex">
                         <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
-                        <li><a>{{ $setoran[0]->mahasantri->nama_mhs }} </a></li>
+                        <li><a>{{ $mahasantri->nama_mhs }} </a></li>
                     </ul>
                 </div>
-                <h2 style="width: max-content">Data Setoran dari {{ $setoran[0]->mahasantri->nama_mhs }}</h2>
+                <h2 style="width: max-content">Data Setoran dari {{ $mahasantri->nama_mhs }}</h2>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
             <div class="white_shd full margin_bottom_30">
                 <div class="full graph_head">
                     <div class="float-right heading1 margin_0">
-                        <a href="{{ route('mentor.create') }}">
+                        <a href="">
                             <button class="btn btn-primary"><i class="fa fa-plus mr-2"></i>tambah </button>
                         </a>
                     </div>

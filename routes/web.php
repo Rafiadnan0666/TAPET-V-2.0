@@ -44,7 +44,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
     Route::get('/mentor/createmhs', [MentorController::class, 'createmhs'])->name('mentor.createmhs');
-    Route::get('/mentor/storeemhs', [MentorController::class, 'storeemhs'])->name('mentor.storemhs');
+    Route::post('/mentor/storemhs', [MentorController::class, 'storemhs'])->name('mentor.storemhs');
+    Route::post('/mentor/storestr', [MentorController::class, 'storestr'])->name('mentor.storestr');
     Route::get('/mentor/setoran/{id}', [MentorController::class, 'setoran'])->name('mentor.setoran');
 });
 
