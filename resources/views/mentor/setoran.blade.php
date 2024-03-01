@@ -17,9 +17,15 @@
         <div class="col-md-12">
             <div class="white_shd full margin_bottom_30">
                 <div class="full graph_head">
-                    <div class="float-right heading1 margin_0">
+                    <div class="float-left heading1 margin_0">
                         <a href="{{ route('mentor.createstr', $mahasantri->id) }}">
                             <button class="btn btn-primary"><i class="fa fa-plus mr-2"></i>tambah </button>
+                        </a>
+                    </div>
+                    <div class="float-right heading1 margin_0">
+                        <a href="{{ route('mentor.index') }}">
+                            <button class="btn btn-warning text-light"><i class="fa fa-arrow-left mr-2"></i>kembali
+                            </button>
                         </a>
                     </div>
                 </div>
