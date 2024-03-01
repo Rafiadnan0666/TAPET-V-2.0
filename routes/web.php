@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasantriController;
 use App\Http\Controllers\SetoranController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\Mahasantri;
