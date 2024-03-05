@@ -32,11 +32,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @vite('resources/css/app.css')
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
       <![endif]-->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 
 <body class="dashboard dashboard_1">
@@ -49,7 +52,7 @@
                 <div class="sidebar_blog_1">
                     <div class="sidebar-header">
                         <div class="logo_section">
-                            <a href="{{ asset('dist') }}/index.html"><img class="logo_icon img-responsive"
+                            <a href="{{ route('dashboard') }}"><img class="logo_icon img-responsive"
                                     src="{{ asset('dist') }}/images/logo/logo_icon.png" alt="#" /></a>
                         </div>
                     </div>
@@ -57,9 +60,9 @@
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
                             <div class="user_img"><img class="img-responsive"
-                                    src="{{ asset('dist') }}/images/layout_img/user_img.jpg" alt="#" /></div>
+                                    src="{{ asset('upload') . '/' . Auth::user()->gambar }}" alt="#" /></div>
                             <div class="user_info">
-                                <h6>John David</h6>
+                                <h6>{{ Auth::user()->name }}</h6>
                                 <p><span class="online_animation"></span> Online</p>
                             </div>
                         </div>
@@ -191,6 +194,7 @@
     <!-- custom js -->
     <script src="{{ asset('dist') }}/js/chart_custom_style1.js"></script>
     <script src="{{ asset('dist') }}/js/custom.js"></script>
+    <script src="{{ asset('dist') }}/js/semantic.min.js"></script>
 </body>
 
 </html>
