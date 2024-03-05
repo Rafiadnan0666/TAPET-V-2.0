@@ -5,7 +5,7 @@
             <div class="white_shd full margin_bottom_30">
                 <div class="full graph_head">
                     <div class=" d-flex justify-content-between">
-                        <h2>Hover Table</h2>
+                        <h2>Data Setoran</h2>
                         <a href="{{ route('setoran.create') }}">
                             <button class="btn btn-primary"><i class="fa fa-create"></i>tambah </button>
                         </a>
