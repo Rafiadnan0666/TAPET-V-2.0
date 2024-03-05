@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Mahasantri;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,17 +15,19 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
 
-     public $mentor;
+    public $mentor;
+    public $mahasantri;
 
-     public function __construct()
-     {
-         $this->mentor = new User();
-     }
+    public function __construct()
+    {
+        $this->mentor = new User();
+        $this->mahasantri = new Mahasantri();
+    }
     public function index()
     {
-        $mentor=Mentor::where('role', '=', 'm')->Paginate(5);
+        $mentor = User::where('role', '=', 'm')->Paginate(5);
         $no = 5 * ($mentor->currentPage() - 1);
-        return view("user.index",compact('mentor', 'no'));
+        return view("user.index", compact('mentor', 'no'));
     }
 
     /**
@@ -42,7 +45,7 @@ class UserController extends Controller
     {
         $rules = [
             //format penulisan untuk field yang unik = unique:nama_tabel,field_tabel
-            'nama_kategori' => 'required|min:3|max:20|unique:kategori,kategori',
+            'nama_mentor' => 'required|min:3|max:20|unique:mentor,mentor',
             // 'jenis' => 'required|max:20|unique'
         ];
         //bikin pesan error
@@ -56,16 +59,16 @@ class UserController extends Controller
         //eksekusi fungsinya
         $this->validate($request, $rules, $messages);
         //pasangkan ke field tabelnya dengan kiriman user
-        $this->kategori->kategori = $request->nama_kategori;
+        $this->mentor->mentor = $request->nama_mentor;
 
         //lalu simpan ke database
-        $this->kategori->save();
+        $this->mentor->save();
 
         Alert::success('Success Title', 'Success Message');
 
 
         //redirect
-        return redirect()->route('kategori');
+        return redirect()->route('mentor');
     }
 
     /**
@@ -73,11 +76,11 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $mentor = Kategori::findOrFail($id);
+        $mentor = User::findOrFail($id);
 
         // buat ngecek data terkirim atau nggak
         // dd($mentor);
-        return view('kategori.show', compact('kategori'));
+        return view('mentor.show', compact('mentor'));
     }
 
     /**
@@ -85,9 +88,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $mentor = Kategori::findOrFail($id);
+        $mentor = User::findOrFail($id);
 
-        return view('kategori.edit', compact('kategori'));
+        return view('mentor.edit', compact('mentor'));
     }
 
     /**
@@ -95,11 +98,11 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $update = Kategori::findOrFail($id);
+        $update = User::findOrFail($id);
         //cel ada perubahan atau nggak
         //isDirty() buat ngecek field tabel ada perubahan atau nggak
         //dengan kiriman data dari from
-        $update->kategori = $request->nama_kategori;
+        $update->mentor = $request->nama_mentor;
         if ($update->isDirty()) {
             echo "ada perubahan";
         } else {
@@ -107,7 +110,7 @@ class UserController extends Controller
         }
 
         $rules = [
-            'kategori' => 'required|min:3|max:20|unique:kategori,kategori',
+            'mentor' => 'required|min:3|max:20|unique:mentor,mentor',
         ];
 
         $messages = [
@@ -120,13 +123,13 @@ class UserController extends Controller
         $this->validate($request, $rules, $messages);
 
         // Update data berdasarkan ID
-        $mentor = Kategori::findOrFail($id);
-        $mentor->kategori = $request->kategori;
+        $mentor = User::findOrFail($id);
+        $mentor->mentor = $request->mentor;
         $mentor->save();
 
         Alert::success('Success Title', 'Success Message');
 
-        return redirect()->route('kategori');
+        return redirect()->route('mentor');
     }
 
     /**
@@ -134,14 +137,14 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-         //ngaaaaapus data
+        //ngaaaaapus data
         //ambil data sesuai IDnya
-        $mentor = Kategori::findOrFail($id);
+        $mentor = User::findOrFail($id);
         //buat fungsi ngapus data
         $mentor->delete();
 
         Alert::success('Successpull', 'Data berhasil di hapus');
         //redirect halaman
-        return redirect()->route('kategori');
+        return redirect()->route('mentor');
     }
 }
