@@ -23,7 +23,7 @@
                             </a>
                         </div>
                         <div class="heading1 margin_0">
-                            <h2>{{ $setoran->nama_mhs }} Profile</h2>
+                            <h2>{{ $setoran->mahasantri_id }} Profile</h2>
                         </div>
                     </div>
                     <div class="full price_table padding_infor_info">
