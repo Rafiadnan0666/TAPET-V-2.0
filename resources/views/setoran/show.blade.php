@@ -16,7 +16,7 @@
                 <div class="white_shd full margin_bottom_30">
                     <div class="full graph_head">
                         <div style="float: right">
-                            <a href="{{ route('mahasantri.index') }}">
+                            <a href="{{ route('setoran.index') }}">
                                 <button class="btn btn-warning mt-2">
                                     <i class="fa fa-arrow-circle-left"></i> Kembali
                                 </button>
