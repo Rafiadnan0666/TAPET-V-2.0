@@ -56,10 +56,10 @@
                                                 <a class="btn btn-primary" href="{{ route('mentor.setoran', $m->id) }}" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Detail"><i
                                                         class="fa fa-eye"></i></a>
-                                                <a class="btn btn-warning" href="#" data-toggle="tooltip"
+                                                <a class="btn btn-warning" href="{{ route('mentor.editmhs', $m->id) }}" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <a class="btn btn-danger" href="#" data-toggle="tooltip"
+                                                <a onclick="return confirm('Anda Yakin Ingin Hapus Data??')" class="btn btn-danger" href="{{ route('mentor.destroymhs', $m->id) }}" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Delete"><i
                                                         class="fa fa-trash"></i></a>
                                             </div>
