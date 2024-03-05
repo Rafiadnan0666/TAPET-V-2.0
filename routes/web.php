@@ -36,42 +36,36 @@ Route::get('/dash', function () {
 })->middleware(['auth', 'verified'])->name('dash');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    
     Route::middleware('role:a')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         Route::resource('/mahasantri', MahasantriController::class);
         Route::resource('/setoran', SetoranController::class);
     });
 
 
-    Route::middleware('role:a,m')->group(function () {
+    Route::middleware('role:m')->group(function () {
         Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
         Route::get('/mentor/createmhs', [MentorController::class, 'createmhs'])->name('mentor.createmhs');
+        Route::get('/mentor/createstr/{id}', [MentorController::class, 'createstr'])->name('mentor.createstr');
         Route::post('/mentor/storemhs', [MentorController::class, 'storemhs'])->name('mentor.storemhs');
+        Route::post('/mentor/storestr', [MentorController::class, 'storestr'])->name('mentor.storestr');
         Route::get('/mentor/setoran/{id}', [MentorController::class, 'setoran'])->name('mentor.setoran');
     });
 
-    Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
-    Route::get('/mentor/createmhs', [MentorController::class, 'createmhs'])->name('mentor.createmhs');
-    Route::get('/mentor/createstr/{id}', [MentorController::class, 'createstr'])->name('mentor.createstr');
-    Route::post('/mentor/storemhs', [MentorController::class, 'storemhs'])->name('mentor.storemhs');
-    Route::post('/mentor/storestr', [MentorController::class, 'storestr'])->name('mentor.storestr');
-    Route::get('/mentor/setoran/{id}', [MentorController::class, 'setoran'])->name('mentor.setoran');
 
 });
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified','role:a'])->group(function () {
     Route::get('/dashboard', function () {
         $setoran = Setoran::all();
         $mahasantri = Mahasantri::all();
 
         $user = User::all()->where("role", "=", "m");
         return view('dashboard', compact('user', 'setoran', 'mahasantri'));
-
-       
     })->name('dashboard');
 });
 
