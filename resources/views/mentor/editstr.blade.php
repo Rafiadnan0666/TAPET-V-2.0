@@ -8,7 +8,7 @@
                         <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
                         <li><a href="{{ route('mentor.setoran', $data->mahasantri->id) }}">{{ $data->mahasantri->nama_mhs }} <span
                                     class="mx-1">></span></a></li>
-                        <li><a> Edit STR </a></li>
+                        <li><a> Edit Setoran </a></li>
                     </ul>
                 </div>
                 <h2 style="width: max-content">Edit Data Setoran {{ $data->mahasantri->nama_mhs }}</h2>

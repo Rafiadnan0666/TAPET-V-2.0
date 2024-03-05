@@ -6,7 +6,7 @@
                 <div class="float-right">
                     <ul class="d-flex">
                         <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
-                        <li><a> Create MHS </a></li>
+                        <li><a> Tambah Mahasantri </a></li>
                     </ul>
                 </div>
                 <h2 style="width: max-content">Tambah Data Mahasantri binaan {{ Auth::user()->name }}</h2>

@@ -54,7 +54,7 @@
                                         <td>{{ $s->nilai > 75 ? 'Lanjut' : 'Ulang' }}</td>
                                         <td>{{ $s->keterangan }}</td>
                                         <td>
-                                            {{ date('l d-M-Y', strtotime($s->tanggal)) }}
+                                            {{ date('l d/M/Y', strtotime($s->tanggal)) }}
                                         </td>
                                         <th class="text-right">
                                             <div class="tooltip_section">

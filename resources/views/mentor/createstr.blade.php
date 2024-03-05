@@ -8,7 +8,7 @@
                         <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
                         <li><a href="{{ route('mentor.setoran', $mahasantri->id) }}">{{ $mahasantri->nama_mhs }} <span
                                     class="mx-1">></span></a></li>
-                        <li><a> Create STR </a></li>
+                        <li><a> Tambah Setoran </a></li>
                     </ul>
                 </div>
                 <h2 style="width: max-content">Tambah Data Setoran {{ $mahasantri->nama_mhs }}</h2>
