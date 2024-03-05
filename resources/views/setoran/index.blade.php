@@ -5,7 +5,7 @@
             <div class="white_shd full margin_bottom_30">
                 <div class="full graph_head">
                     <div class=" d-flex justify-content-between">
-                        <h2>Hover Table</h2>
+                        <h2>Data Setoran</h2>
                         <a href="{{ route('setoran.create') }}">
                             <button class="btn btn-primary"><i class="fa fa-create"></i>tambah </button>
                         </a>
@@ -21,6 +21,8 @@
                                     <th>Tanggal</th>
                                     <th>Juz</th>
                                     <th>Halaman</th>
+                                    <th>Nilai</th>
+                                    <th>Status</th>
                                     <th>Keterangan</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
@@ -35,7 +37,15 @@
                                         <td>{{$mhs->tanggal}}</td>
                                         <td>{{ $mhs->juz }}</td>
                                         <td>{{ $mhs->halaman }}</td>
+                                        <td>{{ $mhs->nilai }}</td>
                                         <td>{{ $mhs->status == 'l' ? 'lanjut' : 'ulang' }}</td>
+                                        <td>
+                                            @if (Str::length($mhs->keterangan) > 10)
+                                                {{ substr($mhs->keterangan, 0, 10) . "[.....]" }}
+                                            @else
+                                            {{$mhs->keterangan}}
+                                            @endif
+                                        </td>                                        
                                         <td>{{ $mhs->created_at }}</td>
                                         <td>{{ $mhs->updated_at }}</td>
                                         <td class="d-flex">

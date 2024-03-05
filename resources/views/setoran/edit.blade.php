@@ -5,10 +5,10 @@
         <div class="page-title">
             <div class="flex justify-between items-center">
                 <div class="order-1">
-                    <h3 class="text-xl font-bold">Update Data</h3>
+                    <h3 class="text-xl font-bold">Update Data Setoran</h3>
                 </div>
                 <div class="order-2">
-                    <a href="{{ route('mahasantri.index') }}">
+                    <a href="{{ route('setoran.index') }}">
                         <button class="btn btn-warning mt-2">
                             <i class="fas fa-arrow-circle-left"></i> Kembali
                         </button>

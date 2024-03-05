@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasantri;
+use App\Models\User;
 use App\Models\Setoran;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,16 @@ class SetoranController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public $mentor;
+    public $mahasantri;
+    public $setoran;
+    public function __construct()
+    {
+        $this->mentor = new User();
+        $this->mahasantri = new Mahasantri();
+        $this->setoran = new Setoran();
+    }
+
     public function index()
     {
         //
@@ -60,6 +71,7 @@ class SetoranController extends Controller
         $setoran->status = $request->status;
         $setoran->nilai = $request->nilai;
         $setoran->halaman = $request->halaman;
+        $setoran->keterangan = $request->keterangan;
         $setoran->mahasantri_id = $request->mahasantri;
         $setoran->save();
 
@@ -69,9 +81,10 @@ class SetoranController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Setoran $setoran)
+    public function show($setoran)
     {
-        //
+        $setoran = Setoran::find($setoran);
+        return view('setoran.show', compact('setoran'));
     }
 
     /**
@@ -94,7 +107,8 @@ class SetoranController extends Controller
             'halaman' => 'required',
             'status' => 'required',
             'tanggal' => 'required',
-            'nilai' => 'required'
+            'nilai' => 'required',
+            'keterangan' => 'required',
         ];
 
         $messages = [
@@ -121,8 +135,11 @@ class SetoranController extends Controller
      */
     public function destroy(Setoran $setoran)
     {
+
         //
         $setoran->delete();
         return redirect()->route('setoran.index');
+
+     
     }
 }

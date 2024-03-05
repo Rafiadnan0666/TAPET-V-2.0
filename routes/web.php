@@ -54,8 +54,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/mentor/storestr', [MentorController::class, 'storestr'])->name('mentor.storestr');
         Route::put('/mentor/updatemhs/{id}', [MentorController::class, 'updatemhs'])->name('mentor.updatemhs');
         Route::get('/mentor/editmhs/{id}', [MentorController::class, 'editmhs'])->name('mentor.editmhs');
+        Route::put('/mentor/updatestr/{id}', [MentorController::class, 'updatestr'])->name('mentor.updatestr');
+        Route::get('/mentor/editstr/{id}', [MentorController::class, 'editstr'])->name('mentor.editstr');
         Route::get('/mentor/setoran/{id}', [MentorController::class, 'setoran'])->name('mentor.setoran');
+        Route::get('/mentor/showstr/{id}', [MentorController::class, 'showstr'])->name('mentor.showstr');
         Route::get('/mentor/destroymhs/{id}', [MentorController::class, 'destroymhs'])->name('mentor.destroymhs');
+        Route::get('/mentor/destroystr/{id}', [MentorController::class, 'destroystr'])->name('mentor.destroystr');
     });
 
 

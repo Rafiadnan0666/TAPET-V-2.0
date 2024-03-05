@@ -54,17 +54,17 @@
                                         <td>{{ $s->nilai > 75 ? 'Lanjut' : 'Ulang' }}</td>
                                         <td>{{ $s->keterangan }}</td>
                                         <td>
-                                            {{ date('l d-M-Y', strtotime($s->tanggal)) }}
+                                            {{ date('l d/M/Y', strtotime($s->tanggal)) }}
                                         </td>
                                         <th class="text-right">
                                             <div class="tooltip_section">
-                                                <a class="btn btn-primary" href="#" data-toggle="tooltip"
+                                                <a class="btn btn-primary" href="{{ route('mentor.showstr', $s->id) }}" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Detail"><i
                                                         class="fa fa-eye"></i></a>
-                                                <a class="btn btn-warning" href="#" data-toggle="tooltip"
+                                                <a class="btn btn-warning" href="{{ route('mentor.editstr', $s->id) }}" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <a class="btn btn-danger" href="#" data-toggle="tooltip"
+                                                <a onclick="return confirm('Anda Yakin Ingin Hapus Data??')" class="btn btn-danger" href="{{ route('mentor.destroystr', $s->id) }}" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Delete"><i
                                                         class="fa fa-trash"></i></a>
                                             </div>

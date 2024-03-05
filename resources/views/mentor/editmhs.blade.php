@@ -6,10 +6,10 @@
                 <div class="float-right">
                     <ul class="d-flex">
                         <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
-                        <li><a> Tambah Mahasantri </a></li>
+                        <li><a> Edit Mahasantri </a></li>
                     </ul>
                 </div>
-                <h2 style="width: max-content">Tambah Data Mahasantri binaan {{ Auth::user()->name }}</h2>
+                <h2 style="width: max-content">Edit Data Mahasantri binaan {{ Auth::user()->name }}</h2>
             </div>
         </div>
     </div>
@@ -23,14 +23,15 @@
                         </a>
                     </div>
                 </div>
-                <form class="padding_infor_info row" action="{{ route('mentor.storemhs') }}" method="POST">
+                <form class="padding_infor_info row" action="{{ route('mentor.updatemhs',$data->id) }}" method="POST">
+                    @method('PUT')
                     @csrf
                     <div class="col-12 col-md-6">
                         <input type="text" value="{{ Auth::user()->id }}" name="mid" hidden>
                         <div class="form-group">
                             <label for="nim" class="form-label">NIM <span class="text-danger small">*</span></label>
                             <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror"
-                                value="{{ old('nim') }}" name="nim">
+                                value="{{ $data->nim }}" name="nim">
                             @error('nim')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
@@ -41,7 +42,7 @@
                             <label for="nama" class="form-label">Nama Mahasantri <span
                                     class="text-danger small">*</span></label>
                             <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror"
-                                value="{{ old('nama') }}" name="nama">
+                                value="{{ $data->nama_mhs }}" name="nama">
                             @error('nama')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror

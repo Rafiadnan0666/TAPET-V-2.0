@@ -22,26 +22,20 @@ class MentorController extends Controller
         $this->setoran = new Setoran();
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-        $id = Auth::user()->id; 
+        $id = Auth::user()->id;
         $mahasantri = DB::table('mahasantri')->where('mentor_id', '=', $id)->Paginate(5);
         $no = 5 * ($mahasantri->currentPage() - 1);
-        return view("mentor.index",compact('mahasantri', 'no'));
+        return view("mentor.index", compact('mahasantri', 'no'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function setoran(string $id)
     {
         $mahasantri = Mahasantri::findOrFail($id);
         $setoran = Setoran::where('mahasantri_id', '=', $id)->Paginate(5);
         $no = 5 * ($setoran->currentPage() - 1);
-        return view('mentor/setoran', compact('setoran', 'no','mahasantri'));
+        return view('mentor/setoran', compact('setoran', 'no', 'mahasantri'));
     }
 
     public function createmhs()
@@ -55,35 +49,26 @@ class MentorController extends Controller
         return view('mentor/createstr', compact('mahasantri'));
     }
 
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function storemhs(Request $request)
     {
         $rules = [
-            // format penulisan untuk field yang unil = unique:nama_tabel,field_tabel
             'nim' => 'required|min:3|max:20|unique:mahasantri,nim',
-            'nama' => 'required|min:3|max:20|unique:mahasantri,nama_mhs',
+            'nama' => 'required|min:3|max:20',
         ];
 
-        // bikin pesan error
         $messages = [
-            'required' => ':attribute gak boleh kosong masseeh',
-            'min' => ':attribute minimal harus 3 huruf',
-            'max' => ':attribute maximal 20 huruf',
-            'unique' => ':attribute sudah ada, silahkan gunakan yang lain'
+            'required' => ':attribute gak boleh kosong akhi',
+            'min' => ':attribute minimal harus 3 huruf akhi',
+            'max' => ':attribute maximal 20 huruf akhi',
+            'unique' => ':attribute sudah ada akhi, silahkan gunakan yang lain'
         ];
 
         $this->validate($request, $rules, $messages);
         $this->mahasantri->nama_mhs = $request->nama;
         $this->mahasantri->nim = $request->nim;
         $this->mahasantri->mentor_id = $request->mid;
-        $this->mahasantri->save(); 
+        $this->mahasantri->save();
+        Alert::success('Alhamdulillah', 'Data Berhasil di Tambahkan');
 
         return redirect()->route('mentor.index');
     }
@@ -91,7 +76,6 @@ class MentorController extends Controller
     public function storestr(Request $request)
     {
         $rules = [
-            // format penulisan untuk field yang unil = unique:nama_tabel,field_tabel
             'juz' => 'required',
             'nilai' => 'required',
             'hal' => 'required',
@@ -99,12 +83,11 @@ class MentorController extends Controller
             'tanggal' => 'required',
         ];
 
-        // bikin pesan error
         $messages = [
-            'required' => ':attribute gak boleh kosong masseeh',
-            'min' => ':attribute minimal harus 3 huruf',
-            'max' => ':attribute maximal 20 huruf',
-            'unique' => ':attribute sudah ada, silahkan gunakan yang lain'
+            'required' => ':attribute gak boleh kosong akhi',
+            'min' => ':attribute minimal harus 3 huruf akhi',
+            'max' => ':attribute maximal 20 huruf akhi',
+            'unique' => ':attribute sudah ada akhi, silahkan gunakan yang lain'
         ];
 
         $this->validate($request, $rules, $messages);
@@ -114,38 +97,63 @@ class MentorController extends Controller
         $this->setoran->keterangan = $request->ket;
         $this->setoran->halaman = $request->hal;
         $this->setoran->mahasantri_id = $request->mid;
-        $this->setoran->save(); 
+        $this->setoran->save();
 
+        Alert::success('Alhamdulillah', 'Data Berhasil di Tambahkan');
         return redirect()->route('mentor.setoran', $request->mid);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(user $user)
+    public function showstr($id)
     {
-        //
+        $data = Setoran::find($id);
+        return view('mentor.showstr', compact('data'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(user $user)
+    public function editmhs($id)
     {
-        //
+        $data = Mahasantri::find($id);
+        return view('mentor.editmhs', compact('data'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, user $user)
+    public function updatemhs(Request $request, $id)
     {
-        //
+        $update = Mahasantri::find($id);
+
+        if ($update->nim == $request->nim) {
+            $rules = [
+                'nim' => 'required|min:3|max:20',
+                'nama' => 'required|min:3|max:20',
+            ];
+        } else {
+            $rules = [
+                'nim' => 'required|min:3|max:20|unique:mahasantri,nim',
+                'nama' => 'required|min:3|max:20',
+            ];
+        }
+
+        $update->nim = $request->nim;
+        $update->nama_mhs = $request->nama;
+
+        if ($update->isDirty()) {
+            $messages = [
+                'required' => ':attribute gak boleh kosong akhi',
+                'min' => ':attribute minimal harus 3 huruf akhi',
+                'max' => ':attribute maximal 20 huruf akhi',
+                'unique' => ':attribute sudah ada akhi, silahkan gunakan yang lain'
+            ];
+
+            $this->validate($request, $rules, $messages);
+            $update->nim = $request->nim;
+            $update->nama_mhs = $request->nama;
+            $update->save();
+            Alert::success('Alhamdulillah', 'Data Berhasil di Update');
+            return redirect()->route('mentor.index');
+        } else {
+            Alert::warning('Kenapa Akhi??', 'Data tidak di Ubah');
+            return redirect()->route('mentor.index');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroymhs(string $id)
     {
         $setoran = Setoran::where('mahasantri_id', '=', $id)->count();
@@ -153,11 +161,63 @@ class MentorController extends Controller
 
         if ($setoran == 0) {
             $mahasantri->delete();
-            Alert::success('Sukses', 'Data Berhasil di Hapus');
+            Alert::success('Alhamdulillah', 'Data Berhasil di Hapus');
         } else {
-            Alert::warning('Maaf', 'Hapus data setoran yang dimiliki mahasantri ini dahulu');
+            Alert::warning('Afwan Akhi', 'Hapus data setoran yang dimiliki mahasantri ini dahulu');
         }
 
         return redirect()->route('mentor.index');
+    }
+
+    public function editstr($id)
+    {
+        $data = Setoran::find($id);
+        return view('mentor.editstr', compact('data'));
+    }
+
+    public function updatestr(Request $request, $id)
+    {
+        $update = Setoran::find($id);
+
+        $rules = [
+            'juz' => 'required',
+            'nilai' => 'required',
+            'hal' => 'required',
+            'ket' => 'required',
+            'tanggal' => 'required',
+        ];
+
+        $messages = [
+            'required' => ':attribute gak boleh kosong akhi',
+            'min' => ':attribute minimal harus 3 huruf akhi',
+            'max' => ':attribute maximal 20 huruf akhi',
+            'unique' => ':attribute sudah ada akhi, silahkan gunakan yang lain'
+        ];
+
+        $update->juz = $request->juz;
+        $update->nilai = $request->nilai;
+        $update->tanggal = $request->tanggal;
+        $update->keterangan = $request->ket;
+        $update->halaman = $request->hal;
+
+        if ($update->isDirty()) {
+            $this->validate($request, $rules, $messages);
+            $update->save();
+            Alert::success('Alhamdulillah', 'Data Berhasil di Update');
+        } else {
+            Alert::warning('Kenapa Akhi??', 'Data tidak diubah');
+        }
+
+        return redirect()->route('mentor.setoran', $update->mahasantri->id);
+    }
+
+    public function destroystr(string $id)
+    {
+        $setoran = Setoran::find($id);
+
+        $setoran->delete();
+        Alert::success('Alhamdulillah', 'Data Berhasil di Hapus');
+
+        return redirect()->route('mentor.setoran', $setoran->mahasantri_id);
     }
 }

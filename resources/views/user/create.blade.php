@@ -1,5 +1,4 @@
 @extends('master.dash')
-
 @section('konten')
     <div class="page-heading">
         <div class="page-title">
@@ -8,7 +7,7 @@
                     <h3 class="text-xl font-bold">Tambah Data</h3>
                 </div>
                 <div class="order-2">
-                    <a href="{{ route('setoran.index') }}">
+                    <a href="{{ route('user.index') }}">
                         <button class="btn btn-warning mt-2">
                             <i class="fas fa-arrow-circle-left"></i> Kembali
                         </button>
