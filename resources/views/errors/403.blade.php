@@ -5,3 +5,6 @@
             alt="#">
     </div>
 @endsection
+@section('error')
+    <h3>PAGE IS FORBIDDEN FOR YOU !</h3>
+@endsection

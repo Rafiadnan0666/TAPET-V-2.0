@@ -78,7 +78,7 @@
                                         Data</span></a>
                                 <ul class="collapse list-unstyled" id="dashboard">
                                     <li>
-                                        <a href="{{ route('mentor.index') }}">> <span>Manage Mentor</span></a>
+                                        <a href="{{ route('user.index') }}">> <span>Manage Mentor</span></a>
                                     </li>
                                     <li>
                                         <a href="{{ route('mahasantri.index') }}">> <span>Manage Mahasantri</span></a>

@@ -44,11 +44,11 @@
                 <div class="error_page">
                     <div class="center">
                         <div class="error_icon">
-                          @yield('gambar')
+                            @yield('gambar')
                         </div>
                     </div>
                     <br>
-                    <h3>PAGE NOT FOUND !</h3>
+                    @yield('error')
                     <P>YOU SEEM TO BE TRYING TO FIND HIS WAY HOME</P>
                     <div class="center"><a class="main_bt" href="{{ route('dashboard') }}">Go To Home Page</a>
                     </div>
