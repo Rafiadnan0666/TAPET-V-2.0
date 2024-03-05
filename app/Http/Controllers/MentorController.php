@@ -7,6 +7,7 @@ use App\Models\Mahasantri;
 use App\Models\Setoran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
 class MentorController extends Controller
@@ -145,8 +146,18 @@ class MentorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(user $user)
+    public function destroymhs(string $id)
     {
-        //
+        $setoran = Setoran::where('mahasantri_id', '=', $id)->count();
+        $mahasantri = Mahasantri::find($id);
+
+        if ($setoran == 0) {
+            $mahasantri->delete();
+            Alert::success('Sukses', 'Data Berhasil di Hapus');
+        } else {
+            Alert::warning('Maaf', 'Hapus data setoran yang dimiliki mahasantri ini dahulu');
+        }
+
+        return redirect()->route('mentor.index');
     }
 }
