@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('setoran', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("mahasantri_id");
-            $table->dateTime("tanggal")->default(now());
+            $table->date("tanggal")->default(now());
             $table->decimal("juz", 30);
             $table->decimal("halaman", 8, 2); // Adjust precision and scale as needed
             $table->integer("nilai");

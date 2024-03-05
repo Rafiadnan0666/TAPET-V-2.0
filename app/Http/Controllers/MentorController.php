@@ -27,10 +27,10 @@ class MentorController extends Controller
      */
     public function index(Request $request)
     {
-        $id = Auth::user()->id; 
+        $id = Auth::user()->id;
         $mahasantri = DB::table('mahasantri')->where('mentor_id', '=', $id)->Paginate(5);
         $no = 5 * ($mahasantri->currentPage() - 1);
-        return view("mentor.index",compact('mahasantri', 'no'));
+        return view("mentor.index", compact('mahasantri', 'no'));
     }
 
     /**
@@ -41,7 +41,7 @@ class MentorController extends Controller
         $mahasantri = Mahasantri::findOrFail($id);
         $setoran = Setoran::where('mahasantri_id', '=', $id)->Paginate(5);
         $no = 5 * ($setoran->currentPage() - 1);
-        return view('mentor/setoran', compact('setoran', 'no','mahasantri'));
+        return view('mentor/setoran', compact('setoran', 'no', 'mahasantri'));
     }
 
     public function createmhs()
@@ -81,7 +81,7 @@ class MentorController extends Controller
         $this->mahasantri->nama_mhs = $request->nama;
         $this->mahasantri->nim = $request->nim;
         $this->mahasantri->mentor_id = $request->mid;
-        $this->mahasantri->save(); 
+        $this->mahasantri->save();
 
         return redirect()->route('mentor.index');
     }
@@ -110,7 +110,7 @@ class MentorController extends Controller
         $this->setoran->keterangan = $request->ket;
         $this->setoran->halaman = $request->hal;
         $this->setoran->mahasantri_id = $request->mid;
-        $this->setoran->save(); 
+        $this->setoran->save();
 
         return redirect()->route('mentor.setoran', $request->mid);
     }
@@ -129,16 +129,23 @@ class MentorController extends Controller
     public function updatemhs(Request $request, $id)
     {
         $update = Mahasantri::find($id);
-        
-        $update->nim = $request->nim;
-        $update->nama_mhs = $request->nama;
-        
-        if ($update->isDirty()) {
+
+        if ($update->nim == $request->nim) {
+            $rules = [
+                'nim' => 'required|min:3|max:20',
+                'nama' => 'required|min:3|max:20',
+            ];
+        } else {
             $rules = [
                 'nim' => 'required|min:3|max:20|unique:mahasantri,nim',
                 'nama' => 'required|min:3|max:20',
             ];
+        }
 
+        $update->nim = $request->nim;
+        $update->nama_mhs = $request->nama;
+
+        if ($update->isDirty()) {
             $messages = [
                 'required' => ':attribute gak boleh kosong brother',
                 'min' => ':attribute minimal harus 3 huruf',
@@ -182,6 +189,28 @@ class MentorController extends Controller
     public function updatestr(Request $request, $id)
     {
         $update = Setoran::find($id);
+        $rules = [
+            'juz' => 'required',
+            'nilai' => 'required',
+            'hal' => 'required',
+            'ket' => 'required',
+            'tanggal' => 'required',
+        ];
+
+        $messages = [
+            'required' => ':attribute gak boleh kosong masseeh',
+            'min' => ':attribute minimal harus 3 huruf',
+            'max' => ':attribute maximal 20 huruf',
+            'unique' => ':attribute sudah ada, silahkan gunakan yang lain'
+        ];
+
+        $this->validate($request, $rules, $messages);
+        $this->setoran->juz = $request->juz;
+        $this->setoran->nilai = $request->nilai;
+        $this->setoran->tanggal = $request->tanggal;
+        $this->setoran->keterangan = $request->ket;
+        $this->setoran->halaman = $request->hal;
+        $this->setoran->save();
     }
 
     public function destroystr(string $id)
