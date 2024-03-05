@@ -26,7 +26,7 @@
     </div>
     <div class="row column1">
         <div class="col-md-6 col-lg-3">
-            <a href="{{ route('mentor.index') }}">
+            <a href="{{ route('user.index') }}">
                 <div class="full counter_section margin_bottom_30">
                     <div class="couter_icon">
                         <div>
@@ -37,8 +37,6 @@
                         <div>
 
                             <p class="total_no">{{ $user->count() }}</p>
-
-
 
                             <p class="head_couter">Mentor</p>
                         </div>
