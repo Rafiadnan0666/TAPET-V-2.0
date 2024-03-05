@@ -122,5 +122,7 @@ class SetoranController extends Controller
     public function destroy(Setoran $setoran)
     {
         //
+        $setoran->delete();
+        return redirect()->route('setoran.index');
     }
 }
