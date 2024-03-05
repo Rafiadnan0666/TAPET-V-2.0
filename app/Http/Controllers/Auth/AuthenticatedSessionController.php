@@ -32,9 +32,9 @@ class AuthenticatedSessionController extends Controller
 
         // Assuming you have a `role` attribute in your User model
         $user = Auth::user();
-        if ($user->role === 'a') {
+        if ($user->role == 'a') {
             return redirect()->intended(route('dashboard'));
-        } elseif ($user->role === 'm') {
+        } elseif ($user->role == 'm') {
             return redirect()->intended(route('mentor.index'));
         }
 
