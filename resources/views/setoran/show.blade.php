@@ -23,7 +23,7 @@
                             </a>
                         </div>
                         <div class="heading1 margin_0">
-                            <h2>{{ $setoran->mahasantri_id }} Profile</h2>
+                            <h2> Profile</h2>
                         </div>
                     </div>
                     <div class="full price_table padding_infor_info">
@@ -33,12 +33,14 @@
                             <div class="col-lg-12">
                                 <div class="full dis_flex center_text">
                                     <div class="profile_img"><img width="180" class="rounded-circle"
-                                            src="{{ asset('upload') }}/{{ $mahasantri->gambar }}" alt="Profile Picture"></div>
+                                            src="{{ asset('upload') }}/{{ $setoran->mahasantri->gambar }}" alt="Profile Picture"></div>
                                     <div class="profile_contant">
-                                        <div class="contact_inner">
-                                            <h3>{{ $mahasantri->nama_mhs }}</h3>
+                                        <div class="contact_inner">                                            
+                                            <h3>{{ $setoran->mahasantri->nama_mhs }}</h3>
                                             <ul class="list-unstyled">
-                                                <li><i class="fa fa-person"></i>: {{ $mahasantri->mentor->name }}</li>
+                                                <li>
+                                                    <i class="fa fa-person"> {{ $setoran->mahasantri->user->name }}</i>: 
+                                                </li>    
                                             </ul>
                                         </div>
                                     </div>
@@ -59,7 +61,7 @@
                                                     role="tabpanel" aria-labelledby="nav-home-tab">
                                                     <div class="msg_list_main">
                                                         <ul class="msg_list">
-                                                            @forelse ($setoran as $setoran)
+                                                           
                                                             <li>
                                                                 <div class="msg_content">
                                                                     <span class="name_user">{{ $setoran->mahasantri->nama_mhs }}</span>
@@ -70,9 +72,7 @@
                                                                     <p class="time_ago">12 min ago</p>
                                                                 </div>
                                                             </li>
-                                                            @empty
-                                                            <li>No recent setoran found.</li>
-                                                            @endforelse
+                                                     
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -88,15 +88,6 @@
                 <div class="col-md-2"></div>
             </div>
             <!-- end row -->
-        </div>
-        <!-- footer -->
-        <div class="container-fluid">
-            <div class="footer">
-                <p>Copyright © 2018 Designed by html.design. All rights reserved.
-                    <br>
-                    Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
-                </p>
-            </div>
         </div>
     </div>
     <!-- end dashboard inner -->

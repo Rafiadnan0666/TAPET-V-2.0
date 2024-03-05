@@ -71,7 +71,8 @@ class SetoranController extends Controller
      */
     public function show(Setoran $setoran)
     {
-        return view('setoran.show', compact('setoran'));
+        $mahasantri = Mahasantri::all();
+        return view('setoran.show', compact('setoran','mahasantri'));
     }
 
     /**
