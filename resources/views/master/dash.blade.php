@@ -32,13 +32,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        @vite('resources/css/app.css')
+    @vite('resources/css/app.css')
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
       <![endif]-->
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
 
@@ -70,8 +70,8 @@
                 </div>
                 <div class="sidebar_blog_2">
                     <h4>General</h4>
-                    @if (Auth::user()->role == 'a')
-                        <ul class="list-unstyled components">
+                    <ul class="list-unstyled components">
+                        @if (Auth::user()->role == 'a')
                             <li><a href="{{ route('dashboard') }}"><i class="fa fa-home white_color"></i>
                                     <span>Dashboard</span></a>
                             </li>
@@ -91,23 +91,20 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                            @else
-                                <ul class="list-unstyled components">
-                                    <li><a href="{{ route('mentor.index') }}"><i class="fa fa-home white_color"></i>
-                                            <span>Dashboard</span></a>
-                                    </li>
-                                    <li>
-                    @endif
-
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
+                        @else
+                            <li><a href="{{ route('mentor.index') }}"><i class="fa fa-home white_color"></i>
+                                    <span>Dashboard</span></a>
+                            </li>
+                        @endif
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
                                                 this.closest('form').submit();"><i
-                                class="fa fa-sign-out white_color"></i> Log Out</a>
-                    </form>
-                    </li>
+                                        class="fa fa-sign-out white_color"></i> Log Out</a>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -169,7 +166,7 @@
                             </p>
                         </div>
                     </div>
-                 </div>
+                </div>
                 <!-- end dashboard inner -->
             </div>
         </div>
