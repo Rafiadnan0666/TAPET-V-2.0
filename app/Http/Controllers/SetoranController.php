@@ -25,7 +25,7 @@ class SetoranController extends Controller
     {
         //
         $mahasantri = Mahasantri::all();
-        return view("setoran.create",compact( 'mahasantri'));
+        return view("setoran.create", compact('mahasantri'));
     }
 
     /**
@@ -44,21 +44,21 @@ class SetoranController extends Controller
         ];
 
         $messages = [
-                'required' => ':attribute tidak boleh kosong',
-                'numeric' => ':attribute harus berupa angka',
-                'unique' => ':attribute sudah digunakan',
-                'exists' => ':attribute tidak valid',
-                'image' => ':attribute harus berupa file gambar',
-                'mimes' => 'Ekstensi :values tidak didukung, gunakan yang lain',
-                'max' => 'Ukuran :attribute tidak boleh melebihi :max KB',
-            ];
+            'required' => ':attribute tidak boleh kosong',
+            'numeric' => ':attribute harus berupa angka',
+            'unique' => ':attribute sudah digunakan',
+            'exists' => ':attribute tidak valid',
+            'image' => ':attribute harus berupa file gambar',
+            'mimes' => 'Ekstensi :values tidak didukung, gunakan yang lain',
+            'max' => 'Ukuran :attribute tidak boleh melebihi :max KB',
+        ];
 
         $request->validate($rules, $messages);
         $setoran = new Setoran;
         $setoran->tanggal = $request->tanggal;
         $setoran->juz = $request->juz;
         $setoran->status = $request->status;
-        $setoran->nilai= $request->nilai;
+        $setoran->nilai = $request->nilai;
         $setoran->halaman = $request->halaman;
         $setoran->mahasantri_id = $request->mahasantri;
         $setoran->save();
@@ -79,7 +79,8 @@ class SetoranController extends Controller
      */
     public function edit(Setoran $setoran)
     {
-        //
+        $mahasantri = Mahasantri::all();
+        return view('setoran.edit', compact("mahasantri", "setoran"));
     }
 
     /**
@@ -87,7 +88,32 @@ class SetoranController extends Controller
      */
     public function update(Request $request, Setoran $setoran)
     {
-        //
+        $rules = [
+            'mahasantri' => 'required',
+            'juz' => 'required|max:30',
+            'halaman' => 'required',
+            'status' => 'required',
+            'tanggal' => 'required',
+            'nilai' => 'required'
+        ];
+
+        $messages = [
+            'required' => ':attribute tidak boleh kosong',
+            'numeric' => ':attribute harus berupa angka',
+            'max' => 'Ukuran :attribute tidak boleh melebihi :max KB',
+        ];
+
+        $request->validate($rules, $messages);
+        $setoran = Setoran::findOrFail($setoran->id);
+        $setoran->tanggal = $request->tanggal;
+        $setoran->juz = $request->juz;
+        $setoran->status = $request->status;
+        $setoran->nilai = $request->nilai;
+        $setoran->halaman = $request->halaman;
+        $setoran->mahasantri_id = $request->mahasantri;
+        $setoran->save();
+
+        return redirect()->route("setoran.index");
     }
 
     /**

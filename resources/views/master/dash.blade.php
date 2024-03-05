@@ -57,7 +57,7 @@
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
                             <div class="user_img"><img class="img-responsive"
-                                    src="{{ asset('dist') }}/images/layout_img/user_img.jpg" alt="#" /></div>
+                                    src="{{ asset('upload') }}/{{Auth::user()->gambar}}" alt="#" /></div>
                             <div class="user_info">
                                 <h6>{{ Auth::user()->name }}</h6>
                                 <p><span class="online_animation"></span> Online</p>
@@ -124,7 +124,7 @@
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown"><img
                                                     class="img-responsive rounded-circle"
-                                                    src="{{ asset('dist') }}/images/layout_img/user_img.jpg"
+                                                    src="{{ asset('upload') }}/{{Auth::user()->gambar}}"
                                                     alt="#" /><span
                                                     class="name_user">{{ Auth::user()->name }}</span></a>
                                             <div class="dropdown-menu">
