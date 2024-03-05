@@ -39,7 +39,13 @@
                                         <td>{{ $mhs->halaman }}</td>
                                         <td>{{ $mhs->nilai }}</td>
                                         <td>{{ $mhs->status == 'l' ? 'lanjut' : 'ulang' }}</td>
-                                        <td>{{ $mhs->keterangan }}</td>
+                                        <td>
+                                            @if (Str::length($mhs->keterangan) > 10)
+                                                {{ substr($mhs->keterangan, 0, 10) . "[.....]" }}
+                                            @else
+                                            {{$mhs->keterangan}}
+                                            @endif
+                                        </td>                                        
                                         <td>{{ $mhs->created_at }}</td>
                                         <td>{{ $mhs->updated_at }}</td>
                                         <td class="d-flex">

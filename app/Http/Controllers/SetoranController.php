@@ -71,6 +71,7 @@ class SetoranController extends Controller
         $setoran->status = $request->status;
         $setoran->nilai = $request->nilai;
         $setoran->halaman = $request->halaman;
+        $setoran->keterangan = $request->keterangan;
         $setoran->mahasantri_id = $request->mahasantri;
         $setoran->save();
 
@@ -106,7 +107,8 @@ class SetoranController extends Controller
             'halaman' => 'required',
             'status' => 'required',
             'tanggal' => 'required',
-            'nilai' => 'required'
+            'nilai' => 'required',
+            'keterangan' => 'required',
         ];
 
         $messages = [
