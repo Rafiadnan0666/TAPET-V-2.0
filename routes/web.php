@@ -27,6 +27,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dash2', function () {
+    return view('master/dash2');
+});
+
 Route::get('/dash', function () {
     return view('master/dash');
 })->middleware(['auth', 'verified'])->name('dash');
