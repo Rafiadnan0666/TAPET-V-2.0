@@ -5,7 +5,7 @@
         <div class="row column_title">
             <div class="col-md-12">
                 <div class="page_title">
-                    <h2>Profile</h2>
+                    <h2>Detail Data Setoran {{ $setoran->mahasantri->nama_mhs }}</h2>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                             </a>
                         </div>
                         <div class="heading1 margin_0">
-                            <h2> Profile</h2>
+                            <h2>Detail Setoran {{ $setoran->mahasantri->nama_mhs }}</h2>
                         </div>
                     </div>
                     <div class="full price_table padding_infor_info">
@@ -32,14 +32,12 @@
                             <!-- profile image -->
                             <div class="col-lg-12">
                                 <div class="full dis_flex center_text">
-                                    <div class="profile_img"><img width="180" class="rounded-circle"
-                                            src="{{ asset('upload') }}/{{ $setoran->mahasantri->gambar }}" alt="Profile Picture"></div>
                                     <div class="profile_contant">
                                         <div class="contact_inner">                                            
                                             <h3>{{ $setoran->mahasantri->nama_mhs }}</h3>
                                             <ul class="list-unstyled">
                                                 <li>
-                                                    <i class="fa fa-person"> {{ $setoran->mahasantri->user->name }}</i>: 
+                                                    <i class="fa fa-person"></i>: {{ $setoran->mahasantri->mentor->name }} 
                                                 </li>    
                                             </ul>
                                         </div>

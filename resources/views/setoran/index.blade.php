@@ -21,6 +21,8 @@
                                     <th>Tanggal</th>
                                     <th>Juz</th>
                                     <th>Halaman</th>
+                                    <th>Nilai</th>
+                                    <th>Status</th>
                                     <th>Keterangan</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
@@ -35,7 +37,9 @@
                                         <td>{{$mhs->tanggal}}</td>
                                         <td>{{ $mhs->juz }}</td>
                                         <td>{{ $mhs->halaman }}</td>
+                                        <td>{{ $mhs->nilai }}</td>
                                         <td>{{ $mhs->status == 'l' ? 'lanjut' : 'ulang' }}</td>
+                                        <td>{{ $mhs->keterangan }}</td>
                                         <td>{{ $mhs->created_at }}</td>
                                         <td>{{ $mhs->updated_at }}</td>
                                         <td class="d-flex">

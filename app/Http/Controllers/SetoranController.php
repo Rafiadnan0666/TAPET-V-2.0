@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasantri;
+use App\Models\User;
 use App\Models\Setoran;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,16 @@ class SetoranController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public $mentor;
+    public $mahasantri;
+    public $setoran;
+    public function __construct()
+    {
+        $this->mentor = new User();
+        $this->mahasantri = new Mahasantri();
+        $this->setoran = new Setoran();
+    }
+
     public function index()
     {
         //
@@ -69,10 +80,10 @@ class SetoranController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Setoran $setoran)
+    public function show($setoran)
     {
-        $mahasantri = Mahasantri::all();
-        return view('setoran.show', compact('setoran','mahasantri'));
+        $setoran = Setoran::find($setoran);
+        return view('setoran.show', compact('setoran'));
     }
 
     /**
@@ -122,6 +133,7 @@ class SetoranController extends Controller
      */
     public function destroy(Setoran $setoran)
     {
-        //
+        $setoran->delete();
+        return redirect()->route('setoran.index')->with('success', 'Data Setoran berhasil dihapus');
     }
 }

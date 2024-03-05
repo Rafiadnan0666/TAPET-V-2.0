@@ -8,7 +8,7 @@
                     <h3 class="text-xl font-bold">Update Data Setoran</h3>
                 </div>
                 <div class="order-2">
-                    <a href="{{ route('mahasantri.index') }}">
+                    <a href="{{ route('setoran.index') }}">
                         <button class="btn btn-warning mt-2">
                             <i class="fas fa-arrow-circle-left"></i> Kembali
                         </button>
