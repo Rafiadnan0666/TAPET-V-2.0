@@ -28,14 +28,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dash2', function () {
-    return view('master/dash2');
-});
-
-Route::get('/dash', function () {
-    return view('master/dash');
-})->middleware(['auth', 'verified'])->name('dash');
-
 Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::middleware('role:a')->group(function () {
@@ -65,7 +57,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 });
-
 
 Route::middleware(['auth', 'verified','role:a'])->group(function () {
     Route::get('/dashboard', function () {
