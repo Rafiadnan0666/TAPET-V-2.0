@@ -17,7 +17,7 @@ class RoleLevel
     {
         if (!$request->user() || !$request->user()->role || !in_array($request->user()->role, $roles)) {
             abort(403, 'Unauthorized.');
-              return $next($request);
+            return $next($request);
         }
 
         return $next($request);

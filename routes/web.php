@@ -79,10 +79,12 @@ Route::middleware(['auth', 'verified','role:a'])->group(function () {
 });
 
 Route::get('/er', function () {
-    if (Auth::user()->role == 'a') {
+    if (!Auth::user()) {
         return redirect()->route('dashboard');
-    } else {
+    } elseif (Auth::user()->role == 'm') {
         return redirect()->route('mentor.index');
+    } elseif (Auth::user()->role == 'a') {
+        return view('/');
     }
 })->name('er');
 
