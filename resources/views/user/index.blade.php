@@ -17,15 +17,10 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>#</th>
-                                    <th>Mahasantri</th>
-                                    <th>Tanggal</th>
-                                    <th>Juz</th>
-                                    <th>Halaman</th>
-                                    <th>Nilai</th>
-                                    <th>Status</th>
-                                    <th>Keterangan</th>
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
+                                    <th>Foto</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Jumlah Mahasantri</th>
                                     <th></th>
                                 </tr>
                             </thead>
