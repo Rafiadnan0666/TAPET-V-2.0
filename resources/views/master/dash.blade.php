@@ -160,8 +160,20 @@
                     </nav>
                 </div>
                 <!-- end topbar -->
-                <!-- dashboard inner -->
-                <!-- end dashboard inner -->
+
+                <div class="row column_title">
+                    <div class="col-md-12">
+                        <div class="page_title">
+                            <div class="float-right">
+                                <ul class="d-flex">
+                                    @yield('breadcrumb')
+                                </ul>
+                            </div>
+                            @yield('header')
+                        </div>
+                    </div>
+                </div>
+
                 <div class="midde_cont">
                     <div class="container-fluid">
                         @yield('konten')

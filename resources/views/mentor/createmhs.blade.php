@@ -1,18 +1,12 @@
 @extends('master.dash')
+@section('breadcrumb')
+    <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
+    <li><a> Tambah Mahasantri </a></li>
+@endsection
+@section('header')
+    <h2 style="width: max-content">Tambah Data Mahasantri binaan {{ Auth::user()->name }}</h2>
+@endsection
 @section('konten')
-    <div class="row column_title">
-        <div class="col-md-12">
-            <div class="page_title">
-                <div class="float-right">
-                    <ul class="d-flex">
-                        <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
-                        <li><a> Tambah Mahasantri </a></li>
-                    </ul>
-                </div>
-                <h2 style="width: max-content">Tambah Data Mahasantri binaan {{ Auth::user()->name }}</h2>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="white_shd full margin_bottom_30">

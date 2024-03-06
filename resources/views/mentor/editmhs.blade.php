@@ -1,18 +1,12 @@
 @extends('master.dash')
+@section('breadcrumb')
+    <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
+    <li><a> Edit Mahasantri </a></li>
+@endsection
+@section('header')
+    <h2 style="width: max-content">Edit Data Mahasantri binaan {{ Auth::user()->name }}</h2>
+@endsection
 @section('konten')
-    <div class="row column_title">
-        <div class="col-md-12">
-            <div class="page_title">
-                <div class="float-right">
-                    <ul class="d-flex">
-                        <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
-                        <li><a> Edit Mahasantri </a></li>
-                    </ul>
-                </div>
-                <h2 style="width: max-content">Edit Data Mahasantri binaan {{ Auth::user()->name }}</h2>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="white_shd full margin_bottom_30">
@@ -23,7 +17,7 @@
                         </a>
                     </div>
                 </div>
-                <form class="padding_infor_info row" action="{{ route('mentor.updatemhs',$data->id) }}" method="POST">
+                <form class="padding_infor_info row" action="{{ route('mentor.updatemhs', $data->id) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="col-12 col-md-6">

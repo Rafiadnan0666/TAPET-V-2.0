@@ -1,20 +1,14 @@
 @extends('master.dash')
+@section('breadcrumb')
+    <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
+    <li><a href="{{ route('mentor.setoran', $data->mahasantri->id) }}">{{ $data->mahasantri->nama_mhs }} <span
+                class="mx-1">></span></a></li>
+    <li><a> Edit Setoran </a></li>
+@endsection
+@section('header')
+    <h2 style="width: max-content">Edit Data Setoran {{ $data->mahasantri->nama_mhs }}</h2>
+@endsection
 @section('konten')
-    <div class="row column_title">
-        <div class="col-md-12">
-            <div class="page_title">
-                <div class="float-right">
-                    <ul class="d-flex">
-                        <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
-                        <li><a href="{{ route('mentor.setoran', $data->mahasantri->id) }}">{{ $data->mahasantri->nama_mhs }} <span
-                                    class="mx-1">></span></a></li>
-                        <li><a> Edit Setoran </a></li>
-                    </ul>
-                </div>
-                <h2 style="width: max-content">Edit Data Setoran {{ $data->mahasantri->nama_mhs }}</h2>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="white_shd full margin_bottom_30">
@@ -62,7 +56,8 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label for="tanggal" class="form-label">Tanggal <span class="text-danger small">*</span></label>
+                            <label for="tanggal" class="form-label">Tanggal <span
+                                    class="text-danger small">*</span></label>
                             <input id="tanggal" type="date" class="form-control @error('tanggal') is-invalid @enderror"
                                 value="{{ $data->tanggal }}" name="tanggal">
                             @error('tanggal')

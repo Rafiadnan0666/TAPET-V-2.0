@@ -1,20 +1,14 @@
 @extends('master.dash')
+@section('breadcrumb')
+    <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
+    <li><a href="{{ route('mentor.setoran', $data->mahasantri->id) }}">{{ $data->mahasantri->nama_mhs }}
+            <span class="mx-1">></span></a></li>
+    <li><a>Detail Setoran</a></li>
+@endsection
+@section('header')
+    <h2 style="width: max-content">Detail Setoran dari {{ $data->mahasantri->nama_mhs }}</h2>
+@endsection
 @section('konten')
-    <div class="row column_title">
-        <div class="col-md-12">
-            <div class="page_title">
-                <div class="float-right">
-                    <ul class="d-flex">
-                        <li><a href="{{ route('mentor.index') }}">Home <span class="mx-1">></span></a></li>
-                        <li><a href="{{ route('mentor.setoran', $data->mahasantri->id) }}">{{ $data->mahasantri->nama_mhs }}
-                                <span class="mx-1">></span></a></li>
-                        <li><a>Detail Setoran</a></li>
-                    </ul>
-                </div>
-                <h2 style="width: max-content">Detail Setoran dari {{ $data->mahasantri->nama_mhs }}</h2>
-            </div>
-        </div>
-    </div>
     <!-- row -->
     <div class="row column1">
         <div class="col-md-12">
