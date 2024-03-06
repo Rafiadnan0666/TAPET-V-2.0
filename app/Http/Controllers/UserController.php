@@ -23,8 +23,6 @@ class UserController extends Controller
     public function index()
     {
 
-        //
-
         $mentor = User::where('role', '=', 'm')->Paginate(5);
         $no = 5 * ($mentor->currentPage() - 1);
         return view("user.index", compact('mentor', 'no'));

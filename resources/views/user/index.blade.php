@@ -25,33 +25,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($setoran as $mhs)
+                                @foreach ($mentor as $m)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $mhs->mahasantri->nama_mhs }}</td>
-                                        <td>{{$mhs->tanggal}}</td>
-                                        <td>{{ $mhs->juz }}</td>
-                                        <td>{{ $mhs->halaman }}</td>
-                                        <td>{{ $mhs->nilai }}</td>
-                                        <td>{{ $mhs->status == 'l' ? 'lanjut' : 'ulang' }}</td>
-                                        <td>
-                                            @if (Str::length($mhs->keterangan) > 10)
-                                                {{ substr($mhs->keterangan, 0, 10) . "[.....]" }}
-                                            @else
-                                            {{$mhs->keterangan}}
-                                            @endif
-                                        </td>                                        
-                                        <td>{{ $mhs->created_at }}</td>
-                                        <td>{{ $mhs->updated_at }}</td>
+                                        <td>{{ ++$no }}</td>
+                                        <td>{{ $m->gambar }}</td>
+                                        <td>{{ $m->name }}</td>
+                                        <td>{{ $m->email }}</td>
+                                        <td>{{ $m->email }}</td>
                                         <td class="d-flex">
-                                            <a href="{{ route('setoran.show', $mhs->id) }}">
+                                            <a href="{{ route('setoran.show', $m->id) }}">
                                                 <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
                                             </a>
-                                            <a href="{{ route('setoran.edit', $mhs->id) }}">
+                                            <a href="{{ route('setoran.edit', $m->id) }}">
                                                 <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                                             </a>
 
-                                            <form action="{{ route('setoran.destroy', $mhs->id) }}" method="POST">
+                                            <form action="{{ route('setoran.destroy', $m->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"><i
