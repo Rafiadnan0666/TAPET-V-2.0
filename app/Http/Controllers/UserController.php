@@ -3,124 +3,112 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Mahasantri;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
-    public $mentor;
-    public $mahasantri;
-
-    public function __construct()
-    {
-        $this->mentor = new User();
-        $this->mahasantri = new Mahasantri();
-    }
     public function index()
     {
-
-        $mentor = User::where('role', '=', 'm')->Paginate(5);
-        $no = 5 * ($mentor->currentPage() - 1);
-        return view("user.index", compact('mentor', 'no'));
-
+        $mentors = User::where('role', 'm')->paginate(5);
+        return view('user.index', compact('mentors'));
     }
-
 
     public function create()
     {
         return view('user.create');
     }
 
-
     public function store(Request $request)
     {
-        $rules = [
-            'nama_mentor' => 'required|min:3|max:20|unique:mentor,mentor',
-        ];
-   
-        $messages = [
-            'required' => ':attribute gak boleh kosong masseeh',
-            'min' => ':attribute minimal harus 3 huruf',
-            'max' => ':attribute maximal 20 huruf',
-            'unique' => "attribut sudah ada, gunakan yang lain"
-        ];
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3|max:20',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'role' => 'required|in:a,m',
+            'gambar' => 'nullable|image|mimes:jpg,png|max:2048', 
+        ]);
 
-   
-        $this->validate($request, $rules, $messages);
-        $this->mentor->mentor = $request->nama_mentor;
-
-  
-        $this->mentor->save();
-
-        Alert::success('Success Title', 'Success Message');
-
-
-        return redirect()->route('mentor');
-    }
-
-
-    public function show(string $id)
-    {
-        $mentor = User::findOrFail($id);
-
-        return view('mentor.show', compact('mentor'));
-    }
-
-
-    public function edit(string $id)
-    {
-        $mentor = User::findOrFail($id);
-
-        return view('mentor.edit', compact('mentor'));
-    }
-
-
-    public function update(Request $request, string $id)
-    {
-        $update = User::findOrFail($id);
-    
-        $update->mentor = $request->nama_mentor;
-        if ($update->isDirty()) {
-            echo "ada perubahan";
-        } else {
-            echo "tidak ada perubahan";
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $rules = [
-            'mentor' => 'required|min:3|max:20|unique:mentor,mentor',
-        ];
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = $request->role;
 
-        $messages = [
-            'required' => ':attribute gak boleh kosong masseeh',
-            'min' => ':attribute minimal harus 3 huruf',
-            'max' => ':attribute maximal 20 huruf',
-            'unique' => "attribut sudah ada, gunakan yang lain"
-        ];
+        // Handle file upload for 'gambar'
+        if ($request->file('gambar')) {
+            $filename = time() . '_' . uniqid() . '.' . $request->file('gambar')->getClientOriginalExtension();
+            $request->gambar->move(public_path('upload'), $filename);
+            $user->gambar = $filename;
+        }
 
-        $this->validate($request, $rules, $messages);
+        $user->save();
 
-        $mentor = User::findOrFail($id);
-        $mentor->mentor = $request->mentor;
-        $mentor->save();
-
-        Alert::success('Success Title', 'Success Message');
-
-        return redirect()->route('mentor');
+        Alert::success('Success', 'User created successfully');
+        return redirect()->route('user.index');
     }
 
-
-    public function destroy(string $id)
+    public function show($id)
     {
+        $user = User::findOrFail($id);
+        return view('user.show', compact('user'));
+    }
 
-        $mentor = User::findOrFail($id);
-        $mentor->delete();
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('user.edit', compact('user'));
+    }
 
-        Alert::success('Successpull', 'Data berhasil di hapus');
-     
-        return redirect()->route('mentor');
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3|max:20',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'nullable|min:6',
+            'role' => 'required|in:a,m',
+            'gambar' => 'nullable|image|mimes:jpg,png|max:2048', // Adjust validation for the image file
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->has('password')) {
+            $user->password = bcrypt($request->password);
+        }
+        $user->role = $request->role;
+
+        // Handle file upload for 'gambar'
+        if ($request->file('gambar')) {
+            File::delete(public_path('upload/' . $user->gambar));
+            $filename = time() . '_' . uniqid() . '.' . $request->file('gambar')->getClientOriginalExtension();
+            $request->gambar->move(public_path('upload'), $filename);
+            $user->gambar = $filename;
+        }
+
+        $user->save();
+
+        Alert::success('Success', 'User updated successfully');
+        return redirect()->route('user.index');
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        File::delete(public_path('upload/' . $user->gambar));
+        $user->delete();
+
+        Alert::success('Success', 'User deleted successfully');
+        return redirect()->route('user.index');
     }
 }

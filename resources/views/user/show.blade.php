@@ -23,7 +23,7 @@
                                 </a>
                             </div>
                             <div class="heading1 margin_0">
-                                <h2>{{ $mahasantri->nama_mhs }} Profile</h2>
+                                <h2>{{ $user->name }} Profile</h2>
                             </div>
                         </div>
                         <div class="full price_table padding_infor_info">
@@ -33,53 +33,18 @@
                                 <div class="col-lg-12">
                                     <div class="full dis_flex center_text">
                                         <div class="profile_img"><img width="180" class="rounded-circle"
-                                                src="{{ asset('upload') }}/{{ $mahasantri->gambar }}" alt="Profile Picture"></div>
+                                                src="{{ asset('upload') }}/{{ $user->gambar }}" alt="Profile Picture"></div>
                                         <div class="profile_contant">
                                             <div class="contact_inner">
-                                                <h3>{{ $mahasantri->nama_mhs }}</h3>
+                                                <h3>{{ $user->name }}</h3>
                                                 <ul class="list-unstyled">
-                                                    <li><i class="fa fa-person"></i>: {{ $mahasantri->mentor->name }}</li>
+                                                    <li><i class="fa fa-person"></i>: {{ $user->name }}</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- profile content section -->
-                                    <div class="full inner_elements margin_top_30">
-                                        <div class="tab_style2">
-                                            <div class="tabbar">
-                                                <nav>
-                                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                        <a class="nav-item nav-link active" id="nav-home-tab"
-                                                            data-toggle="tab" href="#recent_activity" role="tab"
-                                                            aria-selected="true">Recent Setoran</a>
-                                                    </div>
-                                                </nav>
-                                                <div class="tab-content" id="nav-tabContent">
-                                                    <div class="tab-pane fade show active" id="recent_activity"
-                                                        role="tabpanel" aria-labelledby="nav-home-tab">
-                                                        <div class="msg_list_main">
-                                                            <ul class="msg_list">
-                                                                @forelse ($setoran as $setoran)
-                                                                <li>
-                                                                    <div class="msg_content">
-                                                                        <span class="name_user">{{ $setoran->mahasantri->nama_mhs }}</span>
-                                                                        <p class="msg_user">JUZ: {{ $setoran->juz }}</p>
-                                                                        <p class="msg_user">Halaman: {{ $setoran->halaman }}</p>
-                                                                        <p class="msg_user">Nilai: {{ $setoran->nilai }}</p>
-                                                                        <p class="msg_user">Keterangan: {{ $setoran->keterangan }}</p>
-                                                                        <p class="time_ago">12 min ago</p>
-                                                                    </div>
-                                                                </li>
-                                                                @empty
-                                                                <li>No recent setoran found.</li>
-                                                                @endforelse
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                     <!-- end user profile section -->
                                 </div>
                             </div>

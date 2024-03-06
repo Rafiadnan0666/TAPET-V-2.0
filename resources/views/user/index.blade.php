@@ -33,14 +33,14 @@
                                         <td>{{ $m->email }}</td>
                                         <td>{{ $m->email }}</td>
                                         <td class="d-flex">
-                                            <a href="{{ route('setoran.show', $m->id) }}">
+                                            <a href="{{ route('user.show', $m->id) }}">
                                                 <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
                                             </a>
-                                            <a href="{{ route('setoran.edit', $m->id) }}">
+                                            <a href="{{ route('user.edit', $m->id) }}">
                                                 <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                                             </a>
 
-                                            <form action="{{ route('setoran.destroy', $m->id) }}" method="POST">
+                                            <form action="{{ route('user.destroy', $m->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"><i
