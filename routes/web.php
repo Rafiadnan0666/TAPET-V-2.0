@@ -78,11 +78,11 @@ Route::middleware(['auth', 'verified','role:a'])->group(function () {
 
 Route::get('/er', function () {
     if (!Auth::user()) {
-        return redirect()->route('dashboard');
+        return redirect()->route('/');
     } elseif (Auth::user()->role == 'm') {
         return redirect()->route('mentor.index');
     } elseif (Auth::user()->role == 'a') {
-        return view('/');
+        return redirect()->route('dashboard');
     }
 })->name('er');
 
