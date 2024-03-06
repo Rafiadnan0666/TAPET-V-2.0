@@ -1,5 +1,12 @@
-
-    @extends('master.dash')
+@extends('master.dash')
+@section('breadcrumb')
+    <li><a href="{{ route('dashboard') }}">Dashboard <span class="mx-1">></span></a></li>
+    <li><a href="{{ route('mahasantri.index') }}">Mahasantri <span class="mx-1">></span></a></li>
+    <li><a> Edit </a></li>
+@endsection
+@section('header')
+    <h2 style="width: max-content">Edit Data Mahasantri</h2>
+@endsection
 @section('konten')
     <div class="page-heading">
         <div class="page-title">
@@ -12,7 +19,6 @@
                             </button>
                         </a>
                     </div>
-                    <h3>{{ 'Update Data' }}</h3>
                 </div>
             </div>
         </div>
@@ -96,5 +102,3 @@
         </div>
     </div>
 @endsection
-
-

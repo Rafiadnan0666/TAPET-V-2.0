@@ -1,13 +1,19 @@
 @extends('master.dash')
+@section('breadcrumb')
+    <li><a href="{{ route('dashboard') }}">Dashboard <span class="mx-1">></span></a></li>
+    <li><a> Mahasantri </a></li>
+@endsection
+@section('header')
+    <h2 style="width: max-content">Data Mahasantri</h2>
+@endsection
 @section('konten')
     <div class="row mt-5">
         <div class="col-md-12">
             <div class="white_shd full margin_bottom_30">
                 <div class="full graph_head">
-                    <div class=" d-flex justify-content-between">
-                        <h2>Data Mahasantri</h2>
+                    <div class=" d-flex justify-content-end">
                         <a href="{{ route('mahasantri.create') }}">
-                            <button class="btn btn-primary"><i class="fa fa-create"></i>tambah </button>
+                            <button class="btn btn-primary"><i class="fa fa-plus-circle"></i> Tambah </button>
                         </a>
                     </div>
                 </div>
