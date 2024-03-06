@@ -96,7 +96,7 @@
                             </li>
                         @else
                             <li><a href="{{ route('mentor.index') }}"><i class="fa fa-home white_color"></i>
-                                    <span>Dashboard</span></a>
+                                    <span>Home</span></a>
                             </li>
                         @endif
                         <li>
@@ -144,8 +144,6 @@
                                                     Profile</a>
                                                 <a class="dropdown-item"
                                                     href="{{ asset('dist') }}/settings.html">Settings</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ asset('dist') }}/help.html">Help</a>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
                                                     <a class="dropdown-item" href="{{ route('logout') }}"
