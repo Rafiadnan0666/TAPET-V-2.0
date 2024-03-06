@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\Mahasantri;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Setoran;
 
 /*
@@ -70,11 +71,20 @@ Route::middleware(['auth', 'verified','role:a'])->group(function () {
     Route::get('/dashboard', function () {
         $setoran = Setoran::all();
         $mahasantri = Mahasantri::all();
-
         $user = User::all()->where("role", "=", "m");
+        
         return view('dashboard', compact('user', 'setoran', 'mahasantri'));
     })->name('dashboard');
+
 });
+
+Route::get('/er', function () {
+    if (Auth::user()->role == 'a') {
+        return redirect()->route('dashboard');
+    } else {
+        return redirect()->route('mentor.index');
+    }
+})->name('er');
 
 Route::middleware(['auth', 'role:a'])->group(function () {
     Route::resource('/mahasantri', MahasantriController::class);

@@ -50,12 +50,14 @@
                     <br>
                     @yield('error')
                     <P>YOU SEEM TO BE TRYING TO FIND HIS WAY HOME</P>
-                    <div class="center"><a class="main_bt" href="{{ route('dashboard') }}">Go To Home Page</a>
+                    <div class="center"><a class="main_bt" href="{{ route('er') }}">Go To Home Page</a>
                     </div>
 
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
     <!-- jQuery -->
     <script src="{{ asset('dist') }}/js/jquery.min.js"></script>
