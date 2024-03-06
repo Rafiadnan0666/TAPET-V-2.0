@@ -45,37 +45,47 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($setoran as $s)
+                                @if ($setoran->count() != null)
+                                    @foreach ($setoran as $s)
+                                        <tr>
+                                            <td>{{ ++$no }}</td>
+                                            <td>{{ number_format($s->juz, 0) }}</td>
+                                            <td>{{ number_format($s->halaman, 0) }}</td>
+                                            <td>{{ $s->nilai }}</td>
+                                            <td>{{ $s->nilai > 75 ? 'Lanjut' : 'Ulang' }}</td>
+                                            <td>{{ $s->keterangan }}</td>
+                                            <td>
+                                                {{ date('l d/M/Y', strtotime($s->tanggal)) }}
+                                            </td>
+                                            <th class="text-right">
+                                                <div class="tooltip_section">
+                                                    <a class="btn btn-primary" href="{{ route('mentor.showstr', $s->id) }}"
+                                                        data-toggle="tooltip" data-placement="top" title=""
+                                                        data-original-title="Detail"><i class="fa fa-eye"></i></a>
+                                                    <a class="btn btn-warning" href="{{ route('mentor.editstr', $s->id) }}"
+                                                        data-toggle="tooltip" data-placement="top" title=""
+                                                        data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                                                    <a onclick="return confirm('Anda Yakin Ingin Hapus Data??')"
+                                                        class="btn btn-danger"
+                                                        href="{{ route('mentor.destroystr', $s->id) }}"
+                                                        data-toggle="tooltip" data-placement="top" title=""
+                                                        data-original-title="Delete"><i class="fa fa-trash"></i></a>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                @else
                                     <tr>
-                                        <td>{{ ++$no }}</td>
-                                        <td>{{ number_format($s->juz, 0) }}</td>
-                                        <td>{{ number_format($s->halaman, 0) }}</td>
-                                        <td>{{ $s->nilai }}</td>
-                                        <td>{{ $s->nilai > 75 ? 'Lanjut' : 'Ulang' }}</td>
-                                        <td>{{ $s->keterangan }}</td>
-                                        <td>
-                                            {{ date('l d/M/Y', strtotime($s->tanggal)) }}
+                                        <td colspan="8" class="text-center">Mahasantri ini belum
+                                            memiliki data setoran
                                         </td>
-                                        <th class="text-right">
-                                            <div class="tooltip_section">
-                                                <a class="btn btn-primary" href="{{ route('mentor.showstr', $s->id) }}" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Detail"><i
-                                                        class="fa fa-eye"></i></a>
-                                                <a class="btn btn-warning" href="{{ route('mentor.editstr', $s->id) }}" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit"><i
-                                                        class="fa fa-pencil"></i></a>
-                                                <a onclick="return confirm('Anda Yakin Ingin Hapus Data??')" class="btn btn-danger" href="{{ route('mentor.destroystr', $s->id) }}" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Delete"><i
-                                                        class="fa fa-trash"></i></a>
-                                            </div>
-                                        </th>
                                     </tr>
-                                @endforeach
+                                @endif
 
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="6" class="text-end">
+                                    <td colspan="8" class="text-end">
                                         {{ $setoran->withQueryString()->links('pagination::bootstrap-5') }}
                                     </td>
                                 </tr>

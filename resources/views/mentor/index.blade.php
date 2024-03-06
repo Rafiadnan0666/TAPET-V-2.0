@@ -31,41 +31,53 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($mahasantri as $m)
-                                    @php
-                                        $mid = $m->id;
-                                        $avg = DB::table('setoran')->where('mahasantri_id', '=', $mid)->avg('nilai');
-                                        $l = DB::table('setoran')
-                                            ->orderBy('tanggal', 'desc')
-                                            ->where('mahasantri_id', '=', $mid)
-                                            ->limit(1)
-                                            ->get();
-                                    @endphp
+                                @if ($mahasantri->count() != null)
+                                    @foreach ($mahasantri as $m)
+                                        @php
+                                            $mid = $m->id;
+                                            $avg = DB::table('setoran')
+                                                ->where('mahasantri_id', '=', $mid)
+                                                ->avg('nilai');
+                                            $l = DB::table('setoran')
+                                                ->orderBy('tanggal', 'desc')
+                                                ->where('mahasantri_id', '=', $mid)
+                                                ->limit(1)
+                                                ->get();
+                                        @endphp
+                                        <tr>
+                                            <td>{{ ++$no }}</td>
+                                            <td>{{ $m->nim }}</td>
+                                            <td>{{ $m->nama_mhs }}</td>
+                                            <td>{{ number_format($avg, 2) }}</td>
+                                            <td>
+                                                @foreach ($l as $t)
+                                                    {{ date('l d-M-Y', strtotime($t->tanggal)) }}
+                                                @endforeach
+                                            </td>
+                                            <th class="text-right">
+                                                <div class="tooltip_section">
+                                                    <a class="btn btn-primary" href="{{ route('mentor.setoran', $m->id) }}"
+                                                        data-toggle="tooltip" data-placement="top" title=""
+                                                        data-original-title="Detail"><i class="fa fa-eye"></i></a>
+                                                    <a class="btn btn-warning" href="{{ route('mentor.editmhs', $m->id) }}"
+                                                        data-toggle="tooltip" data-placement="top" title=""
+                                                        data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                                                    <a onclick="return confirm('Anda Yakin Ingin Hapus Data??')"
+                                                        class="btn btn-danger"
+                                                        href="{{ route('mentor.destroymhs', $m->id) }}"
+                                                        data-toggle="tooltip" data-placement="top" title=""
+                                                        data-original-title="Delete"><i class="fa fa-trash"></i></a>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                @else
                                     <tr>
-                                        <td>{{ ++$no }}</td>
-                                        <td>{{ $m->nim }}</td>
-                                        <td>{{ $m->nama_mhs }}</td>
-                                        <td>{{ number_format($avg, 2) }}</td>
-                                        <td>
-                                            @foreach ($l as $t)
-                                                {{ date('l d-M-Y', strtotime($t->tanggal)) }}
-                                            @endforeach
+                                        <td colspan="6" class="text-center">Mentor ini belum
+                                            memiliki mahasantri binaan
                                         </td>
-                                        <th class="text-right">
-                                            <div class="tooltip_section">
-                                                <a class="btn btn-primary" href="{{ route('mentor.setoran', $m->id) }}" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Detail"><i
-                                                        class="fa fa-eye"></i></a>
-                                                <a class="btn btn-warning" href="{{ route('mentor.editmhs', $m->id) }}" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit"><i
-                                                        class="fa fa-pencil"></i></a>
-                                                <a onclick="return confirm('Anda Yakin Ingin Hapus Data??')" class="btn btn-danger" href="{{ route('mentor.destroymhs', $m->id) }}" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Delete"><i
-                                                        class="fa fa-trash"></i></a>
-                                            </div>
-                                        </th>
                                     </tr>
-                                @endforeach
+                                @endif
 
                             </tbody>
                             <tfoot>
