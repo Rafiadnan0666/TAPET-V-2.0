@@ -163,6 +163,7 @@
                 </div>
                 <!-- end topbar -->
                 <!-- dashboard inner -->
+                <!-- end dashboard inner -->
                 <div class="midde_cont">
                     <div class="container-fluid">
                         @yield('konten')
@@ -170,13 +171,12 @@
                     <!-- footer -->
                     <div class="container-fluid">
                         <div class="footer">
-                            <p>Copyright © 2018 Designed by TAPET design. All rights reserved.
-                                Distributed By: TAPET</a>
+                            <p class="pb-1">Copyright © 2018 Designed by TAPET design. All rights reserved.
                             </p>
+                            <p class="pt-1"> Distributed By: TAPET </p>
                         </div>
                     </div>
                 </div>
-                <!-- end dashboard inner -->
             </div>
         </div>
     </div>
