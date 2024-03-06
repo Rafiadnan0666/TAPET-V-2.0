@@ -24,9 +24,16 @@ use App\Models\Setoran;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+    Route::get('/', function () {
+        $setoran = Setoran::all();
+        $mahasantri = Mahasantri::all();
+        $mentor = User::all()->where("role", "=", "m");
+        
+        return view('landing', compact('mentor', 'setoran', 'mahasantri'));
+    })->name('/');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     
