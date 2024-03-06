@@ -56,8 +56,14 @@
                     <div class="sidebar_user_info">
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
-                            <div class="user_img"><img class="img-responsive"
-                                    src="{{ asset('upload') }}/{{Auth::user()->gambar}}" alt="#" /></div>
+                            @if (Auth::user()->gambar != null)
+                                <div class="user_img"><img class="img-responsive"
+                                        src="{{ asset('upload') }}/{{ Auth::user()->gambar }}" alt="#" /></div>
+                            @else
+                                <div class="user_img"><img class="img-responsive"
+                                        src="{{ asset('upload') }}/profile.jpg" alt="#" />
+                                </div>
+                            @endif
                             <div class="user_info">
                                 <h6>{{ Auth::user()->name }}</h6>
                                 <p><span class="online_animation"></span> Online</p>
@@ -122,11 +128,17 @@
                                 <div class="icon_info">
                                     <ul class="user_profile_dd">
                                         <li>
-                                            <a class="dropdown-toggle" data-toggle="dropdown"><img
-                                                    class="img-responsive rounded-circle"
-                                                    src="{{ asset('upload') }}/{{Auth::user()->gambar}}"
-                                                    alt="#" /><span
-                                                    class="name_user">{{ Auth::user()->name }}</span></a>
+                                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                                @if (Auth::user()->gambar != null)
+                                                    <img class="img-responsive rounded-circle"
+                                                        src="{{ asset('upload') }}/{{ Auth::user()->gambar }}"
+                                                        alt="#" />
+                                                @else
+                                                    <img class="img-responsive rounded-circle"
+                                                        src="{{ asset('upload') }}/profile.jpg" alt="#" />
+                                                @endif
+                                                <span class="name_user">{{ Auth::user()->name }}</span>
+                                            </a>
                                             <div class="dropdown-menu">
                                                 <a href="{{ route('profile.edit') }}" class="dropdown-item">My
                                                     Profile</a>
