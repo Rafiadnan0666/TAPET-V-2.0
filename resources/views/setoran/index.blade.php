@@ -1,11 +1,17 @@
 @extends('master.dash')
+@section('breadcrumb')
+    <li><a href="{{ route('dashboard') }}">Dashboard <span class="mx-1">></span></a></li>
+    <li><a> Setoran </a></li>
+@endsection
+@section('header')
+    <h2 style="width: max-content"> Data Setoran </h2>
+@endsection
 @section('konten')
     <div class="row mt-5">
         <div class="col-md-12">
             <div class="white_shd full margin_bottom_30">
                 <div class="full graph_head">
-                    <div class=" d-flex justify-content-between">
-                        <h2>Data Setoran</h2>
+                    <div class=" d-flex justify-content-end">
                         <a href="{{ route('setoran.create') }}">
                             <button class="btn btn-primary"><i class="fa fa-create"></i>tambah </button>
                         </a>
@@ -34,18 +40,18 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $mhs->mahasantri->nama_mhs }}</td>
-                                        <td>{{$mhs->tanggal}}</td>
+                                        <td>{{ $mhs->tanggal }}</td>
                                         <td>{{ $mhs->juz }}</td>
                                         <td>{{ $mhs->halaman }}</td>
                                         <td>{{ $mhs->nilai }}</td>
                                         <td>{{ $mhs->status == 'l' ? 'lanjut' : 'ulang' }}</td>
                                         <td>
                                             @if (Str::length($mhs->keterangan) > 10)
-                                                {{ substr($mhs->keterangan, 0, 10) . "[.....]" }}
+                                                {{ substr($mhs->keterangan, 0, 10) . '[.....]' }}
                                             @else
-                                            {{$mhs->keterangan}}
+                                                {{ $mhs->keterangan }}
                                             @endif
-                                        </td>                                        
+                                        </td>
                                         <td>{{ $mhs->created_at }}</td>
                                         <td>{{ $mhs->updated_at }}</td>
                                         <td class="d-flex">
@@ -76,4 +82,3 @@
         </div>
     </div>
 @endsection
-
