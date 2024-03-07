@@ -38,7 +38,7 @@
                                             @if ($m->gambar != null)
                                                 <div class="profile_img"><img width="50" height="50"
                                                         class="rounded-circle"
-                                                        src="{{ asset('upload') }}/{{ $m->gambar }}" alt="#" />
+                                                        src="{{ asset('upload') }}/{{ $m->gambar }}" alt="#" style="object-fit: cover" />
                                                 </div>
                                             @else
                                                 <div class="profile_img"><img width="50" height="50"

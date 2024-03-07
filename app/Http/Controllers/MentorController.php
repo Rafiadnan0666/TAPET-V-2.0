@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Mahasantri;
 use App\Models\Setoran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
@@ -123,28 +124,36 @@ class MentorController extends Controller
             $rules = [
                 'nim' => 'required|min:3|max:20',
                 'nama' => 'required|min:3|max:20',
+                'gambar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             ];
         } else {
             $rules = [
                 'nim' => 'required|min:3|max:20|unique:mahasantri,nim',
                 'nama' => 'required|min:3|max:20',
+                'gambar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             ];
         }
 
+        $messages = [
+            'required' => ':attribute gak boleh kosong akhi',
+            'min' => ':attribute minimal harus 3 huruf akhi',
+            'max' => ':attribute maximal 20 huruf akhi',
+            'unique' => ':attribute sudah ada akhi, silahkan gunakan yang lain',
+            'image' => ':attribute harus berupa file gambar',
+            'mimes' => 'Ekstensi :values tidak didukung, gunakan yang lain',
+        ];
+        $this->validate($request, $rules, $messages);
+
+        if ($request->file('gambar')) {
+            File::delete(public_path('upload/' . $update->gambar));
+            $filename = time() . '_' . uniqid() . '.' . $request->file('gambar')->getClientOriginalExtension();
+            $request->gambar->move(public_path('upload'), $filename);
+            $update->gambar = $filename;
+        };
         $update->nim = $request->nim;
         $update->nama_mhs = $request->nama;
 
         if ($update->isDirty()) {
-            $messages = [
-                'required' => ':attribute gak boleh kosong akhi',
-                'min' => ':attribute minimal harus 3 huruf akhi',
-                'max' => ':attribute maximal 20 huruf akhi',
-                'unique' => ':attribute sudah ada akhi, silahkan gunakan yang lain'
-            ];
-
-            $this->validate($request, $rules, $messages);
-            $update->nim = $request->nim;
-            $update->nama_mhs = $request->nama;
             $update->save();
             Alert::success('Alhamdulillah', 'Data Berhasil di Update');
             return redirect()->route('mentor.index');

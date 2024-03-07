@@ -27,16 +27,16 @@ use App\Models\Setoran;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-    Route::get('/', function () {
-        $setoran = Setoran::all();
-        $mahasantri = Mahasantri::all();
-        $mentor = User::all()->where("role", "=", "m");
-        
-        return view('landing', compact('mentor', 'setoran', 'mahasantri'));
-    })->name('/');
+Route::get('/', function () {
+    $setoran = Setoran::all();
+    $mahasantri = Mahasantri::all();
+    $mentor = User::all()->where("role", "=", "m");
+
+    return view('landing', compact('mentor', 'setoran', 'mahasantri'));
+})->name('/');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    
+
     Route::middleware('role:a')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -45,6 +45,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/setoran', SetoranController::class);
     });
 
+    Route::put('/user/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
+    Route::get('/user/set/{id}', [UserController::class, 'set'])->name('user.set');
 
     Route::middleware('role:m')->group(function () {
         Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
@@ -61,19 +63,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/mentor/destroymhs/{id}', [MentorController::class, 'destroymhs'])->name('mentor.destroymhs');
         Route::get('/mentor/destroystr/{id}', [MentorController::class, 'destroystr'])->name('mentor.destroystr');
     });
-
-
 });
 
-Route::middleware(['auth', 'verified','role:a'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:a'])->group(function () {
     Route::get('/dashboard', function () {
         $setoran = Setoran::all();
         $mahasantri = Mahasantri::all();
         $user = User::all()->where("role", "=", "m");
-        
+
         return view('dashboard', compact('user', 'setoran', 'mahasantri'));
     })->name('dashboard');
-
 });
 
 Route::get('/er', function () {

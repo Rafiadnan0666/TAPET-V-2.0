@@ -123,6 +123,11 @@
                                     <input type="password" name="password_confirmation" placeholder="Confirm Password"
                                         required autocomplete="new-password" />
                                 </div>
+                                <div class="field">
+                                    <p class="text-right">Sudah punya akun? <a href="{{ route('login') }}">
+                                            Login</a>
+                                    </p>
+                                </div>
                                 <div class="field margin_0">
                                     <button class="main_bt">Register</button>
                                 </div>

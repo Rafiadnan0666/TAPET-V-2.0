@@ -57,8 +57,11 @@
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
                             @if (Auth::user()->gambar != null)
-                                <div class="user_img"><img class="img-responsive"
-                                        src="{{ asset('upload') }}/{{ Auth::user()->gambar }}" alt="#" /></div>
+                                <div class="user_img">
+                                    <img height="70" width="75" class="img-responsive rounded-circle"
+                                        src="{{ asset('upload') }}/{{ Auth::user()->gambar }}" alt="#"
+                                        style="object-fit: cover" />
+                                </div>
                             @else
                                 <div class="user_img"><img class="img-responsive"
                                         src="{{ asset('upload') }}/profile.jpg" alt="#" />
@@ -130,9 +133,9 @@
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown">
                                                 @if (Auth::user()->gambar != null)
-                                                    <img class="img-responsive rounded-circle"
+                                                    <img height="35" class="img-responsive rounded-circle"
                                                         src="{{ asset('upload') }}/{{ Auth::user()->gambar }}"
-                                                        alt="#" />
+                                                        alt="#" style="object-fit: cover" />
                                                 @else
                                                     <img class="img-responsive rounded-circle"
                                                         src="{{ asset('upload') }}/profile.jpg" alt="#" />
@@ -140,7 +143,7 @@
                                                 <span class="name_user">{{ Auth::user()->name }}</span>
                                             </a>
                                             <div class="dropdown-menu">
-                                                <a href="{{ route('profile.edit') }}" class="dropdown-item">My
+                                                <a href="{{ route('user.set', Auth::user()->id) }}" class="dropdown-item">My
                                                     Profile</a>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf

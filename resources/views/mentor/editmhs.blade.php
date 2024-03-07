@@ -17,14 +17,15 @@
                         </a>
                     </div>
                 </div>
-                <form class="padding_infor_info row" action="{{ route('mentor.updatemhs', $data->id) }}" method="POST">
-                    @method('PUT')
+                <form class="padding_infor_info row" action="{{ route('mentor.updatemhs', $data->id) }}"
+                    enctype="multipart/form-data" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="col-12 col-md-6">
                         <input type="text" value="{{ Auth::user()->id }}" name="mid" hidden>
                         <div class="form-group">
                             <label for="nim" class="form-label">NIM <span class="text-danger small">*</span></label>
-                            <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror"
+                            <input id="nim" type="number" class="form-control @error('nim') is-invalid @enderror"
                                 value="{{ $data->nim }}" name="nim">
                             @error('nim')
                                 <p class="text-danger">{{ $message }}</p>
@@ -38,6 +39,22 @@
                             <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror"
                                 value="{{ $data->nama_mhs }}" name="nama">
                             @error('nama')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            @if ($data->gambar != null)
+                                <img src="{{ asset('upload') }}/{{ $data->gambar }}" alt="" class="w-25">
+                            @else
+                                <img src="{{ asset('upload') }}/profile.jpg" alt="" class="w-25">
+                            @endif
+                            <br>
+                            <label for="gambar">Foto</label>
+                            <input type="file" name="gambar"
+                                class="form-control mb-2 @error('gambar') is-invalid @enderror" id="gambar">
+                            @error('gambar')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>

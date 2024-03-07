@@ -57,17 +57,6 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="role">Role</label>
-                                            <select name="role" id="role" class="custom-select mb-2 @error('role') is-invalid @enderror">
-                                                <option value="a">Admin</option>
-                                                <option value="m">Mentor</option>
-                                            </select>
-                                            @error('role')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-                                        <div class="form-group">
                                             <label for="gambar">Gambar</label>
                                             <input type="file" name="gambar" class="form-control mb-2 @error('gambar') is-invalid @enderror" id="gambar">
                                             @error('gambar')

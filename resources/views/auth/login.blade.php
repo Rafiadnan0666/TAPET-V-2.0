@@ -47,6 +47,7 @@
 </x-guest-layout> --}}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- basic -->
     <meta charset="utf-8">
@@ -60,28 +61,29 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- site icon -->
-    <link rel="icon" href="{{asset("dist")}}/images/fevicon.png" type="image/png" />
+    <link rel="icon" href="{{ asset('dist') }}/images/fevicon.png" type="image/png" />
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="{{asset("dist")}}/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('dist') }}/css/bootstrap.min.css" />
     <!-- site css -->
-    <link rel="stylesheet" href="{{asset("dist")}}/style.css" />
+    <link rel="stylesheet" href="{{ asset('dist') }}/style.css" />
     <!-- responsive css -->
-    <link rel="stylesheet" href="{{asset("dist")}}/css/responsive.css" />
+    <link rel="stylesheet" href="{{ asset('dist') }}/css/responsive.css" />
     <!-- color css -->
-    <link rel="stylesheet" href="{{asset("dist")}}/css/colors.css" />
+    <link rel="stylesheet" href="{{ asset('dist') }}/css/colors.css" />
     <!-- select bootstrap -->
-    <link rel="stylesheet" href="{{asset("dist")}}/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="{{ asset('dist') }}/css/bootstrap-select.css" />
     <!-- scrollbar css -->
-    <link rel="stylesheet" href="{{asset("dist")}}/css/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="{{ asset('dist') }}/css/perfect-scrollbar.css" />
     <!-- custom css -->
-    <link rel="stylesheet" href="{{asset("dist")}}/css/custom.css" />
+    <link rel="stylesheet" href="{{ asset('dist') }}/css/custom.css" />
     <!-- calendar file css -->
-    <link rel="stylesheet" href="{{asset("dist")}}/js/semantic.min.css" />
+    <link rel="stylesheet" href="{{ asset('dist') }}/js/semantic.min.css" />
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.{{asset("dist")}}/js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.{{ asset('dist') }}/js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body class="inner_page login">
     <div class="full_container">
         <div class="container">
@@ -89,7 +91,7 @@
                 <div class="login_section">
                     <div class="logo_login">
                         <div class="center">
-                            <img width="210" src="images/logo/logo.png" alt="#" />
+                            <img width="210" src="{{ asset('dist') }}/images/logo/logo.png" alt="#" />
                         </div>
                     </div>
                     <div class="login_form">
@@ -98,16 +100,22 @@
                             <fieldset>
                                 <div class="field">
                                     <label class="label_field">Email Address</label>
-                                    <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus autocomplete="username">
+                                    <input type="email" name="email" class="form-control" placeholder="E-mail"
+                                        required autofocus autocomplete="username">
                                 </div>
                                 <div class="field">
                                     <label class="label_field">Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Password" required autocomplete="current-password">
+                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                        required autocomplete="current-password">
                                 </div>
                                 <div class="field">
                                     <label class="label_field hidden">hidden label</label>
-                                    <label class="form-check-label"><input type="checkbox" class="form-check-input" name="remember"> Remember Me</label>
+                                    <label class="form-check-label"><input type="checkbox" class="form-check-input"
+                                            name="remember"> Remember Me</label>
                                     <a class="forgot" href="{{ route('password.request') }}">Forgotten Password?</a>
+                                    <p class="text-right">Belum punya akun? <a href="{{ route('register') }}">
+                                            Register</a>
+                                    </p>
                                 </div>
                                 <div class="field margin_0">
                                     <label class="label_field hidden">hidden label</label>
@@ -121,19 +129,20 @@
         </div>
     </div>
     <!-- jQuery -->
-    <script src="{{asset("dist")}}/js/jquery.min.js"></script>
-    <script src="{{asset("dist")}}/js/popper.min.js"></script>
-    <script src="{{asset("dist")}}/js/bootstrap.min.js"></script>
+    <script src="{{ asset('dist') }}/js/jquery.min.js"></script>
+    <script src="{{ asset('dist') }}/js/popper.min.js"></script>
+    <script src="{{ asset('dist') }}/js/bootstrap.min.js"></script>
     <!-- wow animation -->
-    <script src="{{asset("dist")}}/js/animate.js"></script>
+    <script src="{{ asset('dist') }}/js/animate.js"></script>
     <!-- select country -->
-    <script src="{{asset("dist")}}/js/bootstrap-select.js"></script>
+    <script src="{{ asset('dist') }}/js/bootstrap-select.js"></script>
     <!-- nice scrollbar -->
-    <script src="{{asset("dist")}}/js/perfect-scrollbar.min.js"></script>
+    <script src="{{ asset('dist') }}/js/perfect-scrollbar.min.js"></script>
     <script>
         var ps = new PerfectScrollbar('#sidebar');
     </script>
     <!-- custom js -->
-    <script src="{{asset("dist")}}/js/custom.js"></script>
+    <script src="{{ asset('dist') }}/js/custom.js"></script>
 </body>
+
 </html>

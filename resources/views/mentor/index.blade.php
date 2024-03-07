@@ -19,6 +19,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>#</th>
+                                    <th>Foto</th>
                                     <th>NIM</th>
                                     <th>Nama</th>
                                     <th>Rata-rata Nilai</th>
@@ -42,6 +43,20 @@
                                         @endphp
                                         <tr>
                                             <td>{{ ++$no }}</td>
+                                            <td>
+                                                @if ($m->gambar != null)
+                                                    <div class="profile_img"><img width="50" height="50"
+                                                            class="rounded-circle"
+                                                            src="{{ asset('upload') }}/{{ $m->gambar }}" alt="#"
+                                                            style="object-fit: cover" />
+                                                    </div>
+                                                @else
+                                                    <div class="profile_img"><img width="50" height="50"
+                                                            class="rounded-circle" src="{{ asset('upload') }}/profile.jpg"
+                                                            alt="#" />
+                                                    </div>
+                                                @endif
+                                            </td>
                                             <td>{{ $m->nim }}</td>
                                             <td>{{ $m->nama_mhs }}</td>
                                             <td>{{ number_format($avg, 2) }}</td>
@@ -69,7 +84,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="6" class="text-center">Mentor ini belum
+                                        <td colspan="7" class="text-center">Mentor ini belum
                                             memiliki mahasantri binaan
                                         </td>
                                     </tr>

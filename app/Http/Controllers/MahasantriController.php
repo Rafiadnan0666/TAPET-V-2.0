@@ -92,7 +92,7 @@ class MahasantriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Mahasantri $mahasantri)
+    public function update(Request $request, $id)
     {
         $rules = [
             'nim' => 'required|numeric|',
@@ -109,13 +109,13 @@ class MahasantriController extends Controller
             'mimes' => 'Ekstensi :values tidak didukung, gunakan yang lain',
             'max' => 'Ukuran :attribute tidak boleh melebihi :max KB',
         ];
-        $mahasantri = Mahasantri::findOrFail($mahasantri->id);
+        $mahasantri = Mahasantri::findOrFail($id);
         $val = $request->validate($rules, $messages);
         if ($request->file('gambar')){
-            File::delete($mahasantri->gambar);
+            File::delete(public_path('upload/' . $mahasantri->gambar));
             $filename = time() . '_' . uniqid() . '.' . $request->file('gambar')->getClientOriginalExtension();
             $request->gambar->move(public_path('upload'),$filename);    
-            $val['gambar']= $filename;    
+            $mahasantri->gambar = $filename;    
         }
         $mahasantri->nim = $val['nim'];
         $mahasantri->nama_mhs = $val['nama_mhs'];
