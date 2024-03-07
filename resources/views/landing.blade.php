@@ -62,7 +62,7 @@
     <section id="hero">
         <div class="hero-container" data-aos="fade-up">
             <h1>Welcome to Application Tapet</h1>
-            <h2>Mempersiapkan kebahagiaan untuk kedua orangtua di akhirat nanti bersama Al-Qur'an</h2>
+            <h2>Mempersiapkan kebahagiaan untuk kedua orangtua di akhirat nanti bersama Al-Quran</h2>
             <a href="#about" class="btn-get-started scrollto"><i class="bx bx-chevrons-down"></i></a>
         </div>
     </section>
@@ -79,7 +79,7 @@
                             <p>
                                 TAPET adalah aplikasi tahfidz yang lengkap dan komprehensif. Dengan empat pilar kokoh
                                 yang dimilikinya, TAPET dapat menjadi teman perjalanan tahfidz yang ideal bagi para
-                                penghafal Al-Qur'an di selur indonesia
+                                penghafal Al-Quran di selur indonesia
                             </p>
                             <a href="#" class="about-btn">About us <i class="bx bx-chevron-right"></i></a>
                         </div>
@@ -90,22 +90,22 @@
                                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
                                     <i class="bx bx-receipt"></i>
                                     <h4>Tartil Sempurna</h4>
-                                    <p>Cara membaca Al-Qur'an dengan perlahan, jelas, dan fasih</p>
+                                    <p>Cara membaca Al-Quran dengan perlahan, jelas, dan fasih</p>
                                 </div>
                                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
                                     <i class="bx bx-cube-alt"></i>
                                     <h4>At-Taqrir</h4>
-                                    <p>Mengulang-ulang hafalan Al-Qur'an secara berkala</p>
+                                    <p>Mengulang-ulang hafalan Al-Quran secara berkala</p>
                                 </div>
                                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
                                     <i class="bx bx-images"></i>
                                     <h4>Evaluasi Berkala</h4>
-                                    <p>Kegiatan untuk mengukur perkembangan hafalan Al-Qur'an</p>
+                                    <p>Kegiatan untuk mengukur perkembangan hafalan Al-Quran</p>
                                 </div>
                                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
                                     <i class="bx bx-shield"></i>
-                                    <h4>Ta'awun dan Dukungan</h4>
-                                    <p>Saling membantu dan mendukung dalam menghafal Al-Qur'an</p>
+                                    <h4>Taawun dan Dukungan</h4>
+                                    <p>Saling membantu dan mendukung dalam menghafal Al-Quran</p>
                                 </div>
                             </div>
                         </div><!-- End .content-->
@@ -122,7 +122,7 @@
                 <div class="section-title" data-aos="fade-in" data-aos-delay="100">
                     <h2>Services</h2>
                     <p>Pelayanan yang disediakan oleh aplikasi TAPET dapat membantu pengguna untuk mencapai kesempurnaan
-                        hafalan Al-Qur'an</p>
+                        hafalan Al-Quran</p>
                 </div>
 
                 <div class="row">
@@ -130,7 +130,7 @@
                         <div class="icon-box" data-aos="fade-up">
                             <div class="icon"><i class="bx bxl-dribbble"></i></div>
                             <h4 class="title"><a href="">Belajar Tartil</a></h4>
-                            <p class="description">Layanan ini menyediakan berbagai sumber belajar tartil Al-Qur'an,
+                            <p class="description">Layanan ini menyediakan berbagai sumber belajar tartil Al-Quran,
                                 termasuk murottal berkualitas tinggi, teknologi tajwid interaktif, dan latihan tartil
                                 terstruktur</p>
                         </div>
@@ -141,7 +141,7 @@
                             <div class="icon"><i class="bx bx-file"></i></div>
                             <h4 class="title"><a href="">Belajar Tahfidz</a></h4>
                             <p class="description">Layanan ini menyediakan berbagai fitur untuk membantu pengguna dalam
-                                menghafal Al-Qur'an, metode menghafal bervariasi, serta tes hafalan interaktif</p>
+                                menghafal Al-Quran, metode menghafal bervariasi, serta tes hafalan interaktif</p>
                         </div>
                     </div>
 
@@ -416,8 +416,8 @@
                             <div class="testimonial-item">
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Aplikasi Tapet ini sangat membantu saya untuk menghafal Al-Qur'an. Fitur-fiturnya
-                                    sangat lengkap dan mudah digunakan. Saya bisa belajar Al-Qur'an dengan lebih mudah
+                                    Aplikasi Tapet ini sangat membantu saya untuk menghafal Al-Quran. Fitur-fiturnya
+                                    sangat lengkap dan mudah digunakan. Saya bisa belajar Al-Quran dengan lebih mudah
                                     dan menyenangkan.
                                     <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                 </p>
@@ -433,7 +433,7 @@
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                                     Aplikasi Tapet ini sangat cocok untuk anak-anak. Fitur-fiturnya sangat menarik dan
-                                    interaktif. Saya bisa belajar Al-Qur'an dengan lebih semangat dan tidak mudah bosan.
+                                    interaktif. Saya bisa belajar Al-Quran dengan lebih semangat dan tidak mudah bosan.
                                     <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                 </p>
                                 <img src="{{ asset('landing') }}/assets/img/testimonials/testimonials-2.png"
@@ -462,7 +462,7 @@
                             <div class="testimonial-item">
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Aplikasi Tapet ini sangat cocok untuk orang dewasa yang ingin menghafal Al-Qur'an.
+                                    Aplikasi Tapet ini sangat cocok untuk orang dewasa yang ingin menghafal Al-Quran.
                                     Fitur-fiturnya sangat lengkap dan mudah digunakan.
                                     <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                 </p>
@@ -506,12 +506,12 @@
 
                 <div class="row justify-content-center g-4">
                     <?php
-          foreach ($mentor as $m) { ?>
+                foreach ($mentor as $m) { ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="member" data-aos="fade-up">
                             @if ($m->gambar != null)
-                                <div class="pic"><img src="{{ asset('upload') }}/$m['gambar']" class="img-fluid"
-                                        alt=""></div>
+                                <div class="pic"><img src="{{ asset('upload') }}/{{ $m->gambar }}"
+                                        class="img-fluid" alt="" ></div>
                             @else
                                 <div class="pic"><img src="{{ asset('upload') }}/profile.jpg" class="img-fluid"
                                         alt=""></div>
@@ -625,7 +625,7 @@
                         <div class="footer-info">
                             <h3>Tahfidz PeTIK</h3>
                             <p class="pb-3"><em>Mempersiapkan kebahagiaan untuk kedua orangtua di akhirat nanti
-                                    bersama Al-Qur'an</em></p>
+                                    bersama Al-Quran</em></p>
                             <p>
                                 Jl. Mandor Basar No.54, Rangkapan Jaya, Kec. Pancoran Mas<br>
                                 Kota Depok, Jawa Barat<br><br>

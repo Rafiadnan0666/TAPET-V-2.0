@@ -16,7 +16,6 @@
             <div class="row">
                 <div class="col-12 order-md-1 order-last">
                     <div style="float: right">
-
                         <a href="{{ URL::previous() }}">
                             <button class="btn btn-warning mt-2">
                                 <i class="fa fa-arrow-circle-left"></i> Kembali
