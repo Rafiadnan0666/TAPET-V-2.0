@@ -7,11 +7,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\File;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -24,16 +24,37 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $user->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $request->validate([
+            'gambar' => ['nullable', 'image', 'max:2048'], 
+        ]);
+
+        if ($request->hasFile('gambar')) {
+            if ($user->gambar) {
+                File::delete('upload/' . $user->gambar);
+            }
+            $filename = time() . '_' . uniqid() . '.' . $request->file('gambar')->getClientOriginalExtension();
+            $request->file('gambar')->move(public_path('upload'), $filename);
+
+            $user->gambar = $filename;
+            $user->save();
+        }
+
+        return redirect()->route('profile.edit')->with('status', 'profile-updated');
     }
+
+    /**
+     * Update the user's gambar.
+     */
+  
 
     /**
      * Delete the user's account.
