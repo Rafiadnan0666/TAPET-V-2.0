@@ -16,19 +16,13 @@
             <div class="row">
                 <div class="col-12 order-md-1 order-last">
                     <div style="float: right">
-                        @if ($user->role == 'a')
-                            <a href="{{ route('dashboard') }}">
-                                <button class="btn btn-warning mt-2">
-                                    <i class="fa fa-arrow-circle-left"></i> Kembali
-                                </button>
-                            </a>
-                        @else
-                            <a href="{{ route('mentor.index') }}">
-                                <button class="btn btn-warning mt-2">
-                                    <i class="fa fa-arrow-circle-left"></i> Kembali
-                                </button>
-                            </a>
-                        @endif
+
+                        <a href="{{ URL::previous() }}">
+                            <button class="btn btn-warning mt-2">
+                                <i class="fa fa-arrow-circle-left"></i> Kembali
+                            </button>
+                        </a>
+
                     </div>
                 </div>
             </div>
