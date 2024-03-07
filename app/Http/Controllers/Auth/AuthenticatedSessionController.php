@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -32,6 +33,7 @@ class AuthenticatedSessionController extends Controller
 
         // Assuming you have a `role` attribute in your User model
         $user = Auth::user();
+        Alert::success('Welcome', 'to TAPET V-2-0');
         if ($user->role == 'a') {
             return redirect()->intended(route('dashboard'));
         } elseif ($user->role == 'm') {

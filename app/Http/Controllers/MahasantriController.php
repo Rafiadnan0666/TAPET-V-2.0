@@ -65,7 +65,7 @@ class MahasantriController extends Controller
         $mahasantri->mentor_id = $val['mentor_id'];
         $mahasantri->gambar = $filename;
         $mahasantri->save();
-
+Alert::success('Alhamdulillah', 'Data Berhasil di Tambahkan');
         return redirect()->route("mahasantri.index");
     }
 
@@ -121,7 +121,7 @@ class MahasantriController extends Controller
         $mahasantri->nama_mhs = $val['nama_mhs'];
         $mahasantri->mentor_id = $val['mentor_id'];
         $mahasantri->save();
-
+Alert::success('Alhamdulillah', 'Data Berhasil di Update');
         return redirect()->route("mahasantri.index");
     }
 
@@ -130,12 +130,17 @@ class MahasantriController extends Controller
      */
     public function destroy(Mahasantri $mahasantri)
     {
-        //
+        $setoran = Setoran::where('mahasantri_id', '=', $mahasantri->id)->count();
         $path = public_path("upload/") . $mahasantri->gambar;
-        if (File::exists($path)) {
-            File::delete($path);
+        if ($setoran == null) {
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $mahasantri->delete();
+            Alert::success('Alhamdulillah', 'Data Berhasil di Hapus');
+        } else {
+            Alert::warning('Afwan Akhi', 'Hapus data setoran yang dimiliki mahasantri ini dahulu');
         }
-        $mahasantri->delete();
         return redirect()->route('mahasantri.index');
     }
 }

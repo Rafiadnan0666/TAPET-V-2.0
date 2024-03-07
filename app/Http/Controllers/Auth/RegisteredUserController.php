@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -46,6 +47,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        Alert::success('Welcome', 'to TAPET V-2-0');
 
         if ($user->role == 'a') {
             return redirect(RouteServiceProvider::HOME);

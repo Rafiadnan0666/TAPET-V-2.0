@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Mahasantri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -143,11 +144,16 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        $mahasantri = Mahasantri::where('mahasantri_id', '=', $id)->count();
         $user = User::findOrFail($id);
-        File::delete(public_path('upload/' . $user->gambar));
-        $user->delete();
-
-        Alert::success('Success', 'User deleted successfully');
+        if ($mahasantri == null) {
+            File::delete(public_path('upload/' . $user->gambar));
+            $user->delete();
+            Alert::success('Success', 'User deleted successfully');
+        } else {
+            Alert::warning('Afwan Akhi', 'Hapus data mahasantri yang dimiliki mentor ini dahulu');
+        }
+        
         return redirect()->route('user.index');
     }
 }
