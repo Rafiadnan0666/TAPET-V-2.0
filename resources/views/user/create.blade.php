@@ -2,16 +2,16 @@
 @section('konten')
     <div class="page-heading">
         <div class="page-title">
-            <div class="flex justify-between items-center">
-                <div class="order-1">
-                    <h3 class="text-xl font-bold">Tambah Data</h3>
-                </div>
-                <div class="order-2">
-                    <a href="{{ route('user.index') }}">
-                        <button class="btn btn-warning mt-2">
-                            <i class="fas fa-arrow-circle-left"></i> Kembali
-                        </button>
-                    </a>
+            <div class="row">
+                <div class="col-12 order-md-1 order-last">
+                    <div style="float: right">
+                        <a href="{{ route('user.index') }}">
+                            <button class="btn btn-warning mt-2">
+                                <i class="fa fa-arrow-circle-left"></i> Kembali
+                            </button>
+                        </a>
+                    </div>
+                    <h3>{{ 'Create New User' }}</h3>
                 </div>
             </div>
         </div>
@@ -22,71 +22,54 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
-                                    {{-- enctype="multi platform ngirim data harus ada ini" --}}
-                                    <form action="{{ route('setoran.store') }}" enctype="multipart/form-data" method="post">
+                                    <form action="{{ route('user.store') }}" enctype="multipart/form-data" method="post">
                                         @csrf
+
                                         <div class="form-group">
-                                            <div class="row">
-                                                <label for="mahasantri" class="col-md-2">Mahasantri</label>
-                                                <select name="mahasantri" id="mahasantri" class="custom-select mb-2 @error('mahasantri') is-invalid @enderror col-md-6">
-                                                    <option value="" selected disabled>Select mahasantri</option>
-                                                    @foreach ($mahasantri as $item)
-                                                        <option value="{{$item->id}}" >{{$item->nama_mhs}}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('mahasantri')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="row">
-                                                <label for="tanggal" class="col-md-2">Tanggal</label>
-                                                <input type="datetime-local" value="{{ old('tanggal') }}" name="tanggal" class="form-control mb-2 @error('tanggal') is-invalid @enderror col-md-6" id="tanggal">
-                                                @error('tanggal')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="row">
-                                                <label for="juz" class="col-md-2">Juz</label>
-                                                <input type="number" value="{{ old('juz') }}" name="juz" class="form-control mb-2 @error('juz') is-invalid @enderror col-md-6" id="juz" placeholder="Enter Juz">
-                                                @error('juz')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="row">
-                                                <label for="halaman" class="col-md-2">Halaman</label>
-                                                <input type="number" value="{{ old('halaman') }}" name="halaman" class="form-control mb-2 @error('halaman') is-invalid @enderror col-md-6" id="halaman" placeholder="Enter Halaman">
-                                                @error('halaman')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="row">
-                                                <label for="nilai" class="col-md-2">Nilai</label>
-                                                <input type="number" value="{{ old('nilai') }}" name="nilai" class="form-control mb-2 @error('nilai') is-invalid @enderror col-md-6" id="nilai" placeholder="Enter Nilai">
-                                                @error('nilai')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="row">
-                                                <label for="status" class="col-md-2">Status</label>
-                                                <select name="status" id="status" class="custom-select mb-2 @error('status') is-invalid @enderror col-md-6">
-                                                    <option value="" selected disabled>Select Status</option>
-                                                    <option value="l">L</option>
-                                                    <option value="a">A</option>
-                                                </select>
-                                                @error('status')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="row">
-                                                <label for="keterangan" class="col-md-2">Keterangan</label>
-                                                <input type="text" value="{{ old('keterangan') }}" name="keterangan" class="form-control mb-2 @error('keterangan') is-invalid @enderror col-md-6" id="keterangan" placeholder="Enter Keterangan">
-                                                @error('keterangan')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                            <label for="name">Name</label>
+                                            <input type="text" name="name" class="form-control mb-2 @error('name') is-invalid @enderror" id="name" placeholder="Enter Name">
+                                            @error('name')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" name="email" class="form-control mb-2 @error('email') is-invalid @enderror" id="email" placeholder="Enter Email">
+                                            @error('email')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" name="password" class="form-control mb-2 @error('password') is-invalid @enderror" id="password" placeholder="Enter Password">
+                                            @error('password')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="role">Role</label>
+                                            <select name="role" id="role" class="custom-select mb-2 @error('role') is-invalid @enderror">
+                                                <option value="a">Admin</option>
+                                                <option value="m">Mentor</option>
+                                            </select>
+                                            @error('role')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="gambar">Gambar</label>
+                                            <input type="file" name="gambar" class="form-control mb-2 @error('gambar') is-invalid @enderror" id="gambar">
+                                            @error('gambar')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
                                         <button class="btn btn-primary mt-3" type="submit">
-                                            <i class="fas fa-save"></i> Simpan
+                                            <i class="fa fa-save"></i> Create User
                                         </button>
                                     </form>
                                 </div>

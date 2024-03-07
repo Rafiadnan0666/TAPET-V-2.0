@@ -12,8 +12,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $mentors = User::where('role', 'm')->paginate(5);
-        return view('user.index', compact('mentors'));
+        $mentor = User::where('role', 'm')->paginate(5);
+        return view('user.index', compact('mentor'));
     }
 
     public function create()
@@ -25,7 +25,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:20',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:user,email',
             'password' => 'required|min:6',
             'role' => 'required|in:a,m',
             'gambar' => 'nullable|image|mimes:jpg,png|max:2048', 
@@ -70,7 +70,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:20',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'email' => 'required|email|unique:user,email,' . $id,
             'password' => 'nullable|min:6',
             'role' => 'required|in:a,m',
             'gambar' => 'nullable|image|mimes:jpg,png|max:2048', // Adjust validation for the image file

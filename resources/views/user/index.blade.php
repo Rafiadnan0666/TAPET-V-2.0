@@ -6,7 +6,7 @@
                 <div class="full graph_head">
                     <div class=" d-flex justify-content-between">
                         <h2>Data Setoran</h2>
-                        <a href="{{ route('setoran.create') }}">
+                        <a href="{{ route('user.create') }}">
                             <button class="btn btn-primary"><i class="fa fa-create"></i>tambah </button>
                         </a>
                     </div>
@@ -27,8 +27,9 @@
                             <tbody>
                                 @foreach ($mentor as $m)
                                     <tr>
-                                        <td>{{ ++$no }}</td>
-                                        <td>{{ $m->gambar }}</td>
+                                        <td>{{ $loop->iteration}}</td>
+                                        <td><div class="user_img"><img class="img-responsive"
+                                        src="{{ asset('upload') }}/{{ $m->gambar }}" alt="#" /></div></td>
                                         <td>{{ $m->name }}</td>
                                         <td>{{ $m->email }}</td>
                                         <td>{{ $m->email }}</td>
