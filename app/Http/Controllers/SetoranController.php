@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mahasantri;
 use App\Models\User;
 use App\Models\Setoran;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class SetoranController extends Controller
@@ -25,8 +26,9 @@ class SetoranController extends Controller
     public function index()
     {
         //
-        $setoran = Setoran::all();
-        return view("setoran.index", compact('setoran'));
+        $setoran = Setoran::Paginate(10);
+        $no = 10 * ($setoran->currentPage() - 1);
+        return view("setoran.index", compact('setoran', 'no'));
     }
 
     /**
@@ -49,7 +51,6 @@ class SetoranController extends Controller
             'mahasantri' => 'required|',
             'juz' => 'required|max:30',
             'halaman' => 'required|',
-            'status' => 'required|',
             'tanggal' => 'required|',
             'nilai' => 'required'
         ];
@@ -68,12 +69,12 @@ class SetoranController extends Controller
         $setoran = new Setoran;
         $setoran->tanggal = $request->tanggal;
         $setoran->juz = $request->juz;
-        $setoran->status = $request->status;
         $setoran->nilai = $request->nilai;
         $setoran->halaman = $request->halaman;
         $setoran->keterangan = $request->keterangan;
         $setoran->mahasantri_id = $request->mahasantri;
         $setoran->save();
+        Alert::success('Alhamdulillah', 'Data Berhasil di tambahkan');
 
         return redirect()->route("setoran.index");
     }
@@ -105,7 +106,6 @@ class SetoranController extends Controller
             'mahasantri' => 'required',
             'juz' => 'required|max:30',
             'halaman' => 'required',
-            'status' => 'required',
             'tanggal' => 'required',
             'nilai' => 'required',
             'keterangan' => 'required',
@@ -121,11 +121,11 @@ class SetoranController extends Controller
         $setoran = Setoran::findOrFail($setoran->id);
         $setoran->tanggal = $request->tanggal;
         $setoran->juz = $request->juz;
-        $setoran->status = $request->status;
         $setoran->nilai = $request->nilai;
         $setoran->halaman = $request->halaman;
         $setoran->mahasantri_id = $request->mahasantri;
         $setoran->save();
+        Alert::success('Alhamdulillah', 'Data Berhasil di Edit');
 
         return redirect()->route("setoran.index");
     }
@@ -135,11 +135,8 @@ class SetoranController extends Controller
      */
     public function destroy(Setoran $setoran)
     {
-
-        //
         $setoran->delete();
+        Alert::success('Alhamdulillah', 'Data Berhasil di Hapus');
         return redirect()->route('setoran.index');
-
-     
     }
 }

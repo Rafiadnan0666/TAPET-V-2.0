@@ -49,7 +49,7 @@
                                             </div>
                                             <div class="row">
                                                 <label for="tanggal" class="col-md-2">Tanggal</label>
-                                                <input type="datetime-local" value="{{ old('tanggal') }}" name="tanggal"
+                                                <input type="date" value="{{ old('tanggal') }}" name="tanggal"
                                                     class="form-control mb-2 @error('tanggal') is-invalid @enderror col-md-6"
                                                     id="tanggal">
                                                 @error('tanggal')
@@ -80,18 +80,6 @@
                                                     class="form-control mb-2 @error('nilai') is-invalid @enderror col-md-6"
                                                     id="nilai" placeholder="Enter Nilai">
                                                 @error('nilai')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="row">
-                                                <label for="status" class="col-md-2">Status</label>
-                                                <select name="status" id="status"
-                                                    class="custom-select mb-2 @error('status') is-invalid @enderror col-md-6">
-                                                    <option value="" selected disabled>Select Status</option>
-                                                    <option value="l">L</option>
-                                                    <option value="a">A</option>
-                                                </select>
-                                                @error('status')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>

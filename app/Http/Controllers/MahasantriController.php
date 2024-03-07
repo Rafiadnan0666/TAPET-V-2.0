@@ -19,8 +19,9 @@ class MahasantriController extends Controller
     public function index()
     {
         //
-        $mahasantri = Mahasantri::all();
-        return view("mahasantri.index", compact("mahasantri"));
+        $mahasantri = Mahasantri::paginate(10);
+        $no = 10 * ($mahasantri->currentPage() - 1);
+        return view("mahasantri.index", compact('mahasantri','no'));
     }
 
     /**

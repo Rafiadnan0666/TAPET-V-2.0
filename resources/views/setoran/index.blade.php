@@ -13,7 +13,7 @@
                 <div class="full graph_head">
                     <div class=" d-flex justify-content-end">
                         <a href="{{ route('setoran.create') }}">
-                            <button class="btn btn-primary"><i class="fa fa-create"></i>tambah </button>
+                            <button class="btn btn-primary"><i class="fa fa-circle-plus mr-1"></i>Tambah </button>
                         </a>
                     </div>
                 </div>
@@ -30,21 +30,19 @@
                                     <th>Nilai</th>
                                     <th>Status</th>
                                     <th>Keterangan</th>
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($setoran as $mhs)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ ++$no }}</td>
                                         <td>{{ $mhs->mahasantri->nama_mhs }}</td>
                                         <td>{{ $mhs->tanggal }}</td>
                                         <td>{{ $mhs->juz }}</td>
                                         <td>{{ $mhs->halaman }}</td>
                                         <td>{{ $mhs->nilai }}</td>
-                                        <td>{{ $mhs->status == 'l' ? 'lanjut' : 'ulang' }}</td>
+                                        <td>{{ $mhs->nilai > 75 ? 'lanjut' : 'ulang' }}</td>
                                         <td>
                                             @if (Str::length($mhs->keterangan) > 10)
                                                 {{ substr($mhs->keterangan, 0, 10) . '[.....]' }}
@@ -52,8 +50,6 @@
                                                 {{ $mhs->keterangan }}
                                             @endif
                                         </td>
-                                        <td>{{ $mhs->created_at }}</td>
-                                        <td>{{ $mhs->updated_at }}</td>
                                         <td class="d-flex">
                                             <a href="{{ route('setoran.show', $mhs->id) }}">
                                                 <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
@@ -74,6 +70,13 @@
                                 @endforeach
 
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="9" class="text-right">
+                                        {{ $setoran->withQueryString()->links('pagination::bootstrap-5') }}
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
 
                     </div>

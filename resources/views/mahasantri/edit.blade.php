@@ -77,8 +77,14 @@
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <img src="{{ asset('upload') }}/{{ $mahasantri->gambar }}"
-                                                        alt="" class="w-25"><br>
+                                                    @if ($mahasantri->gambar != null)
+                                                        <img src="{{ asset('upload') }}/{{ $mahasantri->gambar }}"
+                                                            alt="" class="w-25">
+                                                    @else
+                                                        <img src="{{ asset('upload') }}/profile.jpg" alt=""
+                                                            class="w-25">
+                                                    @endif
+                                                    <br>
                                                     <label for="gambar">Gambar</label>
                                                     <input type="file" name="gambar"
                                                         class="form-control mb-2 @error('gambar') is-invalid @enderror"

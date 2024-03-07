@@ -27,7 +27,6 @@
                                     <th>Foto</th>
                                     <th>Nama Mahasantri</th>
                                     <th>Mentor</th>
-                                    <th>status</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
                                     <th></th>
@@ -36,14 +35,23 @@
                             <tbody>
                                 @foreach ($mahasantri as $mhs)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ ++$no }}</td>
                                         <td>{{ $mhs->nim }}</td>
-                                        <td><img src="{{ asset('upload') }}/{{ $mhs->gambar }}" alt="{{ $mhs->nama }}"
-                                                style="max-width: 100px;">
+                                        <td>
+                                            @if ($mhs->gambar != null)
+                                                <div class="profile_img"><img width="50" height="50"
+                                                        class="rounded-circle"
+                                                        src="{{ asset('upload') }}/{{ $mhs->gambar }}" alt="#" />
+                                                </div>
+                                            @else
+                                                <div class="profile_img"><img width="50" height="50"
+                                                        class="rounded-circle" src="{{ asset('upload') }}/profile.jpg"
+                                                        alt="#" />
+                                                </div>
+                                            @endif
                                         </td>
                                         <td>{{ $mhs->nama_mhs }}</td>
                                         <td>{{ $mhs->mentor->name }}</td>
-                                        <td>{{ $mhs->status == 'l' ? 'lanjut' : 'ulang' }}</td>
                                         <td>{{ $mhs->created_at }}</td>
                                         <td>{{ $mhs->updated_at }}</td>
                                         <td class="d-flex">
@@ -66,6 +74,13 @@
                                 @endforeach
 
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8" class="text-right">
+                                        {{ $mahasantri->withQueryString()->links('pagination::bootstrap-5') }}
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
 
                     </div>

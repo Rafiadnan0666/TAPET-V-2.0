@@ -1,13 +1,19 @@
 @extends('master.dash')
+@section('breadcrumb')
+    <li><a href="{{ route('dashboard') }}">Dashboard <span class="mx-1">></span></a></li>
+    <li><a> Mentor </a></li>
+@endsection
+@section('header')
+    <h2 style="width: max-content">Data Mentor</h2>
+@endsection
 @section('konten')
     <div class="row mt-5">
         <div class="col-md-12">
             <div class="white_shd full margin_bottom_30">
                 <div class="full graph_head">
-                    <div class=" d-flex justify-content-between">
-                        <h2>Data Setoran</h2>
+                    <div class=" d-flex justify-content-end">
                         <a href="{{ route('user.create') }}">
-                            <button class="btn btn-primary"><i class="fa fa-create"></i>tambah </button>
+                            <button class="btn btn-primary"><i class="fa fa-circle-plus mr-1"></i>Tambah </button>
                         </a>
                     </div>
                 </div>
@@ -27,9 +33,20 @@
                             <tbody>
                                 @foreach ($mentor as $m)
                                     <tr>
-                                        <td>{{ $loop->iteration}}</td>
-                                        <td><div class="user_img"><img class="img-responsive"
-                                        src="{{ asset('upload') }}/{{ $m->gambar }}" alt="#" /></div></td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            @if ($m->gambar != null)
+                                                <div class="profile_img"><img width="50" height="50"
+                                                        class="rounded-circle"
+                                                        src="{{ asset('upload') }}/{{ $m->gambar }}" alt="#" />
+                                                </div>
+                                            @else
+                                                <div class="profile_img"><img width="50" height="50"
+                                                        class="rounded-circle" src="{{ asset('upload') }}/profile.jpg"
+                                                        alt="#" />
+                                                </div>
+                                            @endif
+                                        </td>
                                         <td>{{ $m->name }}</td>
                                         <td>{{ $m->email }}</td>
                                         <td>{{ $m->email }}</td>

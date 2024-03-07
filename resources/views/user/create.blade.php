@@ -1,4 +1,12 @@
 @extends('master.dash')
+@section('breadcrumb')
+    <li><a href="{{ route('dashboard') }}">Dashboard <span class="mx-1">></span></a></li>
+    <li><a href="{{ route('user.index') }}">Mentor <span class="mx-1">></span></a></li>
+    <li><a> Tambah </a></li>
+@endsection
+@section('header')
+    <h2 style="width: max-content">Tambah Data Mentor</h2>
+@endsection
 @section('konten')
     <div class="page-heading">
         <div class="page-title">
@@ -11,7 +19,6 @@
                             </button>
                         </a>
                     </div>
-                    <h3>{{ 'Create New User' }}</h3>
                 </div>
             </div>
         </div>

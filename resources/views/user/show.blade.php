@@ -1,14 +1,15 @@
 @extends('master.dash')
+@section('breadcrumb')
+    <li><a href="{{ route('dashboard') }}">Dashboard <span class="mx-1">></span></a></li>
+    <li><a href="{{ route('user.index') }}">Mentor <span class="mx-1">></span></a></li>
+    <li><a> Detail </a></li>
+@endsection
+@section('header')
+    <h2 style="width: max-content">Profile Mentor</h2>
+@endsection
 @section('konten')
     <div class="midde_cont">
         <div class="container-fluid">
-            <div class="row column_title">
-                <div class="col-md-12">
-                    <div class="page_title">
-                        <h2>Profile</h2>
-                    </div>
-                </div>
-            </div>
             <!-- row -->
             <div class="row column1">
                 <div class="col-md-2"></div>
@@ -43,9 +44,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- profile content section -->
-                                   
-                                    <!-- end user profile section -->
                                 </div>
                             </div>
                         </div>
@@ -53,15 +51,6 @@
                     <div class="col-md-2"></div>
                 </div>
                 <!-- end row -->
-            </div>
-            <!-- footer -->
-            <div class="container-fluid">
-                <div class="footer">
-                    <p>Copyright © 2018 Designed by html.design. All rights reserved.
-                        <br>
-                        Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
-                    </p>
-                </div>
             </div>
         </div>
         <!-- end dashboard inner -->
