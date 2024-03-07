@@ -142,8 +142,6 @@
                                             <div class="dropdown-menu">
                                                 <a href="{{ route('profile.edit') }}" class="dropdown-item">My
                                                     Profile</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ asset('dist') }}/settings.html">Settings</a>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
                                                     <a class="dropdown-item" href="{{ route('logout') }}"
