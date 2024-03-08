@@ -42,7 +42,6 @@ class MahasantriController extends Controller
         $rules = [
             'nim' => 'required|numeric|unique:mahasantri',
             'nama_mhs' => 'required',
-            'mentor_id' => 'required|exists:user,id',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ];
 
@@ -50,7 +49,6 @@ class MahasantriController extends Controller
             'required' => ':attribute tidak boleh kosong',
             'numeric' => ':attribute harus berupa angka',
             'unique' => ':attribute sudah digunakan',
-            'exists' => ':attribute tidak valid',
             'image' => ':attribute harus berupa file gambar',
             'mimes' => 'Ekstensi :values tidak didukung, gunakan yang lain',
             'max' => 'Ukuran :attribute tidak boleh melebihi :max KB',
@@ -62,7 +60,6 @@ class MahasantriController extends Controller
         $mahasantri = new Mahasantri;
         $mahasantri->nim = $val['nim'];
         $mahasantri->nama_mhs = $val['nama_mhs'];
-        $mahasantri->mentor_id = $val['mentor_id'];
         $mahasantri->gambar = $filename;
         $mahasantri->save();
 Alert::success('Alhamdulillah', 'Data Berhasil di Tambahkan');

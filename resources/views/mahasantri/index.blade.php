@@ -52,7 +52,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $mhs->nama_mhs }}</td>
-                                        <td>{{ $mhs->mentor->name }}</td>
+                                        <td>{{ $mhs->mentor_id != null ? $mhs->mentor->name : 'Belum memiliki mentor' }}</td>
                                         <td>{{ $mhs->setoran->avg('nilai') != null ? number_format($mhs->setoran->avg('nilai'), 2) : 'Belum ada data nilai' }}
                                         </td>
                                         <td>{{ $mhs->setoran->max('tanggal') != null ? $mhs->setoran->max('tanggal') : 'Belum ada data setoran' }}

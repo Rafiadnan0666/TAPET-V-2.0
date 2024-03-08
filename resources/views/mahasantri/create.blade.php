@@ -56,23 +56,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label for="mentor_id">Mentor</label>
-                                                    <select name="mentor_id" id="mentor_id"
-                                                        class="custom-select mb-2 @error('mentor_id') is-invalid @enderror">
-                                                        <option value="" selected disabled>Select Mentor</option>
-                                                        @foreach ($user as $user)
-                                                            <option value="{{ $user->id }}">
-                                                                {{ $user->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('mentor_id')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <label for="gambar">Gambar</label>
+                                                    <label for="gambar">Foto</label>
                                                     <input type="file" name="gambar"
                                                         class="form-control mb-2 @error('gambar') is-invalid @enderror"
                                                         id="gambar">

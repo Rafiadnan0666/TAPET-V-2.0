@@ -52,7 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/mentor', [MentorController::class, 'index'])->name('mentor.index');
         Route::get('/mentor/createmhs', [MentorController::class, 'createmhs'])->name('mentor.createmhs');
         Route::get('/mentor/createstr/{id}', [MentorController::class, 'createstr'])->name('mentor.createstr');
-        Route::post('/mentor/storemhs', [MentorController::class, 'storemhs'])->name('mentor.storemhs');
+        Route::put('/mentor/storemhs/{id}', [MentorController::class, 'storemhs'])->name('mentor.storemhs');
         Route::post('/mentor/storestr', [MentorController::class, 'storestr'])->name('mentor.storestr');
         Route::put('/mentor/updatemhs/{id}', [MentorController::class, 'updatemhs'])->name('mentor.updatemhs');
         Route::get('/mentor/editmhs/{id}', [MentorController::class, 'editmhs'])->name('mentor.editmhs');

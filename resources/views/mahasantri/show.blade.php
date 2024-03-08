@@ -47,7 +47,7 @@
                                             <div class="contact_inner">
                                                 <h3>{{ $mahasantri->nama_mhs }}</h3>
                                                 <ul class="list-unstyled">
-                                                    <li><i class="fa fa-user"></i> Mentor : {{ $mahasantri->mentor->name }}
+                                                    <li><i class="fa fa-user"></i> Mentor : {{ $mahasantri->mentor_id != null ? $mahasantri->mentor->name : 'Belum memiliki mentor' }}
                                                     </li>
                                                     <li><i class="fa fa-user"></i> Rata-rata Nilai :
                                                         {{ $mahasantri->setoran->avg('nilai') != null ? $mahasantri->setoran->avg('nilai') : 'Afwan, belum ada data nilai' }}

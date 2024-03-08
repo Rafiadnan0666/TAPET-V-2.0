@@ -41,7 +41,8 @@ class MentorController extends Controller
 
     public function createmhs()
     {
-        return view('mentor/createmhs');
+        $mahasantri = Mahasantri::where('mentor_id', '=', null)->get();
+        return view('mentor/createmhs',compact('mahasantri'));
     }
 
     public function createstr(string $id)
@@ -50,26 +51,12 @@ class MentorController extends Controller
         return view('mentor/createstr', compact('mahasantri'));
     }
 
-    public function storemhs(Request $request)
+    public function storemhs(Request $request,$id)
     {
-        $rules = [
-            'nim' => 'required|min:3|max:20|unique:mahasantri,nim',
-            'nama' => 'required|min:3|max:20',
-        ];
-
-        $messages = [
-            'required' => ':attribute gak boleh kosong akhi',
-            'min' => ':attribute minimal harus 3 huruf akhi',
-            'max' => ':attribute maximal 20 huruf akhi',
-            'unique' => ':attribute sudah ada akhi, silahkan gunakan yang lain'
-        ];
-
-        $this->validate($request, $rules, $messages);
-        $this->mahasantri->nama_mhs = $request->nama;
-        $this->mahasantri->nim = $request->nim;
-        $this->mahasantri->mentor_id = $request->mid;
-        $this->mahasantri->save();
-        Alert::success('Alhamdulillah', 'Data Berhasil di Tambahkan');
+        $mahasantri = Mahasantri::find($id);
+        $mahasantri->mentor_id = $request->mid;
+        $mahasantri->save();
+        Alert::success('Alhamdulillah', 'Mahasantri berhasil di Tambahkan');
 
         return redirect()->route('mentor.index');
     }
@@ -165,15 +152,11 @@ class MentorController extends Controller
 
     public function destroymhs(string $id)
     {
-        $setoran = Setoran::where('mahasantri_id', '=', $id)->count();
         $mahasantri = Mahasantri::find($id);
 
-        if ($setoran == 0) {
-            $mahasantri->delete();
-            Alert::success('Alhamdulillah', 'Data Berhasil di Hapus');
-        } else {
-            Alert::warning('Afwan Akhi', 'Hapus data setoran yang dimiliki mahasantri ini dahulu');
-        }
+        $mahasantri->mentor_id =  null;
+        $mahasantri->save();
+        Alert::success('Alhamdulillah', 'Mahasantri Berhasil di Hapus');
 
         return redirect()->route('mentor.index');
     }
