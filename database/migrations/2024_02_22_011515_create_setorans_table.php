@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("mahasantri_id");
             $table->date("tanggal")->default(now());
             $table->integer("juz");
-            $table->integer("halaman"); // Adjust precision and scale as needed
+            $table->integer("halaman"); 
             $table->integer("nilai");
             $table->foreign("mahasantri_id")->references("id")->on("mahasantri");
             $table->string("keterangan")->nullable();
