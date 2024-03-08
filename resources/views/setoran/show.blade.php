@@ -30,13 +30,38 @@
                                 <!-- profile image -->
                                 <div class="col-lg-12">
                                     <div class="full dis_flex center_text">
+                                        <div class="profile_img">
+                                            @if (!$setoran->mahasantri->gambar)
+                                                <img width="180" class="" src="{{ asset('upload') }}/profile.jpg"
+                                                    alt="Profile Picture">
+                                            @else
+                                                <img width="180" class=""
+                                                    src="{{ asset('upload') }}/{{ $setoran->mahasantri->gambar }}"
+                                                    alt="Profile Picture">
+                                            @endif
+                                        </div>
                                         <div class="profile_contant">
                                             <div class="contact_inner">
                                                 <h3>{{ $setoran->mahasantri->nama_mhs }}</h3>
                                                 <ul class="list-unstyled">
                                                     <li>
-                                                        <i class="fa fa-person"></i>:
+                                                        <i class="fa fa-user"></i> Mentor:
                                                         {{ $setoran->mahasantri->mentor->name }}
+                                                    </li>
+                                                    <li><i class="fa fa-marker"></i> Rata-rata Nilai :
+                                                        {{ $setoran->mahasantri->setoran->avg('nilai') != null ? number_format($setoran->mahasantri->setoran->avg('nilai'), 2) : 'Afwan, belum ada data nilai' }}
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-book"></i> Juz:
+                                                        {{ $setoran->juz }}
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-book"></i> Halaman:
+                                                        {{ $setoran->halaman }}
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-marker"></i> Nilai:
+                                                        {{ $setoran->nilai }}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -50,7 +75,7 @@
                                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                                         <a class="nav-item nav-link active" id="nav-home-tab"
                                                             data-toggle="tab" href="#recent_activity" role="tab"
-                                                            aria-selected="true">Recent Setoran</a>
+                                                            aria-selected="true">Keterangan Setoran</a>
                                                     </div>
                                                 </nav>
                                                 <div class="tab-content" id="nav-tabContent">
@@ -58,18 +83,9 @@
                                                         role="tabpanel" aria-labelledby="nav-home-tab">
                                                         <div class="msg_list_main">
                                                             <ul class="msg_list">
-
                                                                 <li>
                                                                     <div class="msg_content">
-                                                                        <span
-                                                                            class="name_user">{{ $setoran->mahasantri->nama_mhs }}</span>
-                                                                        <p class="msg_user">JUZ: {{ $setoran->juz }}</p>
-                                                                        <p class="msg_user">Halaman: {{ $setoran->halaman }}
-                                                                        </p>
-                                                                        <p class="msg_user">Nilai: {{ $setoran->nilai }}</p>
-                                                                        <p class="msg_user">Keterangan:
-                                                                            {{ $setoran->keterangan }}</p>
-                                                                        <p class="time_ago">12 min ago</p>
+                                                                        <p class="msg_user"> {{ $setoran->keterangan }}</p>
                                                                     </div>
                                                                 </li>
 
