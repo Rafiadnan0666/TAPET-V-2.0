@@ -144,7 +144,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $mahasantri = Mahasantri::where('mahasantri_id', '=', $id)->count();
+        $mahasantri = Mahasantri::where('mentor_id', '=', $id)->count();
         $user = User::findOrFail($id);
         if ($mahasantri == null) {
             File::delete(public_path('upload/' . $user->gambar));
