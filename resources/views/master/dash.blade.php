@@ -50,7 +50,7 @@
                     <div class="sidebar-header">
                         <div class="logo_section">
                             <a href="{{ asset('dist') }}/index.html"><img class="logo_icon img-responsive"
-                                    src="{{ asset('dist') }}/images/logo/logo_icon.png" alt="#" /></a>
+                                    src="{{ asset('dist') }}/images/logo/koran.png" alt="#" /></a>
                         </div>
                     </div>
                     <div class="sidebar_user_info">
@@ -143,7 +143,8 @@
                                                 <span class="name_user">{{ Auth::user()->name }}</span>
                                             </a>
                                             <div class="dropdown-menu">
-                                                <a href="{{ route('user.set', Auth::user()->id) }}" class="dropdown-item">My
+                                                <a href="{{ route('user.set', Auth::user()->id) }}"
+                                                    class="dropdown-item">My
                                                     Profile</a>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
