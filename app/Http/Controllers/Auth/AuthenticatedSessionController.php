@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
 
         // Assuming you have a `role` attribute in your User model
         $user = Auth::user();
-        Alert::success('Welcome', 'to TAPET V-2-0');
+        Alert::success('Welcome', 'Ahlan Wa Sahlan Fii TAPET V.2.0');
         if ($user->role == 'a') {
             return redirect()->intended(route('dashboard'));
         } elseif ($user->role == 'm') {

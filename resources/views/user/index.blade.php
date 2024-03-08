@@ -63,8 +63,9 @@
                                             <form action="{{ route('user.destroy', $m->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"><i
-                                                        class="fa fa-trash"></i></button>
+                                                <button
+                                                    onclick="return confirm('Anda yakin akan hapus data??')"type="submit"
+                                                    class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                             </form>
 
                                         </td>

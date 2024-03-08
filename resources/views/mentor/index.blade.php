@@ -60,7 +60,7 @@
                                                     <a class="btn btn-warning" href="{{ route('mentor.editmhs', $m->id) }}"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                                    <a onclick="return confirm('Anda Yakin Ingin Hapus Data??')"
+                                                    <a onclick="return confirm('Anda yakin akan hapus data??')"
                                                         class="btn btn-danger"
                                                         href="{{ route('mentor.destroymhs', $m->id) }}"
                                                         data-toggle="tooltip" data-placement="top" title=""

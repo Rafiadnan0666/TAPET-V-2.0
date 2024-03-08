@@ -68,7 +68,7 @@
                                             <form action="{{ route('mahasantri.destroy', $mhs->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"><i
+                                                <button  onclick="return confirm('Anda yakin akan hapus data??')" type="submit" class="btn btn-danger"><i
                                                         class="fa fa-trash"></i></button>
                                             </form>
 

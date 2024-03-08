@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-        Alert::success('Welcome', 'to TAPET V-2-0');
+        Alert::success('Welcome', 'Ahlan Wa Sahlan Fii TAPET V.2.0');
 
         if ($user->role == 'a') {
             return redirect(RouteServiceProvider::HOME);
