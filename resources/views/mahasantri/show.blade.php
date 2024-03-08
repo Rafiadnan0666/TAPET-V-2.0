@@ -33,14 +33,24 @@
                                 <!-- profile image -->
                                 <div class="col-lg-12">
                                     <div class="full dis_flex center_text">
-                                        <div class="profile_img"><img width="180" class="rounded-circle"
-                                                src="{{ asset('upload') }}/{{ $mahasantri->gambar }}" alt="Profile Picture">
-                                        </div>
+                                        @if (!$mahasantri->gambar)
+                                            <div class="profile_img"><img width="180" class=""
+                                                    src="{{ asset('upload') }}/profile.jpg" alt="Profile Picture">
+                                            </div>
+                                        @else
+                                            <div class="profile_img"><img width="180" class=""
+                                                    src="{{ asset('upload') }}/{{ $mahasantri->gambar }}"
+                                                    alt="Profile Picture">
+                                            </div>
+                                        @endif
                                         <div class="profile_contant">
                                             <div class="contact_inner">
                                                 <h3>{{ $mahasantri->nama_mhs }}</h3>
                                                 <ul class="list-unstyled">
-                                                    <li><i class="fa fa-person"></i>: {{ $mahasantri->mentor->name }}</li>
+                                                    <li><i class="fa fa-user"></i> Mentor : {{ $mahasantri->mentor->name }}
+                                                    </li>
+                                                    <li><i class="fa fa-user"></i> Rata-rata Nilai : {{ $mahasantri->setoran->avg('nilai') != null ? $mahasantri->setoran->avg('nilai') : 'Afwan, belum ada data nilai' }}
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -51,9 +61,7 @@
                                             <div class="tabbar">
                                                 <nav>
                                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                        <a class="nav-item nav-link active" id="nav-home-tab"
-                                                            data-toggle="tab" href="#recent_activity" role="tab"
-                                                            aria-selected="true">Recent Setoran</a>
+                                                        <a class="nav-item nav-link active" id="nav-home-tab">Setoran Terbaru</a>
                                                     </div>
                                                 </nav>
                                                 <div class="tab-content" id="nav-tabContent">
@@ -64,9 +72,8 @@
                                                                 @forelse ($setoran as $setoran)
                                                                     <li>
                                                                         <div class="msg_content">
-                                                                            <span
-                                                                                class="name_user">{{ $setoran->mahasantri->nama_mhs }}</span>
-                                                                            <p class="msg_user">JUZ: {{ $setoran->juz }}</p>
+                                                                            <p class="msg_user">JUZ: {{ $setoran->juz }}
+                                                                            </p>
                                                                             <p class="msg_user">Halaman:
                                                                                 {{ $setoran->halaman }}</p>
                                                                             <p class="msg_user">Nilai:
@@ -77,7 +84,7 @@
                                                                         </div>
                                                                     </li>
                                                                 @empty
-                                                                    <li>No recent setoran found.</li>
+                                                                    <li>Afwan, Mahasantri ini belum setoran.</li>
                                                                 @endforelse
                                                             </ul>
                                                         </div>

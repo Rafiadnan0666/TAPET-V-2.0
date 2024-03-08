@@ -33,13 +33,27 @@
                                 <!-- profile image -->
                                 <div class="col-lg-12">
                                     <div class="full dis_flex center_text">
-                                        <div class="profile_img"><img width="180" class="rounded-circle"
-                                                src="{{ asset('upload') }}/{{ $user->gambar }}" alt="Profile Picture"></div>
+                                        <div class="profile_img">
+                                            @if (!$user->gambar)
+                                                <img width="180" class="" src="{{ asset('upload') }}/profile.jpg"
+                                                    alt="Profile Picture">
+                                            @else
+                                                <img width="180" class=""
+                                                    src="{{ asset('upload') }}/{{ $user->gambar }}" alt="Profile Picture">
+                                            @endif
+
+                                        </div>
                                         <div class="profile_contant">
                                             <div class="contact_inner">
                                                 <h3>{{ $user->name }}</h3>
                                                 <ul class="list-unstyled">
-                                                    <li><i class="fa fa-person"></i>: {{ $user->name }}</li>
+                                                    <li><i class="fa fa-user"></i> Role:
+                                                        {{ $user->role == 'a' ? 'Admin' : 'Mentor' }}</li>
+                                                    <li><i class="fa fa-envelope"></i> Role:
+                                                        {{ $user->email }}</li>
+                                                    <li><i class="fa fa-users"></i> Jumlah Mahasantri :
+                                                        {{ $user->mahasantri->count() != null ? $user->mahasantri->count() : 'Afwan, belum ada data mahasantri' }}
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>

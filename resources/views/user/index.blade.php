@@ -50,7 +50,8 @@
                                         </td>
                                         <td>{{ $m->name }}</td>
                                         <td>{{ $m->email }}</td>
-                                        <td>{{ $m->mahasantri->count() }}</td>
+                                        <td>{{ $m->mahasantri->count() != null ? $m->mahasantri->count() : 'Belum ada data mahasantri' }}
+                                        </td>
                                         <td class="d-flex">
                                             <a href="{{ route('user.show', $m->id) }}">
                                                 <button class="btn btn-primary"><i class="fa fa-eye"></i></button>

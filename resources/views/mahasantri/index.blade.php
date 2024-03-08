@@ -53,8 +53,10 @@
                                         </td>
                                         <td>{{ $mhs->nama_mhs }}</td>
                                         <td>{{ $mhs->mentor->name }}</td>
-                                        <td>{{ $mhs->created_at }}</td>
-                                        <td>{{ $mhs->updated_at }}</td>
+                                        <td>{{ $mhs->setoran->avg('nilai') != null ? number_format($mhs->setoran->avg('nilai'), 2) : 'Belum ada data nilai' }}
+                                        </td>
+                                        <td>{{ $mhs->setoran->max('tanggal') != null ? $mhs->setoran->max('tanggal') : 'Belum ada data setoran' }}
+                                        </td>
                                         <td class="d-flex">
                                             <a href="{{ route('mahasantri.show', $mhs->id) }}">
                                                 <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
