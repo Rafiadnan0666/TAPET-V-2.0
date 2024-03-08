@@ -26,7 +26,7 @@ class MentorController extends Controller
     public function index(Request $request)
     {
         $id = Auth::user()->id;
-        $mahasantri = DB::table('mahasantri')->where('mentor_id', '=', $id)->Paginate(5);
+        $mahasantri = Mahasantri::where('mentor_id', '=', $id)->Paginate(5);
         $no = 5 * ($mahasantri->currentPage() - 1);
         return view("mentor.index", compact('mahasantri', 'no'));
     }

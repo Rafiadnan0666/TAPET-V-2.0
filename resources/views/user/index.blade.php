@@ -38,7 +38,8 @@
                                             @if ($m->gambar != null)
                                                 <div class="profile_img"><img width="50" height="50"
                                                         class="rounded-circle"
-                                                        src="{{ asset('upload') }}/{{ $m->gambar }}" alt="#" style="object-fit: cover" />
+                                                        src="{{ asset('upload') }}/{{ $m->gambar }}" alt="#"
+                                                        style="object-fit: cover" />
                                                 </div>
                                             @else
                                                 <div class="profile_img"><img width="50" height="50"
@@ -49,7 +50,7 @@
                                         </td>
                                         <td>{{ $m->name }}</td>
                                         <td>{{ $m->email }}</td>
-                                        <td>{{ $m->email }}</td>
+                                        <td>{{ $m->mahasantri->count() }}</td>
                                         <td class="d-flex">
                                             <a href="{{ route('user.show', $m->id) }}">
                                                 <button class="btn btn-primary"><i class="fa fa-eye"></i></button>

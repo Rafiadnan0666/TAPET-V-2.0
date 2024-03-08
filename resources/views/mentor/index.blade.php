@@ -30,17 +30,6 @@
                             <tbody>
                                 @if ($mahasantri->count() != null)
                                     @foreach ($mahasantri as $m)
-                                        @php
-                                            $mid = $m->id;
-                                            $avg = DB::table('setoran')
-                                                ->where('mahasantri_id', '=', $mid)
-                                                ->avg('nilai');
-                                            $l = DB::table('setoran')
-                                                ->orderBy('tanggal', 'desc')
-                                                ->where('mahasantri_id', '=', $mid)
-                                                ->limit(1)
-                                                ->get();
-                                        @endphp
                                         <tr>
                                             <td>{{ ++$no }}</td>
                                             <td>
@@ -59,11 +48,9 @@
                                             </td>
                                             <td>{{ $m->nim }}</td>
                                             <td>{{ $m->nama_mhs }}</td>
-                                            <td>{{ number_format($avg, 2) }}</td>
-                                            <td>
-                                                @foreach ($l as $t)
-                                                    {{ date('l d-M-Y', strtotime($t->tanggal)) }}
-                                                @endforeach
+                                            <td>{{ $m->setoran->avg('nilai') != null ? number_format($m->setoran->avg('nilai'), 2) : 'Belum ada data nilai' }}
+                                            </td>
+                                            <td>{{ $m->setoran->max('tanggal') != null ? $m->setoran->max('tanggal') : 'Belum ada data setoran' }}
                                             </td>
                                             <th class="text-right">
                                                 <div class="tooltip_section">
