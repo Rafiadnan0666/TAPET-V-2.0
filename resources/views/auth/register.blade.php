@@ -96,7 +96,7 @@
                 <div class="login_section">
                     <div class="logo_login">
                         <div class="center">
-                            <img width="210" src="images/logo/logo.png" alt="#" />
+                            <img width="100" src="{{ asset('dist') }}/images/logo/koran.png" alt="#" />
                         </div>
                     </div>
                     <div class="login_form w-100">
