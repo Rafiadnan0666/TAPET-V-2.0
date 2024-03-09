@@ -52,7 +52,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $mhs->nama_mhs }}</td>
-                                        <td>{{ $mhs->mentor->name }}</td>
+                                        <td>{{ $mhs->mentor != null ? $mhs->mentor->name : 'Belum punya mentor' }}</td>
                                         <td>{{ $mhs->setoran->avg('nilai') != null ? number_format($mhs->setoran->avg('nilai'), 2) : 'Belum ada data nilai' }}
                                         </td>
                                         <td>{{ $mhs->setoran->max('tanggal') != null ? $mhs->setoran->max('tanggal') : 'Belum ada data setoran' }}
@@ -68,7 +68,8 @@
                                             <form action="{{ route('mahasantri.destroy', $mhs->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button  onclick="return confirm('Anda yakin akan hapus data??')" type="submit" class="btn btn-danger"><i
+                                                <button onclick="return confirm('Anda yakin akan hapus data??')"
+                                                    type="submit" class="btn btn-danger"><i
                                                         class="fa fa-trash"></i></button>
                                             </form>
 
